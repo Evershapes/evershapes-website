@@ -19,17 +19,17 @@ export default class Navbar extends React.Component {
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem style={{ margin: '5px' }}>
-                                <NavigationMenuLink className='BriceBold text-2xl'>
+                                <NavigationMenuLink className='BriceBold text-2xl ease-in-out transform hover:scale-105 hover:bg-transparent transition duration-300 px-4 py-2 rounded-lg'>
                                     Accueil
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem style={{ margin: '5px' }}>
-                                <NavigationMenuLink className='BriceBold text-2xl'>
+                                <NavigationMenuLink className='BriceBold text-2xl ease-in-out transform hover:scale-105 hover:bg-transparent transition duration-300 px-4 py-2 rounded-lg'>
                                     Team
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem style={{ margin: '5px' }}>
-                                <NavigationMenuLink className='BriceBold text-2xl'>
+                                <NavigationMenuLink className='BriceBold text-2xl ease-in-out transform hover:scale-105 hover:bg-transparent transition duration-300 px-4 py-2 rounded-lg'>
                                     Projects
                                 </NavigationMenuLink>
                             </NavigationMenuItem>

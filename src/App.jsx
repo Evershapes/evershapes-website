@@ -11,6 +11,8 @@ import {
     NavigationMenuViewport,
 } from "../components/ui/navigation-menu"
 
+import '../public/fonts/fonts.css'
+
 function App() {
 
     return (
@@ -18,23 +20,23 @@ function App() {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <NavigationMenuLink>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Models</a>
+                        <NavigationMenuLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className='BriceBoldSemiExpanded'>
+                            Models
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Bikes</a>
+                        <NavigationMenuLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className='BriceBoldSemiExpanded'>
+                            Bikes
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Furnitures</a>
+                        <NavigationMenuLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className='BriceBoldSemiExpanded'>
+                            Furnitures
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Projects</a>
+                        <NavigationMenuLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className='BriceBoldSemiExpanded'>
+                            Projects
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                 </NavigationMenuList>

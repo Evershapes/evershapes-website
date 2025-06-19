@@ -1,0 +1,313 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3867246, 2020-12-16T11:57:38-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Brice Extra Light Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Regular by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Extra Light by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Light by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Black Semi Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Bold Semi Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Semi Bold Semi Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Regular Semi Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Light Semi Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Extra Light Semi Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Black Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Bold Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Semi Bold Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Light Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Regular Condensed by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Black Semi Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Bold Semi Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Bold by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Black by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Extra Light Semi Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Semi Bold by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Light Semi Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Regular Semi Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Semi Bold Semi Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Extra Light Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Light Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Regular Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Semi Bold Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Bold Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+
+ * Webfont: Brice Black Expanded by Studio Sun
+ * URL: https://www.myfonts.com/collections/studio-sun-foundry
+ 
+ * © 2025 MyFonts Inc. */
+  
+@font-face {
+  font-family: "BriceLightCondensed";
+  src: url('webFonts/BriceLightCondensed/font.woff2') format('woff2'), url('webFonts/BriceLightCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceSemiBoldSemiCondensed";
+  src: url('webFonts/BriceSemiBoldSemiCondensed/font.woff2') format('woff2'), url('webFonts/BriceSemiBoldSemiCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBlack";
+  src: url('webFonts/BriceBlack/font.woff2') format('woff2'), url('webFonts/BriceBlack/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceRegularCondensed";
+  src: url('webFonts/BriceRegularCondensed/font.woff2') format('woff2'), url('webFonts/BriceRegularCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBoldSemiCondensed";
+  src: url('webFonts/BriceBoldSemiCondensed/font.woff2') format('woff2'), url('webFonts/BriceBoldSemiCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceRegularSemiCondensed";
+  src: url('webFonts/BriceRegularSemiCondensed/font.woff2') format('woff2'), url('webFonts/BriceRegularSemiCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBoldCondensed";
+  src: url('webFonts/BriceBoldCondensed/font.woff2') format('woff2'), url('webFonts/BriceBoldCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceExtraLightSemiExpanded";
+  src: url('webFonts/BriceExtraLightSemiExpanded/font.woff2') format('woff2'), url('webFonts/BriceExtraLightSemiExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceSemiBoldCondensed";
+  src: url('webFonts/BriceSemiBoldCondensed/font.woff2') format('woff2'), url('webFonts/BriceSemiBoldCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBlackCondensed";
+  src: url('webFonts/BriceBlackCondensed/font.woff2') format('woff2'), url('webFonts/BriceBlackCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceExtraLightCondensed";
+  src: url('webFonts/BriceExtraLightCondensed/font.woff2') format('woff2'), url('webFonts/BriceExtraLightCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceLightSemiCondensed";
+  src: url('webFonts/BriceLightSemiCondensed/font.woff2') format('woff2'), url('webFonts/BriceLightSemiCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceRegular";
+  src: url('webFonts/BriceRegular/font.woff2') format('woff2'), url('webFonts/BriceRegular/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceExtraLightSemiCondensed";
+  src: url('webFonts/BriceExtraLightSemiCondensed/font.woff2') format('woff2'), url('webFonts/BriceExtraLightSemiCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBold";
+  src: url('webFonts/BriceBold/font.woff2') format('woff2'), url('webFonts/BriceBold/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceExtraLight";
+  src: url('webFonts/BriceExtraLight/font.woff2') format('woff2'), url('webFonts/BriceExtraLight/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBlackSemiExpanded";
+  src: url('webFonts/BriceBlackSemiExpanded/font.woff2') format('woff2'), url('webFonts/BriceBlackSemiExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceLight";
+  src: url('webFonts/BriceLight/font.woff2') format('woff2'), url('webFonts/BriceLight/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBoldExpanded";
+  src: url('webFonts/BriceBoldExpanded/font.woff2') format('woff2'), url('webFonts/BriceBoldExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBoldSemiExpanded";
+  src: url('webFonts/BriceBoldSemiExpanded/font.woff2') format('woff2'), url('webFonts/BriceBoldSemiExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBlackExpanded";
+  src: url('webFonts/BriceBlackExpanded/font.woff2') format('woff2'), url('webFonts/BriceBlackExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceSemiBoldSemiExpanded";
+  src: url('webFonts/BriceSemiBoldSemiExpanded/font.woff2') format('woff2'), url('webFonts/BriceSemiBoldSemiExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceLightSemiExpanded";
+  src: url('webFonts/BriceLightSemiExpanded/font.woff2') format('woff2'), url('webFonts/BriceLightSemiExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceExtraLightExpanded";
+  src: url('webFonts/BriceExtraLightExpanded/font.woff2') format('woff2'), url('webFonts/BriceExtraLightExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceLightExpanded";
+  src: url('webFonts/BriceLightExpanded/font.woff2') format('woff2'), url('webFonts/BriceLightExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceBlackSemiCondensed";
+  src: url('webFonts/BriceBlackSemiCondensed/font.woff2') format('woff2'), url('webFonts/BriceBlackSemiCondensed/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceRegularSemiExpanded";
+  src: url('webFonts/BriceRegularSemiExpanded/font.woff2') format('woff2'), url('webFonts/BriceRegularSemiExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceSemiBold";
+  src: url('webFonts/BriceSemiBold/font.woff2') format('woff2'), url('webFonts/BriceSemiBold/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceRegularExpanded";
+  src: url('webFonts/BriceRegularExpanded/font.woff2') format('woff2'), url('webFonts/BriceRegularExpanded/font.woff') format('woff');
+}
+@font-face {
+  font-family: "BriceSemiBoldExpanded";
+  src: url('webFonts/BriceSemiBoldExpanded/font.woff2') format('woff2'), url('webFonts/BriceSemiBoldExpanded/font.woff') format('woff');
+}
+
+.BriceExtraLightCondensed {
+	font-family: BriceExtraLightCondensed;
+}
+.BriceRegular {
+	font-family: BriceRegular;
+}
+.BriceExtraLight {
+	font-family: BriceExtraLight;
+}
+.BriceLight {
+	font-family: BriceLight;
+}
+.BriceBlackSemiCondensed {
+	font-family: BriceBlackSemiCondensed;
+}
+.BriceBoldSemiCondensed {
+	font-family: BriceBoldSemiCondensed;
+}
+.BriceSemiBoldSemiCondensed {
+	font-family: BriceSemiBoldSemiCondensed;
+}
+.BriceRegularSemiCondensed {
+	font-family: BriceRegularSemiCondensed;
+}
+.BriceLightSemiCondensed {
+	font-family: BriceLightSemiCondensed;
+}
+.BriceExtraLightSemiCondensed {
+	font-family: BriceExtraLightSemiCondensed;
+}
+.BriceBlackCondensed {
+	font-family: BriceBlackCondensed;
+}
+.BriceBoldCondensed {
+	font-family: BriceBoldCondensed;
+}
+.BriceSemiBoldCondensed {
+	font-family: BriceSemiBoldCondensed;
+}
+.BriceLightCondensed {
+	font-family: BriceLightCondensed;
+}
+.BriceRegularCondensed {
+	font-family: BriceRegularCondensed;
+}
+.BriceBlackSemiExpanded {
+	font-family: BriceBlackSemiExpanded;
+}
+.BriceBoldSemiExpanded {
+	font-family: BriceBoldSemiExpanded;
+}
+.BriceBold {
+	font-family: BriceBold;
+}
+.BriceBlack {
+	font-family: BriceBlack;
+}
+.BriceExtraLightSemiExpanded {
+	font-family: BriceExtraLightSemiExpanded;
+}
+.BriceSemiBold {
+	font-family: BriceSemiBold;
+}
+.BriceLightSemiExpanded {
+	font-family: BriceLightSemiExpanded;
+}
+.BriceRegularSemiExpanded {
+	font-family: BriceRegularSemiExpanded;
+}
+.BriceSemiBoldSemiExpanded {
+	font-family: BriceSemiBoldSemiExpanded;
+}
+.BriceExtraLightExpanded {
+	font-family: BriceExtraLightExpanded;
+}
+.BriceLightExpanded {
+	font-family: BriceLightExpanded;
+}
+.BriceRegularExpanded {
+	font-family: BriceRegularExpanded;
+}
+.BriceSemiBoldExpanded {
+	font-family: BriceSemiBoldExpanded;
+}
+.BriceBoldExpanded {
+	font-family: BriceBoldExpanded;
+}
+.BriceBlackExpanded {
+	font-family: BriceBlackExpanded;
+}

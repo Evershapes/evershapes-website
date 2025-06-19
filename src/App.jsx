@@ -11,6 +11,8 @@ import {
     NavigationMenuViewport,
 } from "../components/ui/navigation-menu"
 
+import '../public/fonts/fonts.css'
+
 function App() {
     return (
         <div className="min-h-screen w-full m-0 p-0">
@@ -97,6 +99,7 @@ function App() {
                 </div>
             </section>
         </div>
+
     )
 }
 

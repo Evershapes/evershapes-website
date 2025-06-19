@@ -12,8 +12,6 @@ class App extends React.Component {
         return (
             <div className="min-h-screen w-full m-0 p-0">
                 <Navbar/>
-                
-                {/* All sections stacked vertically */}
                 <MainSection/>
                 <TeamSection/>
                 <ProjectsSection/>

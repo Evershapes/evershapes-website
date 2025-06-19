@@ -26,7 +26,7 @@ export default class Navbar extends React.Component {
     render() {
         return (
             <>
-                <nav className="w-full flex flex-col items-center justify-center px-6 m-0 sticky top-0 z-50" style={{ backgroundColor: '#FDFCDC', padding: '10px'}}>
+                <nav className="w-full flex flex-col items-center justify-center px-6 m-0 sticky top-0 z-50" style={{ backgroundColor: '#FED9B7', padding: '10px'}}>
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem style={{ margin: '5px' }}>

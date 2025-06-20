@@ -6,16 +6,24 @@ import MainSection from './components/main_section.jsx';
 import TeamSection from './components/team_section.jsx';
 import ProjectsSection from './components/projects_section.jsx';
 import TwoColumnSection from './components/two_column_section.jsx';
+import ChessBoard4x4 from './components/tester_chess.jsx';
+import Cliff_Back from './components/cliff_parallax_base';
 
 class App extends React.Component {
     render() {
         return (
             <div className="min-h-screen w-full m-0 p-0">
+
                 <Navbar/>
                 <MainSection/>
                 <TeamSection/>
                 <ProjectsSection/>
+
+                <Cliff_Back/>
+
                 <TwoColumnSection/>
+
+                <ChessBoard4x4/>
             </div>
         )
     }

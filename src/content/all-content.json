@@ -1,9 +1,52 @@
 {
-    "3D-Models": [
+    "Projects": [
         {
-            "Title":"Moto Umx400",
-            "Description":"Umx400 !",
-            "Path": "/images/bike_03.png"
+            "id": "moto-umx400",
+            "Title": "Moto Umx400",
+            "Description": "A sleek and powerful motorcycle design featuring modern aesthetics and advanced engineering.",
+            "Path": "/images/bike_03.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "digital-art-collection",
+            "Title": "Digital Art Collection",
+            "Description": "An innovative digital art collection that explores the intersection of technology and creativity.",
+            "Path": "/images/sample-art.png",
+            "featured": false,
+            "date": "2024-11-15"
+        },
+        {
+            "id": "architecture-visualization-1",
+            "Title": "3D Architecture Visualization",
+            "Description": "Stunning architectural visualizations that bring building designs to life.",
+            "Path": "/images/architecture.png",
+            "featured": true,
+            "date": "2024-10-20"
+        },
+        {
+            "id": "architecture-visualization-2",
+            "Title": "Modern House Design",
+            "Description": "Contemporary residential architecture with clean lines and sustainable materials.",
+            "Path": "/images/modern-house.png",
+            "featured": true,
+            "date": "2024-10-15"
+        },
+        {
+            "id": "architecture-visualization-3",
+            "Title": "Commercial Building",
+            "Description": "Large-scale commercial development featuring mixed-use spaces, retail areas, and office environments with modern architectural elements.",
+            "Path": "/images/commercial.png",
+            "featured": false,
+            "date": "2024-10-10"
+        },
+        {
+            "id": "architecture-visualization-4",
+            "Title": "Urban Planning Project",
+            "Description": "Comprehensive urban development project showcasing sustainable city planning with green spaces and smart infrastructure integration.",
+            "Path": "/images/renderFINAL.png",
+            "featured": false,
+            "date": "2024-10-05"
         }
     ]
 }

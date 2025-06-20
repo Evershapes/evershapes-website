@@ -3,7 +3,7 @@ import EvershapesLogo from '../assets/logotransparent.svg'
 
 const MainSection = () => {
     return (
-        <section id="accueil" className="h-[90vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
+        <section id="accueil" className="h-[50vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
             <div className="logo-container">
                 <img src={EvershapesLogo} height="120" width="120" alt="Evershapes Logo"/>
             </div>

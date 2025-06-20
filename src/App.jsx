@@ -16,13 +16,10 @@ class App extends React.Component {
 
                 <Navbar/>
                 <MainSection/>
+                <Cliff_Back/>
+                <TwoColumnSection/>
                 <TeamSection/>
                 <ProjectsSection/>
-
-                <Cliff_Back/>
-
-                <TwoColumnSection/>
-
                 <ChessBoard4x4/>
             </div>
         )

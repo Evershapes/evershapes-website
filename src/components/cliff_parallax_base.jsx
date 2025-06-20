@@ -97,7 +97,7 @@ const Cliff_Back = () => {
   const backgroundOpacity = 0.3 + (scrollProgress * 0.7); // From 30% to 100% dark
   
   // Calculate parallax offset for the cliff image (inverted with 27x effect)
-  const parallaxOffset = -scrollProgress * 720; // 9x stronger inverse parallax movement
+  const parallaxOffset = -scrollProgress * 2160; // 27x stronger inverse parallax movement
 
   const styles = {
     parallaxSection: {
@@ -144,32 +144,6 @@ const Cliff_Back = () => {
       padding: '2rem',
       paddingTop: '30vh', // Start content higher so it's visible through cliff center
       gap: '3rem'
-    },
-    progressIndicator: {
-      position: 'absolute', // Changed from fixed to absolute
-      top: '50%',
-      right: '2rem',
-      transform: 'translateY(-50%)',
-      zIndex: 4,
-      background: 'rgba(255, 255, 255, 0.2)',
-      backdropFilter: 'blur(10px)',
-      borderRadius: '10px',
-      padding: '1rem 0.5rem'
-    },
-    progressBar: {
-      width: '4px',
-      height: '200px',
-      background: 'rgba(255, 255, 255, 0.3)',
-      borderRadius: '2px',
-      position: 'relative',
-      overflow: 'hidden'
-    },
-    progressFill: {
-      width: '100%',
-      height: `${scrollProgress * 100}%`,
-      background: 'linear-gradient(to bottom, #F07167, #FED9B7)',
-      borderRadius: '2px',
-      transition: 'height 0.1s ease-out'
     },
     scrollHint: {
       position: 'absolute',
@@ -222,10 +196,6 @@ const Cliff_Back = () => {
           .floating-content h2 {
             font-size: 2rem;
           }
-          
-          .progress-indicator {
-            right: 1rem;
-          }
         }
       `}</style>
 
@@ -264,4 +234,4 @@ const Cliff_Back = () => {
 };
 
 export default Cliff_Back;
-export { TextBoxColumn };
+export { TextBoxColumn,  };   

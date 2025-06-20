@@ -9,6 +9,7 @@ import TwoColumnSection from './components/two_column_section.jsx';
 import ChessBoard4x4 from './components/tester_chess.jsx';
 import Cliff_Back from './components/cliff_parallax_base';
 
+
 class App extends React.Component {
     render() {
         return (
@@ -21,6 +22,7 @@ class App extends React.Component {
                 <TeamSection/>
                 <ProjectsSection/>
                 <ChessBoard4x4/>
+                
             </div>
         )
     }

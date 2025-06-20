@@ -5,6 +5,8 @@ import '../public/fonts/fonts.css'
 import Navbar from './components/navbar.jsx';
 import Mainsection from './components/main_section.jsx';
 import TwoColumnSection from './components/two_column_section.jsx';
+import ChessBoard4x4 from './components/tester_chess.jsx';
+import Cliff_Back from './components/cliff_parallax_base';
 
 class App extends React.Component {
     render() {
@@ -16,8 +18,11 @@ class App extends React.Component {
 
                 <Mainsection/>
 
+                <Cliff_Back/>
+
                 <TwoColumnSection/>
 
+                <ChessBoard4x4/>
             </div>
         )
     }

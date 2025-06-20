@@ -113,7 +113,7 @@ const TwoColumnSection = () => {
           display: flex;
           justify-content: center;
           align-items: center;
-          background: linear-gradient(to right bottom,#FDFCDC 50%,#FED9B7 50%);
+          background: linear-gradient(to right bottom,#F07167 50%,#FDFCDC 50%);
           overflow: hidden;
         }
 

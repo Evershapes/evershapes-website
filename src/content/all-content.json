@@ -1,9 +1,100 @@
 {
-    "3D-Models": [
+    "Projects": [
         {
-            "Title":"Moto Umx400",
-            "Description":"Umx400 !",
-            "Path": "/images/bike_03.png"
+            "id": "gallery_screen_1",
+            "Title": "Giant's Rainforest",
+            "Description": "Lush, vibrant rainforest. This biome is part of our next mashup project.",
+            "Path": "/images/gallery_screen_1.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_2",
+            "Title": "Ancient Tree Oasis",
+            "Description": "Towering old-growth trees in a pristine forest sanctuary.",
+            "Path": "/images/gallery_screen_2.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_3",
+            "Title": "Sunlit Canopy",
+            "Description": "Golden sunbeams filtering through dense forest canopy.",
+            "Path": "/images/gallery_screen_3.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_4",
+            "Title": "Forest Stream",
+            "Description": "Crystal clear water flowing through moss-covered rocks.",
+            "Path": "/images/gallery_screen_4.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_5",
+            "Title": "Woodland Path",
+            "Description": "Winding trail leading deeper into the mysterious forest.",
+            "Path": "/images/gallery_screen_5.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_6",
+            "Title": "Fern Undergrowth",
+            "Description": "Lush ferns carpeting the forest floor in emerald green.",
+            "Path": "/images/gallery_screen_6.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_7",
+            "Title": "Mountain Vista",
+            "Description": "Panoramic view of distant mountains through the trees.",
+            "Path": "/images/gallery_screen_7.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_8",
+            "Title": "Rocky Outcrop",
+            "Description": "Weathered stone formations emerging from forest depths.",
+            "Path": "/images/gallery_screen_8.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_9",
+            "Title": "Dawn Light",
+            "Description": "First rays of sunrise illuminating the forest landscape.",
+            "Path": "/images/gallery_screen_9.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_10",
+            "Title": "Dense Thicket",
+            "Description": "Impenetrable wall of vegetation and intertwined branches.",
+            "Path": "/images/gallery_screen_10.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_11",
+            "Title": "Twilight Forest",
+            "Description": "Evening shadows casting mysterious patterns through trees.",
+            "Path": "/images/gallery_screen_11.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render_final",
+            "Title": "Final Render",
+            "Description": "Polished 3D architectural visualization showcase.",
+            "Path": "/images/renderFINAL.png",
+            "featured": true,
+            "date": "2024-12-01"
         }
     ]
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import EvershapesLogo from '../assets/logotransparent.svg'
 
-
 const MainSection = () => {
     return (
         <section id="accueil" className="relative h-[50vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
@@ -240,105 +239,105 @@ const MainSection = () => {
                     animation: wobble-20 9.2s ease-out alternate infinite, move-20 29s ease-in-out infinite;
                 }
 
-                /* Movement animations */
+                /* Movement animations - All Y translations halved */
                 @keyframes move-1 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 15vh, 0); }
+                    50% { transform: translate3d(0, 7.5vh, 0); }
                 }
                 
                 @keyframes move-2 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 12vh, 0); }
+                    50% { transform: translate3d(0, 6vh, 0); }
                 }
                 
                 @keyframes move-3 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 18vh, 0); }
+                    50% { transform: translate3d(0, 9vh, 0); }
                 }
                 
                 @keyframes move-4 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 14vh, 0); }
+                    50% { transform: translate3d(0, 7vh, 0); }
                 }
                 
                 @keyframes move-5 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 20vh, 0); }
+                    50% { transform: translate3d(0, 10vh, 0); }
                 }
                 
                 @keyframes move-6 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 16vh, 0); }
+                    50% { transform: translate3d(0, 8vh, 0); }
                 }
                 
                 @keyframes move-7 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 10vh, 0); }
+                    50% { transform: translate3d(0, 5vh, 0); }
                 }
                 
                 @keyframes move-8 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 22vh, 0); }
+                    50% { transform: translate3d(0, 11vh, 0); }
                 }
                 
                 @keyframes move-9 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 25vh, 0); }
+                    50% { transform: translate3d(0, 12.5vh, 0); }
                 }
                 
                 @keyframes move-10 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 13vh, 0); }
+                    50% { transform: translate3d(0, 6.5vh, 0); }
                 }
                 
                 @keyframes move-11 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 19vh, 0); }
+                    50% { transform: translate3d(0, 9.5vh, 0); }
                 }
                 
                 @keyframes move-12 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 17vh, 0); }
+                    50% { transform: translate3d(0, 8.5vh, 0); }
                 }
                 
                 @keyframes move-13 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 24vh, 0); }
+                    50% { transform: translate3d(0, 12vh, 0); }
                 }
                 
                 @keyframes move-14 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 11vh, 0); }
+                    50% { transform: translate3d(0, 5.5vh, 0); }
                 }
                 
                 @keyframes move-15 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 15vh, 0); }
+                    50% { transform: translate3d(0, 7.5vh, 0); }
                 }
                 
                 @keyframes move-16 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 21vh, 0); }
+                    50% { transform: translate3d(0, 10.5vh, 0); }
                 }
                 
                 @keyframes move-17 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 16vh, 0); }
+                    50% { transform: translate3d(0, 8vh, 0); }
                 }
                 
                 @keyframes move-18 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 23vh, 0); }
+                    50% { transform: translate3d(0, 11.5vh, 0); }
                 }
                 
                 @keyframes move-19 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 14vh, 0); }
+                    50% { transform: translate3d(0, 7vh, 0); }
                 }
                 
                 @keyframes move-20 {
                     0%, 100% { transform: translate3d(0, 0, 0); }
-                    50% { transform: translate3d(0, 20vh, 0); }
+                    50% { transform: translate3d(0, 10vh, 0); }
                 }
 
                 /* Wobble animations */
@@ -433,4 +432,4 @@ const MainSection = () => {
     )
 }
 
-export default MainSection 
+export default MainSection

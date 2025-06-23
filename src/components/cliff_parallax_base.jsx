@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import TestChessBoard4x4 from './chess_board_4x4'; // Corrected import path
 
 // Separate TextBox Column Component
 const TextBoxColumn = ({ scrollProgress }) => {
@@ -65,8 +66,14 @@ const Cliff_Back = () => {
   const [sectionTop, setSectionTop] = useState(0);
   const sectionRef = useRef(null);
 
-  // Direct path to cliff image
-  const cliffImageUrl = '/images/Cliff_front.png';
+  // Direct paths to cliff images
+  // Required files in public/images/ (all should fit within 1920x2160 section):
+  // - Cliff_Back_Part.png (back layer, furthest depth)
+  // - Cliff_Middle_Part_Bis.png (middle layer, medium depth) 
+  // - Cliff_Front_Part.png (front layer, closest depth)
+  const cliffBackUrl = '/images/Cliff_Back_Part.png';
+  const cliffMiddleUrl = '/images/Cliff_Middle_Part_Bis.png';
+  const cliffFrontUrl = '/images/Cliff_Front_Part.png';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,8 +103,10 @@ const Cliff_Back = () => {
   // Calculate background darkness based on scroll progress
   const backgroundOpacity = 0.3 + (scrollProgress * 0.7); // From 30% to 100% dark
   
-  // Calculate parallax offset for the cliff image (inverted with 27x effect)
-  const parallaxOffset = -scrollProgress * 2160; // 27x stronger inverse parallax movement
+  // Calculate different parallax offsets for each cliff layer
+  const backParallaxOffset = scrollProgress * 1200; // Moves from 300px to 900px (600px total movement)
+  const middleParallaxOffset = scrollProgress * 400; // Slowly lowers down
+  const frontParallaxOffset = -scrollProgress * -720; // Keep original inverse parallax
 
   const styles = {
     parallaxSection: {
@@ -115,42 +124,83 @@ const Cliff_Back = () => {
       background: '#000',
       opacity: 0, // Removed darkening effect
       transition: 'opacity 0.1s ease-out',
-      zIndex: 1
+      zIndex: 1 // Below cliff layers
     },
-    cliffOverlay: {
-      position: 'absolute', // Changed from fixed to absolute
-      top: 0,
+    cliffBackOverlay: {
+      position: 'absolute',
+      top: '300px', // 300px offset from top
       left: 0,
       width: '100%',
-      height: '300vh', // Height to accommodate parallax movement + section height
-      backgroundImage: `url(${cliffImageUrl})`,
-      backgroundSize: '100vw auto', // Scale to viewport width, maintain aspect ratio
+      height: '918px', // Specific height
+      backgroundImage: `url(${cliffBackUrl})`,
+      backgroundSize: '100% 100%', // Fit full width and use exact height
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      transform: `translateY(${parallaxOffset}px)`,
-      zIndex: 4, // Above content
+      transform: `translateY(${backParallaxOffset}px)`, // Moves down to 1800px offset
+      zIndex: 2, // Back layer - lowest z-index
+      pointerEvents: 'none',
+      opacity: 1,
+      transition: 'opacity 0.5s ease-in-out'
+    },
+    cliffMiddleOverlay: {
+      position: 'absolute',
+      top: 0, // Stick to top
+      left: 0,
+      width: '100%',
+      height: '978px', // Specific height
+      backgroundImage: `url(${cliffMiddleUrl})`,
+      backgroundSize: '100% 100%', // Fit full width and use exact height
+      backgroundPosition: 'center top',
+      backgroundRepeat: 'no-repeat',
+      transform: `translateY(${middleParallaxOffset}px)`, // Slowly lowers down
+      zIndex: 3, // Middle layer
+      pointerEvents: 'none',
+      opacity: 1,
+      transition: 'opacity 0.5s ease-in-out'
+    },
+    cliffFrontOverlay: {
+      position: 'absolute',
+      top: '400px', 
+      left: 0,
+      width: '100%',
+      height: '200vh', // Full section height to ensure complete coverage
+      backgroundImage: `url(${cliffFrontUrl})`,
+      backgroundSize: '100% 100%', // Fit full width and use exact height
+      backgroundPosition: 'center top',
+      backgroundRepeat: 'no-repeat',
+      transform: `translateY(${frontParallaxOffset}px)`, // Original inverse parallax
+      zIndex: 4, // Front layer - highest z-index
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
     },
     contentContainer: {
-      position: 'relative',
-      zIndex: 3,
-      height: '100%',
+      position: 'absolute',
+      top: '110vh', // Offset by 110vh from top, sticks to bottom area
+      left: '50%',
+      transform: 'translateX(-50%)', // Center horizontally
+      zIndex: 1, // Below all cliff layers (back=2, middle=3, front=4)
+      width: '100%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      padding: '2rem',
-      paddingTop: '30vh', // Start content higher so it's visible through cliff center
-      gap: '3rem'
+      padding: '2rem'
+    },
+    chessboardContainer: {
+      width: '100vw',
+      height: '100vh',
+      position: 'relative',
+      borderRadius: '20px',
+      overflow: 'hidden',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
     },
     scrollHint: {
       position: 'absolute',
       bottom: '3rem',
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 3,
+      zIndex: 6, // Above all cliff layers
       color: 'white',
       textAlign: 'center',
       opacity: Math.max(0, 1 - scrollProgress * 3),
@@ -162,7 +212,7 @@ const Cliff_Back = () => {
       width: '100%',
       height: '120%',
       background: 'transparent', // Removed radial gradient shadow
-      zIndex: 1,
+      zIndex: 1, // Below all cliff layers
       transition: 'all 0.1s ease-out'
     },
     bounceIcon: {
@@ -206,18 +256,19 @@ const Cliff_Back = () => {
         {/* Depth layer for extra visual effect */}
         <div style={styles.depthLayer} />
         
-        {/* Fixed cliff overlay with parallax */}
-        <div style={styles.cliffOverlay} />
+        {/* Three layered cliff overlays with parallax - all fit within 1920x2160 section */}
+        {/* Back layer (z-index: 2) - furthest back */}
+        <div style={styles.cliffBackOverlay} />
+        {/* Middle layer (z-index: 3) - middle depth */}
+        <div style={styles.cliffMiddleOverlay} />
+        {/* Front layer (z-index: 4) - closest to viewer */}
+        <div style={styles.cliffFrontOverlay} />
         
         {/* Main content */}
         <div style={styles.contentContainer}>
-          <TextBoxColumn scrollProgress={scrollProgress} />
-        </div>
-        
-        {/* Progress indicator */}
-        <div style={styles.progressIndicator}>
-          <div style={styles.progressBar}>
-            <div style={styles.progressFill} />
+          {/* 3D Chessboard ThreeJS Component */}
+          <div style={styles.chessboardContainer}>
+            <TestChessBoard4x4 />
           </div>
         </div>
         
@@ -234,4 +285,4 @@ const Cliff_Back = () => {
 };
 
 export default Cliff_Back;
-export { TextBoxColumn,  };   
+export { TextBoxColumn };

@@ -2,7 +2,7 @@
   "name": "evershapes-website",
   "private": true,
   "version": "0.0.0",
-  "homepage":"https://evershapes.github.io/react-gh-pages"
+  "homepage":"https://evershapes.github.io/react-gh-pages",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",

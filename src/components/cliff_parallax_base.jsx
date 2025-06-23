@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import TestChessBoard4x4 from './chess_board_4x4'; // Corrected import path
+import GLTFViewer from './special_scene1';
 
 // Separate TextBox Column Component
 const TextBoxColumn = ({ scrollProgress }) => {
@@ -268,7 +268,7 @@ const Cliff_Back = () => {
         <div style={styles.contentContainer}>
           {/* 3D Chessboard ThreeJS Component */}
           <div style={styles.chessboardContainer}>
-            <TestChessBoard4x4 />
+            <GLTFViewer/>
           </div>
         </div>
         

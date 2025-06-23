@@ -63,8 +63,7 @@ const Card = ({ title, description, imagePath, className = "", onImageClick }) =
 
         .card-description {
           color: #FDFCDC;
-          line-height: 1.4; /* Tighter line height */
-          
+          line-height: 1.2; /* Tighter line height */
           text-align: left;
           flex: 1;
           overflow: hidden;
@@ -126,11 +125,6 @@ const Card = ({ title, description, imagePath, className = "", onImageClick }) =
           
           .card-title {
             font-size: 1.2rem;
-          }
-          
-          .card-description {
-            font-size: 0.85rem;
-            -webkit-line-clamp: 2; /* Even fewer lines on mobile */
           }
           
           .card-image-container {

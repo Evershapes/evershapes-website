@@ -11,88 +11,136 @@
         {
             "id": "gallery_screen_2",
             "Title": "Ancient Tree Oasis",
-            "Description": "Towering old-growth trees in a pristine forest sanctuary.",
+            "Description": "Gigantic ancient tree surrounded by an oasis. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_2.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_3",
-            "Title": "Sunlit Canopy",
-            "Description": "Golden sunbeams filtering through dense forest canopy.",
+            "Title": "Jagged Ice Lands",
+            "Description": "Cold, jagged ice formations. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_3.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_4",
-            "Title": "Forest Stream",
-            "Description": "Crystal clear water flowing through moss-covered rocks.",
+            "Title": "Desert Palace",
+            "Description": "Majestic palace in a vast desert landscape. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_4.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_5",
-            "Title": "Woodland Path",
-            "Description": "Winding trail leading deeper into the mysterious forest.",
+            "Title": "Desert Biome",
+            "Description": "Vast desert. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_5.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_6",
-            "Title": "Fern Undergrowth",
-            "Description": "Lush ferns carpeting the forest floor in emerald green.",
+            "Title": "Crimson King Castle",
+            "Description": "Vast dangerous lands. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_6.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_7",
-            "Title": "Mountain Vista",
-            "Description": "Panoramic view of distant mountains through the trees.",
+            "Title": "Casle in the night",
+            "Description": "Cold lands with vast exploration opportunities. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_7.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_8",
-            "Title": "Rocky Outcrop",
-            "Description": "Weathered stone formations emerging from forest depths.",
+            "Title": "Coliseum in the Desert",
+            "Description": "Weathered Ancien Coliseum. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_8.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_9",
-            "Title": "Dawn Light",
-            "Description": "First rays of sunrise illuminating the forest landscape.",
+            "Title": "Sunset on the pagoda",
+            "Description": "Giagantic pagoda in a serene landscape. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_9.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_10",
-            "Title": "Dense Thicket",
-            "Description": "Impenetrable wall of vegetation and intertwined branches.",
+            "Title": "Forest Temple",
+            "Description": "Whirling winds are surrounding the temple. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_10.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "gallery_screen_11",
-            "Title": "Twilight Forest",
-            "Description": "Evening shadows casting mysterious patterns through trees.",
+            "Title": "Forest Castle",
+            "Description": "A castle in the heart of a forest. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_11.webp",
             "featured": true,
             "date": "2024-12-01"
         },
         {
             "id": "render_final",
-            "Title": "Final Render",
-            "Description": "Polished 3D architectural visualization showcase.",
+            "Title": "Server Lobby",
+            "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
             "Path": "/images/renderFINAL.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "chairs_couches",
+            "Title": "Chairs & Couches",
+            "Description": "A collection of chairs and couches for our next mashup project.",
+            "Path": "/images/chairs_couchs.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "props",
+            "Title": "Props Collection",
+            "Description": "A collection of props made for our next mashup project.",
+            "Path": "/images/props1.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "drawers",
+            "Title": "Drawers & Shelves",
+            "Description": "Drawers and shelves made for our next mashup project.",
+            "Path": "/images/drawers_shelfs.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "dishes",
+            "Title": "Dishes Collection",
+            "Description": "Dishes collection made for our next mashup project.",
+            "Path": "/images/dishes.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "statues",
+            "Title": "Statues",
+            "Description": "Statues made for our next mashup project.",
+            "Path": "/images/statues.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "plants",
+            "Title": "Plants Collection",
+            "Description": "3D Plants made for our next mashup project.",
+            "Path": "/images/plants.png",
             "featured": true,
             "date": "2024-12-01"
         }

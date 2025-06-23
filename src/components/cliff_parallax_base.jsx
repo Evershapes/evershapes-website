@@ -71,7 +71,7 @@ const Cliff_Back = () => {
   // - Cliff_Back_Part.png (back layer, furthest depth)
   // - Cliff_Middle_Part_Bis.png (middle layer, medium depth) 
   // - Cliff_Front_Part.png (front layer, closest depth)
-  const cliffBackUrl = '/images/Cliff_Back_Part.png';
+  const cliffBackUrl = '/images/Cliff_Back_Part_Bis.png';
   const cliffMiddleUrl = '/images/Cliff_Middle_Part_Bis.png';
   const cliffFrontUrl = '/images/Cliff_Front_Part.png';
 
@@ -104,13 +104,13 @@ const Cliff_Back = () => {
   const backgroundOpacity = 0.3 + (scrollProgress * 0.7); // From 30% to 100% dark
   
   // Calculate different parallax offsets for each cliff layer
-  const backParallaxOffset = scrollProgress * 1200; // Moves from 300px to 900px (600px total movement)
-  const middleParallaxOffset = scrollProgress * 400; // Slowly lowers down
+  const backParallaxOffset = scrollProgress * 3600; // Moves from 300px to 900px (600px total movement)
+  const middleParallaxOffset = scrollProgress * 2400; // Slowly lowers down
   const frontParallaxOffset = -scrollProgress * -720; // Keep original inverse parallax
 
   const styles = {
     parallaxSection: {
-      height: '200vh',
+      height: '130vh',
       position: 'relative',
       overflow: 'hidden', // Ensures cliff doesn't spill outside section
       background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 50%, #F07167 100%)'
@@ -128,7 +128,7 @@ const Cliff_Back = () => {
     },
     cliffBackOverlay: {
       position: 'absolute',
-      top: '300px', // 300px offset from top
+      top: '100 px', // 300px offset from top
       left: 0,
       width: '100%',
       height: '918px', // Specific height
@@ -163,7 +163,7 @@ const Cliff_Back = () => {
       top: '400px', 
       left: 0,
       width: '100%',
-      height: '200vh', // Full section height to ensure complete coverage
+      height: '100vh', // Full section height to ensure complete coverage
       backgroundImage: `url(${cliffFrontUrl})`,
       backgroundSize: '100% 100%', // Fit full width and use exact height
       backgroundPosition: 'center top',
@@ -176,7 +176,7 @@ const Cliff_Back = () => {
     },
     contentContainer: {
       position: 'absolute',
-      top: '110vh', // Offset by 110vh from top, sticks to bottom area
+      top: '50vh', // Offset by 110vh from top, sticks to bottom area
       left: '50%',
       transform: 'translateX(-50%)', // Center horizontally
       zIndex: 1, // Below all cliff layers (back=2, middle=3, front=4)

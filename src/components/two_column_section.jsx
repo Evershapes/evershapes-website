@@ -109,7 +109,7 @@ const TwoColumnSection = () => {
 
         .page-wrap {
           width: 100%;
-          height: 100vh;
+          height: 90vh;
           display: flex;
           justify-content: center;
           align-items: center;

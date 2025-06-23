@@ -336,28 +336,24 @@ const ChessBoard4x4 = () => {
           
           addDebugLog(`Scaled rooster by factor: ${scale.toFixed(3)}`);
           
-          // Apply color tinting to the textured model
+          // Ensure the piece is centered at origin after scaling
+          const scaledBox = new THREE.Box3().setFromObject(piece);
+          const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
+          piece.position.sub(scaledCenter);
+          
+          // Apply color by modifying materials
           piece.traverse((child) => {
             if (child.isMesh && child.material) {
               // Clone the material to avoid affecting other pieces
-              child.material = child.material.clone();
+              const originalMaterial = child.material;
+              child.material = originalMaterial.clone();
               
-              // For textured models, we'll tint the texture
-              if (child.material.map) {
-                if (color === 'white') {
-                  // Keep original texture colors for white pieces
-                  child.material.color = new THREE.Color(1, 1, 1);
-                } else {
-                  // Darken the texture for black pieces
-                  child.material.color = new THREE.Color(0.2, 0.2, 0.2);
-                }
+              if (color === 'white') {
+                // Brighten the texture for white pieces
+                child.material.color = new THREE.Color(1.2, 1.2, 1.2);
               } else {
-                // For non-textured parts, apply solid colors
-                if (color === 'white') {
-                  child.material.color = new THREE.Color(0.9, 0.9, 0.9);
-                } else {
-                  child.material.color = new THREE.Color(0.1, 0.1, 0.1);
-                }
+                // Darken the texture for black pieces
+                child.material.color = new THREE.Color(0.3, 0.3, 0.3);
               }
             }
           });
@@ -366,11 +362,9 @@ const ChessBoard4x4 = () => {
           const pieceGroup = new THREE.Group();
           pieceGroup.add(piece);
           
-          // Center the piece at origin and position at board level
-          const scaledBox = new THREE.Box3().setFromObject(piece);
-          const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
-          piece.position.sub(scaledCenter);
-          piece.position.y = -scaledBox.min.y;
+          // Position at the bottom of the piece touching the board
+          const bottomY = scaledBox.min.y;
+          piece.position.y = -bottomY;
           
           pieceGroup.userData = { type, color };
           pieceGroup.position.x = position.x;
@@ -605,7 +599,7 @@ const ChessBoard4x4 = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <div className="relative w-full max-w-4xl aspect-video overflow-hidden">
+      <div className="relative w-full max-w-2xl aspect-video overflow-hidden">
         <div 
           ref={mountRef} 
           className="w-full h-full cursor-pointer"

@@ -20,9 +20,7 @@ class App extends React.Component {
                 <Cliff_Back/>
                 <TwoColumnSection/>
                 <TeamSection/>
-                <ProjectsSection/>
-                <ChessBoard4x4/>
-                
+                <ProjectsSection/>     
             </div>
         )
     }

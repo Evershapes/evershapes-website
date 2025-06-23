@@ -25,7 +25,16 @@ const ProjectsSection = () => {
     };
 
     return (
-        <section id="projects" className="min-h-[90vh] w-full flex flex-col items-center justify-center m-0 p-8" style={{ backgroundColor: '#FDFCDC' }}>
+        <section 
+            id="projects" 
+            className="w-full flex flex-col items-center justify-center m-0 p-8" 
+            style={{ 
+                backgroundColor: '#FDFCDC',
+                minHeight: 'fit-content',
+                paddingTop: '4rem',
+                paddingBottom: '4rem'
+            }}
+        >
             <div className="projects-content text-center w-full">
                 <h1 className="text-5xl BriceBoldSemiExpanded mb-12" style={{ color: '#F07167' }}>
                     Our Projects
@@ -33,8 +42,7 @@ const ProjectsSection = () => {
 
                 {/* Cards container */}
                 <div className="cards-grid">
-                    {/* ...existing styles... */}
-                    <style jsx>{`
+                    <style>{`
                         .cards-grid {
                             display: grid;
                             gap: 2rem;
@@ -43,6 +51,13 @@ const ProjectsSection = () => {
                             padding: 0 2rem;
                             justify-items: stretch;
                             align-items: start;
+                            min-height: fit-content;
+                        }
+
+                        /* Dynamic height calculation based on content */
+                        #projects {
+                            min-height: fit-content !important;
+                            height: auto;
                         }
 
                         @media (min-width: 1600px) {
@@ -95,6 +110,42 @@ const ProjectsSection = () => {
                             grid-column: 1 / -1;
                             text-align: center;
                         }
+
+                        /* Ensure proper spacing */
+                        @media (min-width: 1600px) {
+                            #projects {
+                                padding-top: ${Math.ceil(projects.length / 5) > 2 ? '3rem' : '4rem'};
+                                padding-bottom: ${Math.ceil(projects.length / 5) > 2 ? '3rem' : '4rem'};
+                            }
+                        }
+
+                        @media (min-width: 1200px) and (max-width: 1599px) {
+                            #projects {
+                                padding-top: ${Math.ceil(projects.length / 4) > 2 ? '3rem' : '4rem'};
+                                padding-bottom: ${Math.ceil(projects.length / 4) > 2 ? '3rem' : '4rem'};
+                            }
+                        }
+
+                        @media (min-width: 900px) and (max-width: 1199px) {
+                            #projects {
+                                padding-top: ${Math.ceil(projects.length / 3) > 2 ? '3rem' : '4rem'};
+                                padding-bottom: ${Math.ceil(projects.length / 3) > 2 ? '3rem' : '4rem'};
+                            }
+                        }
+
+                        @media (min-width: 600px) and (max-width: 899px) {
+                            #projects {
+                                padding-top: ${Math.ceil(projects.length / 2) > 3 ? '2rem' : '4rem'};
+                                padding-bottom: ${Math.ceil(projects.length / 2) > 3 ? '2rem' : '4rem'};
+                            }
+                        }
+
+                        @media (max-width: 599px) {
+                            #projects {
+                                padding-top: ${projects.length > 4 ? '2rem' : '3rem'};
+                                padding-bottom: ${projects.length > 4 ? '2rem' : '3rem'};
+                            }
+                        }
                     `}</style>
 
                     {projects.length > 0 ? (
@@ -110,7 +161,7 @@ const ProjectsSection = () => {
                         ))
                     ) : (
                         <div className="no-projects BriceRegular">
-                            No projects found. Add some to your all-content.json file!
+                            No projects found. Add something to all-content.json file!
                         </div>
                     )}
                 </div>

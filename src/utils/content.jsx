@@ -1,5 +1,5 @@
 // Import the single JSON file
-import allContent from '/content/all-content.json';
+import allContent from '../content/all-content.json';
 
 // Get all categories
 export const getCategories = () => {

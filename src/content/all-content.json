@@ -143,6 +143,86 @@
             "Path": "/images/plants.png",
             "featured": true,
             "date": "2024-12-01"
+        },
+        {
+            "id": "umx",
+            "Title": "Umx's Bikes",
+            "Description": "Those vehicles where fully made and implemented by our team for our next mashup !",
+            "Path": "/images/umx.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "eyes",
+            "Title": "Weird Eyes?",
+            "Description": "uh ? What are those ? Those are for our next mashup project.",
+            "Path": "/images/eyes.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "scorpion",
+            "Title": "Scorpions",
+            "Description": "Nasty ones but they are part of our next mashup project.",
+            "Path": "/images/scorpions.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "bulls",
+            "Title": "Frost Bull",
+            "Description": "If not friend, why friend shaped ?",
+            "Path": "/images/bull.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "chickens",
+            "Title": "Cot ! Cot ! Cot !",
+            "Description": "Thoses chickens are part of our next mashup project.",
+            "Path": "/images/chicken.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gorgoyles",
+            "Title": "Gorgoyles",
+            "Description": "Be aware of those, they are part of our next mashup project.",
+            "Path": "/images/gorgoyle.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "desert_props",
+            "Title": "Desert Kit",
+            "Description": "A collection of desert props made for our next mashup project.",
+            "Path": "/images/desert.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "knights",
+            "Title": "Knights",
+            "Description": "Okay when you encounter those, good luck !",
+            "Path": "/images/knights.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "birds",
+            "Title": "Small Birds",
+            "Description": "They may seem nice but dont be fooled. Made for our next mashup project.",
+            "Path": "/images/small_birds.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "war_assets",
+            "Title": "Asset Collection",
+            "Description": "Some assets made for our next mashup project.",
+            "Path": "/images/war_assets.png",
+            "featured": true,
+            "date": "2024-12-01"
         }
     ]
 }

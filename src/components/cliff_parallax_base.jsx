@@ -110,7 +110,7 @@ const Cliff_Back = () => {
 
   const styles = {
     parallaxSection: {
-      height: '130vh',
+      height: '100vh',
       position: 'relative',
       overflow: 'hidden', // Ensures cliff doesn't spill outside section
       background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 50%, #F07167 100%)'
@@ -189,11 +189,9 @@ const Cliff_Back = () => {
     },
     chessboardContainer: {
       width: '100vw',
-      height: '100vh',
+      height: '80vh',
       position: 'relative',
-      borderRadius: '20px',
       overflow: 'hidden',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
     },
     scrollHint: {
       position: 'absolute',

@@ -2,7 +2,19 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const GLTFViewer3 = () => {
+const GLTFViewer3 = ({ config = {} }) => {
+  // Default configuration
+  const defaultConfig = {
+    modelPath: '/scene/evershapes_scene3.gltf',
+    cameraAngle: 30,
+    cameraDistance: 5,
+    autoRotateSpeed: 0.005,
+    modelRotation: 90, // degrees
+    modelScale: 5 // size of the bounding cube
+  };
+  
+  // Merge provided config with defaults
+  const settings = { ...defaultConfig, ...config };
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
@@ -23,12 +35,12 @@ const GLTFViewer3 = () => {
     // Transparent background - no scene.background set
     sceneRef.current = scene;
 
-    // Camera setup
+    // Camera setup with better near/far ratio to reduce z-fighting
     const camera = new THREE.PerspectiveCamera(
       60,
       containerRef.current.clientWidth / containerRef.current.clientHeight,
-      0.01,
-      1000
+      0.1, // Increased from 0.01 to reduce z-fighting
+      100  // Reduced from 1000 for better depth precision
     );
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
@@ -39,12 +51,14 @@ const GLTFViewer3 = () => {
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
-      alpha: true // Enable transparency
+      alpha: true, // Enable transparency
+      logarithmicDepthBuffer: true // Helps with z-fighting on overlapping surfaces
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Softest shadows
+    renderer.shadowMap.autoUpdate = true; // Ensure shadows update with animations
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.LinearToneMapping; // Changed to Linear from ACESFilmic
     renderer.toneMappingExposure = 1;
@@ -69,70 +83,24 @@ const GLTFViewer3 = () => {
     directionalLight.shadow.camera.bottom = -10;
     
     // Attach the directional light to the camera for consistent lighting
-    cameraRef.current.add(directionalLight);
+    camera.add(directionalLight);
 
-    // Add grid helper
-    const gridHelper = new THREE.GridHelper(20, 20, 0x444444, 0x222222);
-    scene.add(gridHelper);
-
-    // Simple orbit controls
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetRotationX = 30 * Math.PI / 180; // Positive angle to look from above
-    let targetRotationY = 0;
-    let mouseDown = false;
-    let distance = 10;
-    let autoRotate = true;
-
-    const handleMouseDown = (e) => {
-      mouseDown = true;
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      autoRotate = false; // Stop auto-rotation when user interacts
-    };
-
-    const handleMouseUp = () => {
-      mouseDown = false;
-    };
-
-    const handleMouseMove = (e) => {
-      if (!mouseDown) return;
-      
-      const deltaX = e.clientX - mouseX;
-      const deltaY = e.clientY - mouseY;
-      
-      targetRotationY += deltaX * 0.01;
-      targetRotationX += deltaY * 0.01;
-      
-      // Limit vertical rotation to look from above
-      targetRotationX = Math.max(0, Math.min(Math.PI / 2 - 0.1, targetRotationX));
-      
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      distance += e.deltaY * 0.01;
-      distance = Math.max(2, Math.min(50, distance));
-    };
-
-    renderer.domElement.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('mousemove', handleMouseMove);
-    renderer.domElement.addEventListener('wheel', handleWheel);
+    // Fixed camera settings (no mouse controls)
+    const targetRotationX = settings.cameraAngle * Math.PI / 180; // Convert degrees to radians
+    const targetRotationY = 0;
+    const distance = settings.cameraDistance;
 
     // Animation loop
     let animationId;
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       
-      // Auto-rotate if enabled
-      if (autoRotate && modelRef.current) {
-        modelRef.current.rotation.y += 0.005; // Slow rotation
+      // Auto-rotate the model
+      if (modelRef.current) {
+        modelRef.current.rotation.y += settings.autoRotateSpeed;
       }
       
-      // Update camera position
+      // Fixed camera position
       camera.position.x = distance * Math.sin(targetRotationY) * Math.cos(targetRotationX);
       camera.position.y = distance * Math.sin(targetRotationX);
       camera.position.z = distance * Math.cos(targetRotationY) * Math.cos(targetRotationX);
@@ -162,10 +130,6 @@ const GLTFViewer3 = () => {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('mousemove', handleMouseMove);
-      renderer.domElement.removeEventListener('mousedown', handleMouseDown);
-      renderer.domElement.removeEventListener('wheel', handleWheel);
       
       if (renderer.domElement && renderer.domElement.parentNode) {
         renderer.domElement.parentNode.removeChild(renderer.domElement);
@@ -178,12 +142,14 @@ const GLTFViewer3 = () => {
   // Load default model on mount
   useEffect(() => {
     if (sceneRef.current && !modelLoaded) {
-      loadModel('/scene/evershapes_scene3.gltf');
+      loadModel(settings.modelPath);
       setModelLoaded(true);
     }
-  }, [sceneRef.current, modelLoaded]);
+  }, [sceneRef.current, modelLoaded, settings.modelPath]);
 
   const loadModel = (url) => {
+    setIsLoading(true);
+    setError(null);
     
     // Clear existing model
     const scene = sceneRef.current;
@@ -226,7 +192,7 @@ const GLTFViewer3 = () => {
         const size = box.getSize(new THREE.Vector3());
         
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 5 / maxDim; // Scale to fit in a 5-unit cube
+        const scale = settings.modelScale / maxDim; // Scale to fit in configured cube size
         
         model.scale.setScalar(scale);
         
@@ -238,10 +204,10 @@ const GLTFViewer3 = () => {
         // Place the bottom of the model at y=0 (on the grid)
         model.position.y = -box.min.y * scale;
         
-        // Rotate the model by 90 degrees on Y axis
-        model.rotation.y = Math.PI / 2;
+        // Rotate the model by configured degrees on Y axis
+        model.rotation.y = settings.modelRotation * Math.PI / 180;
         
-        // Enable shadows
+        // Enable shadows and fix z-fighting
         model.traverse((child) => {
           if (child.isMesh) {
             child.castShadow = true;
@@ -250,6 +216,15 @@ const GLTFViewer3 = () => {
             // Ensure materials are properly set up
             if (child.material) {
               child.material.needsUpdate = true;
+              
+              // Fix z-fighting for overlapping surfaces
+              child.material.polygonOffset = true;
+              child.material.polygonOffsetFactor = 1; // Positive values push geometry away
+              child.material.polygonOffsetUnits = 1;
+              
+              // Ensure proper rendering order
+              child.material.depthWrite = true;
+              child.material.depthTest = true;
             }
           }
         });
@@ -269,10 +244,11 @@ const GLTFViewer3 = () => {
           console.log(`Playing ${gltf.animations.length} animations`);
         }
         
-        // Adjust camera distance based on model size
-        const distance = maxDim * 2.5;
+        // Adjust camera distance based on model size or use configured distance
+        const calculatedDistance = maxDim * 2.5;
+        const finalDistance = settings.cameraDistance === 10 ? calculatedDistance : settings.cameraDistance;
         const camera = cameraRef.current;
-        camera.position.set(distance, distance * 0.5, distance);
+        camera.position.set(finalDistance, finalDistance * 0.5, finalDistance);
         camera.lookAt(0, 0, 0);
         
         setIsLoading(false);
@@ -308,28 +284,8 @@ const GLTFViewer3 = () => {
   };
 
   return (
-    <div className="relative" style={{ width: '90vw', height: '90vh', margin: '5vh 5vw' }}>
+    <div className="relative" style={{ width: '90vw', height: '50vh', margin: '5vh 5vw' }}>
       <div ref={containerRef} className="w-full h-full" />
-      
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".gltf,.glb"
-        onChange={handleFileUpload}
-        className="hidden"
-      />
-      
-      <button
-        onClick={() => fileInputRef.current?.click()}
-        className="absolute top-4 left-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow-lg transition-colors"
-      >
-        Load GLTF/GLB
-      </button>
-      
-      <div className="absolute top-4 right-4 text-white text-sm bg-black bg-opacity-50 p-2 rounded">
-        <p>🖱️ Drag to rotate</p>
-        <p>🎚️ Scroll to zoom</p>
-      </div>
       
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">

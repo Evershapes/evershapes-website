@@ -23,7 +23,6 @@ class App extends React.Component {
                 <TwoColumnSection/>
                 <TeamSection/>
                 <ProjectsSection/>     
-                <GLTFViewer/>
                 <GLTFViewer2/>
                 <GLTFViewer3/>
             </div>

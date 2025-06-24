@@ -3,8 +3,7 @@ import EvershapesLogo from '../assets/logotransparent.svg'
 
 const MainSection = () => {
     return (
-        <section id="accueil" className="relative h-[50vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
-            {/* Lava Lamp Effect */}
+        <section id="accueil" className="relative h-[25vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <div className="lava-container">
                     <div className="blob blob-1"></div>
@@ -29,9 +28,7 @@ const MainSection = () => {
                     <div className="blob blob-20"></div>
                     <div className="blob blob-top"></div>
                 </div>
-            </div>
-            
-            {/* SVG Filter for Goo Effect */}
+            </div>      
             <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <defs>
                     <filter id="goo">

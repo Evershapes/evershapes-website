@@ -16,26 +16,42 @@ export default function Navbar() {
     const [isHidden, setIsHidden] = useState(false);
     const [mouseAtTop, setMouseAtTop] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        // Check if device is mobile
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
         let lastScrollY = window.scrollY;
+        let ticking = false;
 
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
 
-            // Show/hide navbar based on scroll direction
-            if (currentScrollY > 100) { // Start hiding after 100px
-                // Only hide if not hovering
-                if (!isHovering) {
-                    setIsHidden(true);
-                }
-            } else {
-                // At top of page - always show
-                setIsHidden(false);
+                    // Show/hide navbar based on scroll direction
+                    if (currentScrollY > 100) { // Start hiding after 100px
+                        // Only hide if not hovering
+                        if (!isHovering) {
+                            setIsHidden(true);
+                        }
+                    } else {
+                        // At top of page - always show
+                        setIsHidden(false);
+                    }
+
+                    setIsScrolled(currentScrollY > 50);
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+                ticking = true;
             }
-
-            setIsScrolled(currentScrollY > 50);
-            lastScrollY = currentScrollY;
         };
 
         const handleMouseMove = (e) => {
@@ -52,15 +68,18 @@ export default function Navbar() {
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        document.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        if (!isMobile) {
+            document.addEventListener('mousemove', handleMouseMove);
+        }
 
         // Cleanup
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', checkMobile);
             document.removeEventListener('mousemove', handleMouseMove);
         };
-    }, [isHovering]); // Add isHovering to dependency array
+    }, [isHovering, isMobile]);
 
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
@@ -80,6 +99,15 @@ export default function Navbar() {
                 top: Math.max(0, offsetPosition), // Ensure we don't scroll above page top
                 behavior: 'smooth'
             });
+
+            // On mobile, hide navbar after navigation
+            if (isMobile) {
+                setTimeout(() => {
+                    if (window.scrollY > 100) {
+                        setIsHidden(true);
+                    }
+                }, 1500);
+            }
         }
     };
 
@@ -96,8 +124,41 @@ export default function Navbar() {
         }
     };
 
+    const handleOpenNavbar = () => {
+        setIsHidden(false);
+        // Auto-hide after 3 seconds if on mobile and scrolled
+        if (isMobile && window.scrollY > 100) {
+            setTimeout(() => {
+                if (window.scrollY > 100) {
+                    setIsHidden(true);
+                }
+            }, 3000);
+        }
+    };
+
+    // Only show menu indicator when scrolled down AND navbar is hidden
+    const shouldShowMenuIndicator = window.scrollY > 100 && isHidden && !mouseAtTop;
+
     return (
         <>
+            <div
+                className={`fixed top-2 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out cursor-pointer ${
+                    shouldShowMenuIndicator ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+                }`}
+                onClick={handleOpenNavbar}
+                style={{
+                    backgroundColor: '#F07167',
+                    borderRadius: '0 0 20px 20px',
+                    padding: '8px 16px 12px 16px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                }}
+            >
+                <div className="flex flex-col items-center">
+                    <span className="text-white text-sm font-bold BriceBold">Menu</span>
+                    <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white mt-1"></div>
+                </div>
+            </div>
+
             <div 
                 className="sticky top-0 z-40 transition-all duration-500 ease-in-out bg-transparent"
                 style={{
@@ -110,7 +171,7 @@ export default function Navbar() {
                 onMouseLeave={handleMouseLeave}
             >
                 <nav
-                    className={`w-full flex flex-col items-center justify-center px-6 m-0 transition-all duration-0 ease-in-out`}
+                    className={`w-full flex flex-col items-center justify-center px-6 m-0 transition-all duration-500 ease-in-out`}
                     style={{
                         backgroundColor: '#FED9B7',
                         padding: '10px 0 15px 0',

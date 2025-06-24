@@ -89,14 +89,6 @@
             "date": "2024-12-01"
         },
         {
-            "id": "render_final",
-            "Title": "Server Lobby",
-            "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
-            "Path": "/images/renderFINAL.png",
-            "featured": true,
-            "date": "2024-12-01"
-        },
-        {
             "id": "chairs_couches",
             "Title": "Chairs & Couches",
             "Description": "A collection of chairs and couches for our next mashup project.",
@@ -229,6 +221,54 @@
             "Title": "Forest Assets",
             "Description": "Forest assets, made for our next mashup project.",
             "Path": "/images/forest.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render_final",
+            "Title": "Server Lobby",
+            "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
+            "Path": "/images/renderFINAL.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render1",
+            "Title": "Chunk Forest",
+            "Description": "Do you recognize this chunk forest ? Made & rendered by our team.",
+            "Path": "/images/render1.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render2",
+            "Title": "Midnight Abbay",
+            "Description": "Made & rendered by our team.",
+            "Path": "/images/render2.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render3",
+            "Title": "Star Desert",
+            "Description": "This star desert render was made & rendered by our team.",
+            "Path": "/images/render3.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render4",
+            "Title": "Planet Render",
+            "Description": "Exploration time ! This planet render was made & rendered by our team.",
+            "Path": "/images/render4.png",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "render5",
+            "Title": "Space Travel",
+            "Description": "Traveling through space, this render was made & rendered by our team.",
+            "Path": "/images/render5.png",
             "featured": true,
             "date": "2024-12-01"
         }

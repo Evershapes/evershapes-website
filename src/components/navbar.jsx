@@ -1,17 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import '../App.css'
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
-} from "../../components/ui/navigation-menu"
 
-export default function Navbar() {
+import React, { useState, useEffect } from 'react'
+
     const [isScrolled, setIsScrolled] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const [mouseAtTop, setMouseAtTop] = useState(false);
@@ -61,16 +50,6 @@ export default function Navbar() {
             document.removeEventListener('mousemove', handleMouseMove);
         };
     }, [isHovering]); // Add isHovering to dependency array
-
-    const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    };
 
     const handleMouseEnter = () => {
         setIsHovering(true);

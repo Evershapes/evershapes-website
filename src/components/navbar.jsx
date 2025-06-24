@@ -65,9 +65,20 @@ export default function Navbar() {
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            // Calculate navbar height (approximately 60px including padding)
+            const navbarHeight = 60;
+            
+            // Get element position
+            const elementPosition = element.offsetTop;
+            
+            // For "accueil" section, scroll a bit higher to show navbar above it
+            const offsetPosition = sectionId === 'accueil' 
+                ? elementPosition - navbarHeight - 10 // Extra 10px for spacing
+                : elementPosition - navbarHeight;
+            
+            window.scrollTo({
+                top: Math.max(0, offsetPosition), // Ensure we don't scroll above page top
+                behavior: 'smooth'
             });
         }
     };

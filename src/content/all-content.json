@@ -223,6 +223,14 @@
             "Path": "/images/war_assets.png",
             "featured": true,
             "date": "2024-12-01"
+        },
+        {
+            "id": "forest",
+            "Title": "Forest Assets",
+            "Description": "Forest assets, made for our next mashup project.",
+            "Path": "/images/forest.png",
+            "featured": true,
+            "date": "2024-12-01"
         }
     ]
 }

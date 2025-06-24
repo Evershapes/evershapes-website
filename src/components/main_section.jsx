@@ -3,8 +3,16 @@ import EvershapesLogo from '../assets/logotransparent.svg'
 
 const MainSection = () => {
     return (
-        <section id="accueil" className="relative h-[25vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <section
+            id="accueil"
+            className="relative h-[25vh] w-full flex flex-col items-center justify-center m-0"
+            style={{
+                backgroundColor: '#FDFCDC',
+                marginTop: '-30px',
+                paddingTop: '50px'
+            }}
+        >
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0" >
                 <div className="lava-container">
                     <div className="blob blob-1"></div>
                     <div className="blob blob-2"></div>
@@ -28,7 +36,7 @@ const MainSection = () => {
                     <div className="blob blob-20"></div>
                     <div className="blob blob-top"></div>
                 </div>
-            </div>      
+            </div>
             <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <defs>
                     <filter id="goo">
@@ -41,10 +49,10 @@ const MainSection = () => {
 
             {/* Original Content */}
             <div className="logo-container relative z-10">
-                <img src={EvershapesLogo} height="120" width="120" alt="Evershapes Logo"/>
+                <img src={EvershapesLogo} height="120" width="120" alt="Evershapes Logo" />
             </div>
             <div className="title-container relative z-10">
-                <h1 className="text-4xl BriceBoldSemiExpanded" style={{color: '#F07167'}}>
+                <h1 className="text-4xl BriceBoldSemiExpanded" style={{ color: '#F07167' }}>
                     Evershapes
                 </h1>
                 <p className="text-xl mt-4 text-center max-w-2xl BriceRegular">
@@ -71,9 +79,10 @@ const MainSection = () => {
                 
                 .blob-top {
                     width: 100%;
-                    height: 4%;
-                    top: -3%;
+                    height: 30px; 
+                    top: 0; 
                     left: 0;
+                    border-radius: 0 0 50% 50% / 0 0 30px 30px;
                 }
                 
                 .blob-1 {

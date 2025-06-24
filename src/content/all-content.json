@@ -186,9 +186,9 @@
         },
         {
             "id": "gorgoyles",
-            "Title": "Gorgoyles",
+            "Title": "Gargoyles",
             "Description": "Be aware of those, they are part of our next mashup project.",
-            "Path": "/images/gorgoyle.png",
+            "Path": "/images/gargoyle.png",
             "featured": true,
             "date": "2024-12-01"
         },

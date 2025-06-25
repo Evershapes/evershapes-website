@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const GLTFViewer = ({ config = {} }) => {
+const DektopGLTFViewer1 = ({ config = {} }) => {
   // Default configuration
   const defaultConfig = {
     modelPath: '/scene/evershapes_scene1.gltf',
     cameraAngle: 30,
-    cameraDistance: 8,
+    cameraDistance: 5,
     autoRotateSpeed: 0.005,
     modelRotation: 90, // degrees
     modelScale: 5 // size of the bounding cube
@@ -284,12 +284,12 @@ const GLTFViewer = ({ config = {} }) => {
   };
 
   return (
-    <div className="relative" style={{ width: '90vw', height: '50vh', margin: '5vh 5vw' }}>
+    <div className="relative" style={{ width: '110vw', height: '100vh', margin: '-5vh -5vw' }}>
       <div ref={containerRef} className="w-full h-full" />
       
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="text-white text-xl">Loading model...</div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-xxl">Loading model...</div>
         </div>
       )}
       
@@ -302,4 +302,4 @@ const GLTFViewer = ({ config = {} }) => {
   );
 };
 
-export default GLTFViewer;
+export default DektopGLTFViewer1;

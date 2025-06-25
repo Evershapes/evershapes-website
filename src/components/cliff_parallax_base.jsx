@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import GLTFViewer from './GLTFViewer_simple'; // Add this import
+import GLTFViewer from './GLTFViewer_simple';
 
 const Cliff_Back = () => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [deviceType, setDeviceType] = useState('desktop'); // New state for device type
+  const [deviceType, setDeviceType] = useState('desktop');
   const sectionRef = useRef(null);
 
   // Direct paths to cliff images
@@ -71,12 +71,12 @@ const Cliff_Back = () => {
     return desktop;
   };
 
-  // Your exact parallax calculations
-  const backParallaxOffset = scrollProgress * getResponsiveValue('900', '1800', '1000');
-  const middleParallaxOffset = scrollProgress * getResponsiveValue('2400', '2400', '400');
+  // Parallax calculations
+  const backParallaxOffset = scrollProgress * getResponsiveValue(900, 1800, 1000);
+  const middleParallaxOffset = scrollProgress * getResponsiveValue(2400, 2400, 400);
   const frontParallaxOffset = -scrollProgress * -600;
 
-  // React-spring animations using your exact parallax values
+  // React-spring animations
   const backCliffSpring = useSpring({
     transform: `translateY(${backParallaxOffset}px)`,
     config: config.slow,
@@ -100,7 +100,6 @@ const Cliff_Back = () => {
 
   // Function to render the appropriate GLTF viewer
   const renderGLTFViewer = () => {
-    // Use mobile viewer for both mobile and tablet, desktop viewer for desktop
     if (isMobile || isTablet) {
       return <GLTFViewer config={{
         cameraAngle: 30,
@@ -108,8 +107,7 @@ const Cliff_Back = () => {
         autoRotateSpeed: 0.005,
         modelRotation: 90, 
         modelScale: 5
-      }}
-      />;
+      }} />;
     } else {
       return <GLTFViewer config={{
         modelPath: '/scene/evershapes_scene1.gltf',
@@ -118,18 +116,29 @@ const Cliff_Back = () => {
         autoRotateSpeed: 0.005,
         modelRotation: 90, 
         modelScale: 5
-      }}
-      />;
+      }} />;
     }
   };
 
   const styles = {
-    // Main section with VERY HIGH z-index to appear above team section
+    // Main section with proper z-index management
     parallaxSection: {
       height: getResponsiveValue('130vh', '130vh', '200vh'),
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80% ,#FDFCDC 100%)'
+      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80%, #FDFCDC 100%)',
+      zIndex: 1, // Base z-index for the section
+    },
+    // Wrapper to extend the visual effect beyond section boundaries
+    cliffExtension: {
+      position: 'absolute',
+      bottom: '-50vh', // Extend beyond the section
+      left: 0,
+      width: '100%',
+      height: '50vh',
+      zIndex: 50, // High enough to appear above team section
+      pointerEvents: 'none',
+      overflow: 'visible',
     },
     backgroundOverlay: {
       position: 'absolute',
@@ -140,9 +149,9 @@ const Cliff_Back = () => {
       background: '#000',
       opacity: backgroundOpacity,
       transition: 'opacity 0.1s ease-out',
-      zIndex: 101
+      zIndex: 2
     },
-    // Cliff overlays with even higher z-index
+    // Cliff overlays with proper z-index hierarchy
     cliffBackOverlay: {
       position: 'absolute',
       top: '100px',
@@ -153,7 +162,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 102, // Higher than background
+      zIndex: 3,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -168,7 +177,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 103, // Higher than back cliff
+      zIndex: 4,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -178,12 +187,28 @@ const Cliff_Back = () => {
       top: getResponsiveValue('200px', '300px', '400px'),
       left: getResponsiveValue('-10%', '-7%', '0%'),
       width: getResponsiveValue('120%', '115%', '100%'),
-      height: getResponsiveValue('100vh', '100vh', '200vh'),
+      height: getResponsiveValue('150vh', '150vh', '250vh'), // Extended height
       backgroundImage: `url(${cliffFrontUrl})`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 104, // Highest cliff z-index
+      zIndex: 5,
+      pointerEvents: 'none',
+      opacity: 1,
+      transition: 'opacity 0.5s ease-in-out'
+    },
+    // Extended cliff that appears over team section
+    cliffFrontExtended: {
+      position: 'absolute',
+      top: getResponsiveValue('200px', '300px', '400px'),
+      left: getResponsiveValue('-10%', '-7%', '0%'),
+      width: getResponsiveValue('120%', '115%', '100%'),
+      height: getResponsiveValue('200vh', '200vh', '300vh'), // Very tall to cover team section
+      backgroundImage: `url(${cliffFrontUrl})`,
+      backgroundSize: '100% 100%',
+      backgroundPosition: 'center top',
+      backgroundRepeat: 'no-repeat',
+      zIndex: 51, // Higher than cliffExtension
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -193,7 +218,7 @@ const Cliff_Back = () => {
       top: getResponsiveValue('50vh', '50vh', '100vh'),
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 1,
+      zIndex: 6,
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -212,18 +237,10 @@ const Cliff_Back = () => {
       bottom: '3rem',
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 106, // Above everything
+      zIndex: 7,
       color: 'white',
       textAlign: 'center',
       textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
-    },
-    depthLayer: {
-      position: 'absolute',
-      width: '100%',
-      height: '120%',
-      background: 'transparent',
-      zIndex: 101,
-      transition: 'all 0.1s ease-out'
     },
     bounceIcon: {
       width: getResponsiveValue('24px', '28px', '30px'),
@@ -235,9 +252,9 @@ const Cliff_Back = () => {
       bottom: 0,
       left: 0,
       width: '100%',
-      height: '5vh',
-      background: 'linear-gradient(to top, #FDFCDC 0%, transparent 100%)',
-      zIndex: 10,
+      height: '10vh',
+      background: 'linear-gradient(to bottom, transparent 0%, hsla(58, 89.20%, 92.70%, 0.50) 50%, #FDFCDC 80%, #FDFCDC 100%)',
+      zIndex: 8,
       pointerEvents: 'none'
     }
   };
@@ -270,8 +287,8 @@ const Cliff_Back = () => {
       `}</style>
 
       <section ref={sectionRef} style={styles.parallaxSection}>
-        {/* Depth layer for extra visual effect */}
-        <div style={styles.depthLayer} />
+        {/* Background overlay */}
+        
 
         {/* Three layered cliff overlays with react-spring parallax */}
         <animated.div style={{ ...styles.cliffBackOverlay, ...backCliffSpring }} />
@@ -280,22 +297,18 @@ const Cliff_Back = () => {
 
         {/* Main content */}
         <div style={styles.contentContainer}>
-          {/* Conditional 3D GLTF Viewer based on device type */}
           <div style={styles.chessboardContainer}>
             {renderGLTFViewer()}
           </div>
         </div>
 
-        {/* Bottom gradient section */}
+        {/* Bottom gradient */}
         <div style={styles.bottomGradient} />
 
-        {/* Scroll hint with react-spring animation */}
-        <animated.div style={{ ...styles.scrollHint, ...scrollHintSpring }}>
-          <div>Scroll to explore</div>
-          <svg viewBox="0 0 24 24" fill="currentColor" style={styles.bounceIcon}>
-            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-          </svg>
-        </animated.div>
+        {/* Extended cliff section that appears above team section */}
+        <div style={styles.cliffExtension }>
+          <animated.div style={{ ...styles.cliffFrontExtended, ...frontCliffSpring }} />
+        </div>
       </section>
     </div>
   );

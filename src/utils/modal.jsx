@@ -101,7 +101,7 @@ const Modal = ({ isOpen, onClose, imageSrc, title }) => {
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 1000;
+          z-index: 10000;
           backdrop-filter: blur(4px);
           animation: fadeIn 0.3s ease-out;
           padding: 60px 40px 40px 40px;

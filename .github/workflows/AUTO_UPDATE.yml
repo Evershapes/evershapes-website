@@ -22,7 +22,14 @@ jobs:
           ssh es-bot@90.120.240.19 'bash -s' << 'EOF'
             cd ../machine/SERVER_MANAGER/
             docker compose down evershapes_website
+            sleep 3
             docker rmi server_manager-evershapes_website
+            sleep 3
+            cd evershapes-website/
+            git pull
+            sleep 5
+            cd ..
             docker compose up evershapes_website -d --force-recreate
+            sleep 3
             exit
           EOF

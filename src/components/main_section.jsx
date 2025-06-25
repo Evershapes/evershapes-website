@@ -1,10 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import EvershapesLogo from '../assets/logotransparent.svg'
 
 const MainSection = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+        };
+    }, []);
+
+    // Scale factor for mobile blobs (0.6 means 60% of original size)
+    const mobileScale = 0.6;
+
     return (
-        <section id="accueil" className="relative h-[25vh] w-full flex flex-col items-center justify-center m-0" style={{ backgroundColor: '#FDFCDC' }}>
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <section
+            id="accueil"
+            className="relative h-[25vh] w-full flex flex-col items-center justify-center m-0"
+            style={{
+                backgroundColor: '#FDFCDC',
+                marginTop: '-30px',
+                paddingTop: '50px'
+            }}
+        >
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0" >
                 <div className="lava-container">
                     <div className="blob blob-1"></div>
                     <div className="blob blob-2"></div>
@@ -28,7 +54,7 @@ const MainSection = () => {
                     <div className="blob blob-20"></div>
                     <div className="blob blob-top"></div>
                 </div>
-            </div>      
+            </div>
             <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <defs>
                     <filter id="goo">
@@ -41,10 +67,10 @@ const MainSection = () => {
 
             {/* Original Content */}
             <div className="logo-container relative z-10">
-                <img src={EvershapesLogo} height="120" width="120" alt="Evershapes Logo"/>
+                <img src={EvershapesLogo} height="120" width="120" alt="Evershapes Logo" />
             </div>
             <div className="title-container relative z-10">
-                <h1 className="text-4xl BriceBoldSemiExpanded" style={{color: '#F07167'}}>
+                <h1 className="text-4xl BriceBoldSemiExpanded" style={{ color: '#F07167' }}>
                     Evershapes
                 </h1>
                 <p className="text-xl mt-4 text-center max-w-2xl BriceRegular">
@@ -71,166 +97,167 @@ const MainSection = () => {
                 
                 .blob-top {
                     width: 100%;
-                    height: 4%;
-                    top: -3%;
+                    height: 30px; 
+                    top: 0; 
                     left: 0;
+                    border-radius: 0 0 50% 50% / 0 0 30px 30px;
                 }
                 
                 .blob-1 {
-                    width: 80px;
-                    height: 80px;
+                    width: ${isMobile ? Math.round(80 * mobileScale) : 80}px;
+                    height: ${isMobile ? Math.round(80 * mobileScale) : 80}px;
                     left: 15%;
                     top: -8%;
                     animation: wobble-1 4s ease-out alternate infinite, move-1 13s ease-in-out infinite;
                 }
                 
                 .blob-2 {
-                    width: 120px;
-                    height: 120px;
+                    width: ${isMobile ? Math.round(120 * mobileScale) : 120}px;
+                    height: ${isMobile ? Math.round(120 * mobileScale) : 120}px;
                     right: 35%;
                     top: -12%;
                     animation: wobble-2 5s ease-out alternate infinite, move-2 22s ease-in-out infinite;
                 }
                 
                 .blob-3 {
-                    width: 60px;
-                    height: 60px;
+                    width: ${isMobile ? Math.round(60 * mobileScale) : 60}px;
+                    height: ${isMobile ? Math.round(60 * mobileScale) : 60}px;
                     top: -5%;
                     left: 45%;
                     animation: wobble-3 6s ease-out alternate infinite, move-3 16s ease-in-out infinite;
                 }
                 
                 .blob-4 {
-                    width: 95px;
-                    height: 95px;
+                    width: ${isMobile ? Math.round(95 * mobileScale) : 95}px;
+                    height: ${isMobile ? Math.round(95 * mobileScale) : 95}px;
                     top: -10%;
                     left: 65%;
                     animation: wobble-4 8s ease-out alternate infinite, move-4 12s ease-in-out infinite;
                 }
                 
                 .blob-5 {
-                    width: 40px;
-                    height: 40px;
+                    width: ${isMobile ? Math.round(40 * mobileScale) : 40}px;
+                    height: ${isMobile ? Math.round(40 * mobileScale) : 40}px;
                     top: -6%;
                     left: 25%;
                     animation: wobble-5 9s ease-out alternate infinite, move-5 32s ease-in-out infinite;
                 }
                 
                 .blob-6 {
-                    width: 55px;
-                    height: 55px;
+                    width: ${isMobile ? Math.round(55 * mobileScale) : 55}px;
+                    height: ${isMobile ? Math.round(55 * mobileScale) : 55}px;
                     top: -7%;
                     right: 15%;
                     animation: wobble-6 10s ease-out alternate infinite, move-6 12s ease-in-out infinite;
                 }
                 
                 .blob-7 {
-                    width: 110px;
-                    height: 110px;
+                    width: ${isMobile ? Math.round(110 * mobileScale) : 110}px;
+                    height: ${isMobile ? Math.round(110 * mobileScale) : 110}px;
                     top: -15%;
                     right: 55%;
                     animation: wobble-7 11s ease-out alternate infinite, move-7 32s ease-in-out infinite;
                 }
                 
                 .blob-8 {
-                    width: 70px;
-                    height: 70px;
+                    width: ${isMobile ? Math.round(70 * mobileScale) : 70}px;
+                    height: ${isMobile ? Math.round(70 * mobileScale) : 70}px;
                     top: -9%;
                     left: 5%;
                     animation: wobble-8 7s ease-out alternate infinite, move-8 18s ease-in-out infinite;
                 }
                 
                 .blob-9 {
-                    width: 45px;
-                    height: 45px;
+                    width: ${isMobile ? Math.round(45 * mobileScale) : 45}px;
+                    height: ${isMobile ? Math.round(45 * mobileScale) : 45}px;
                     top: -4%;
                     left: 75%;
                     animation: wobble-9 5.5s ease-out alternate infinite, move-9 25s ease-in-out infinite;
                 }
                 
                 .blob-10 {
-                    width: 85px;
-                    height: 85px;
+                    width: ${isMobile ? Math.round(85 * mobileScale) : 85}px;
+                    height: ${isMobile ? Math.round(85 * mobileScale) : 85}px;
                     top: -11%;
                     right: 45%;
                     animation: wobble-10 6.5s ease-out alternate infinite, move-10 14s ease-in-out infinite;
                 }
                 
                 .blob-11 {
-                    width: 50px;
-                    height: 50px;
+                    width: ${isMobile ? Math.round(50 * mobileScale) : 50}px;
+                    height: ${isMobile ? Math.round(50 * mobileScale) : 50}px;
                     top: -6%;
                     left: 85%;
                     animation: wobble-11 8.5s ease-out alternate infinite, move-11 20s ease-in-out infinite;
                 }
                 
                 .blob-12 {
-                    width: 65px;
-                    height: 65px;
+                    width: ${isMobile ? Math.round(65 * mobileScale) : 65}px;
+                    height: ${isMobile ? Math.round(65 * mobileScale) : 65}px;
                     top: -8%;
                     right: 5%;
                     animation: wobble-12 4.5s ease-out alternate infinite, move-12 28s ease-in-out infinite;
                 }
                 
                 .blob-13 {
-                    width: 35px;
-                    height: 35px;
+                    width: ${isMobile ? Math.round(35 * mobileScale) : 35}px;
+                    height: ${isMobile ? Math.round(35 * mobileScale) : 35}px;
                     top: -3%;
                     left: 55%;
                     animation: wobble-13 9.5s ease-out alternate infinite, move-13 15s ease-in-out infinite;
                 }
                 
                 .blob-14 {
-                    width: 75px;
-                    height: 75px;
+                    width: ${isMobile ? Math.round(75 * mobileScale) : 75}px;
+                    height: ${isMobile ? Math.round(75 * mobileScale) : 75}px;
                     top: -13%;
                     left: 95%;
                     animation: wobble-14 3.5s ease-out alternate infinite, move-14 26s ease-in-out infinite;
                 }
                 
                 .blob-15 {
-                    width: 90px;
-                    height: 90px;
+                    width: ${isMobile ? Math.round(90 * mobileScale) : 90}px;
+                    height: ${isMobile ? Math.round(90 * mobileScale) : 90}px;
                     top: -16%;
                     right: 25%;
                     animation: wobble-15 7.5s ease-out alternate infinite, move-15 19s ease-in-out infinite;
                 }
                 
                 .blob-16 {
-                    width: 42px;
-                    height: 42px;
+                    width: ${isMobile ? Math.round(42 * mobileScale) : 42}px;
+                    height: ${isMobile ? Math.round(42 * mobileScale) : 42}px;
                     top: -5%;
                     left: 10%;
                     animation: wobble-16 6.2s ease-out alternate infinite, move-16 21s ease-in-out infinite;
                 }
                 
                 .blob-17 {
-                    width: 68px;
-                    height: 68px;
+                    width: ${isMobile ? Math.round(68 * mobileScale) : 68}px;
+                    height: ${isMobile ? Math.round(68 * mobileScale) : 68}px;
                     top: -9%;
                     right: 8%;
                     animation: wobble-17 8.7s ease-out alternate infinite, move-17 17s ease-in-out infinite;
                 }
                 
                 .blob-18 {
-                    width: 52px;
-                    height: 52px;
+                    width: ${isMobile ? Math.round(52 * mobileScale) : 52}px;
+                    height: ${isMobile ? Math.round(52 * mobileScale) : 52}px;
                     top: -7%;
                     left: 38%;
                     animation: wobble-18 5.8s ease-out alternate infinite, move-18 23s ease-in-out infinite;
                 }
                 
                 .blob-19 {
-                    width: 78px;
-                    height: 78px;
+                    width: ${isMobile ? Math.round(78 * mobileScale) : 78}px;
+                    height: ${isMobile ? Math.round(78 * mobileScale) : 78}px;
                     top: -12%;
                     right: 60%;
                     animation: wobble-19 4.3s ease-out alternate infinite, move-19 16s ease-in-out infinite;
                 }
                 
                 .blob-20 {
-                    width: 38px;
-                    height: 38px;
+                    width: ${isMobile ? Math.round(38 * mobileScale) : 38}px;
+                    height: ${isMobile ? Math.round(38 * mobileScale) : 38}px;
                     top: -4%;
                     left: 68%;
                     animation: wobble-20 9.2s ease-out alternate infinite, move-20 29s ease-in-out infinite;

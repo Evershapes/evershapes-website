@@ -110,17 +110,17 @@ const Cliff_Back = () => {
   // Hard limits that make sense for your cliff sizes
   const backParallaxOffset = Math.min(
     scrollProgress * getResponsiveValue(900, 2500, 2600),
-    getResponsiveValue(200, 450, 1050) // Much smaller limits
+    getResponsiveValue(200, 450, 1050) 
   );
 
   const middleParallaxOffset = Math.min(
     scrollProgress * getResponsiveValue(4000, 5000, 3500),
-    getResponsiveValue(600, 900, 1600) // Reasonable limits
+    getResponsiveValue(600, 900, 1600) 
   );
 
   const frontParallaxOffset = Math.min(
     scrollProgress * getResponsiveValue(800, 3000, 3200),
-    getResponsiveValue(150, 200, 100) // Conservative limits
+    getResponsiveValue(150, 200, 100) 
   );
 
   // React-spring animations

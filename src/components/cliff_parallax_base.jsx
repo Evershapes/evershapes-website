@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import MobileGltfViewer1 from './special_scene1_mobile';
-import DesktopGltfViewer1 from './special_scene1_desktop'; // Add this import
+import GLTFViewer from './GLTFViewer_simple'; // Add this import
 
 // Separate TextBox Column Component
 const TextBoxColumn = ({ scrollProgress }) => {
@@ -39,23 +38,23 @@ const TextBoxColumn = ({ scrollProgress }) => {
       <div style={styles.floatingContent}>
         <h2 style={styles.floatingContentH2}>Journey Through the Canyon</h2>
         <p style={styles.floatingContentP}>
-          As you descend deeper into this mystical canyon, the world above begins to fade away. 
+          As you descend deeper into this mystical canyon, the world above begins to fade away.
           The ancient cliffs tell stories of millennia past, while shadows dance between the rocky walls.
         </p>
         <p style={styles.floatingContentP}>
-          Experience the depth and mystery as light gradually gives way to the depths below. 
+          Experience the depth and mystery as light gradually gives way to the depths below.
           This is where adventure begins and ordinary ends.
         </p>
       </div>
-      
+
       <div style={styles.floatingContent}>
         <h2 style={styles.floatingContentH2}>Discover Hidden Depths</h2>
         <p style={styles.floatingContentP}>
-          Each step down reveals new wonders. The canyon walls stretch endlessly upward, 
+          Each step down reveals new wonders. The canyon walls stretch endlessly upward,
           creating a natural cathedral of stone and time.
         </p>
         <p style={styles.floatingContentP}>
-          Let the parallax guide your journey as reality shifts with every scroll. 
+          Let the parallax guide your journey as reality shifts with every scroll.
           The deeper you go, the more the mystery unfolds.
         </p>
       </div>
@@ -90,15 +89,15 @@ const Cliff_Back = () => {
     const updateDimensions = () => {
       const newWidth = window.innerWidth;
       const newHeight = window.innerHeight;
-      
+
       setDimensions({
         width: newWidth,
         height: newHeight
       });
-      
+
       // Update device type when dimensions change
       setDeviceType(detectDeviceType(newWidth));
-      
+
       if (sectionRef.current) {
         setSectionTop(sectionRef.current.offsetTop);
       }
@@ -117,15 +116,15 @@ const Cliff_Back = () => {
   // Calculate scroll progress through this section
   const sectionHeight = window.innerHeight * 2.0;
   const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
-  
+
   // Calculate background darkness based on scroll progress
   const backgroundOpacity = 0.3 + (scrollProgress * 0.7);
- 
+
   // Responsive breakpoints
   const isMobile = dimensions.width < 768;
   const isTablet = dimensions.width >= 768 && dimensions.width < 1200;
   const isDesktop = dimensions.width >= 1200;
-  
+
   // Responsive helper function
   const getResponsiveValue = (mobile, tablet, desktop) => {
     if (isMobile) return mobile;
@@ -164,18 +163,33 @@ const Cliff_Back = () => {
   const renderGLTFViewer = () => {
     // Use mobile viewer for both mobile and tablet, desktop viewer for desktop
     if (isMobile || isTablet) {
-      return <MobileGltfViewer1 />;
+      return <GLTFViewer config={{
+        cameraAngle: 30,
+        cameraDistance: 6,
+        autoRotateSpeed: 0.005,
+        modelRotation: 90, 
+        modelScale: 5
+      }}
+      />;
     } else {
-      return <DesktopGltfViewer1 />;
+      return <GLTFViewer config={{
+        modelPath: '/scene/evershapes_scene1.gltf',
+        cameraAngle: 30,
+        cameraDistance: 6,
+        autoRotateSpeed: 0.005,
+        modelRotation: 90, 
+        modelScale: 5
+      }}
+      />;
     }
   };
 
   const styles = {
     parallaxSection: {
-      height: getResponsiveValue('100vh', '115vh', '200vh'),
+      height: getResponsiveValue('133vh', '166vh', '200vh'),
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 50%, #F07167 100%)'
+      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 100%)'
     },
     backgroundOverlay: {
       position: 'absolute',
@@ -235,7 +249,7 @@ const Cliff_Back = () => {
     },
     contentContainer: {
       position: 'absolute',
-      top: getResponsiveValue('80vh', '80vh', '100vh'),
+      top: getResponsiveValue('50vh', '50vh', '100vh'),
       left: '50%',
       transform: 'translateX(-50%)',
       zIndex: 1,
@@ -247,8 +261,8 @@ const Cliff_Back = () => {
       padding: getResponsiveValue('1rem', '1.5rem', '2rem')
     },
     chessboardContainer: {
-      width: getResponsiveValue('95vw', '90vw', '100vw'),
-      height: getResponsiveValue('60vh', '70vh', '100vh'),
+      width: getResponsiveValue('110vw', '110vw', '100vw'),
+      height: getResponsiveValue('100vh', '80vh', '100vh'),
       position: 'relative',
       overflow: 'hidden',
     },
@@ -307,15 +321,15 @@ const Cliff_Back = () => {
       <section ref={sectionRef} style={styles.parallaxSection}>
         {/* Background overlay that darkens on scroll */}
         <div style={styles.backgroundOverlay} />
-        
+
         {/* Depth layer for extra visual effect */}
         <div style={styles.depthLayer} />
-        
+
         {/* Three layered cliff overlays with react-spring parallax */}
-        <animated.div style={{...styles.cliffBackOverlay, ...backCliffSpring}} />
-        <animated.div style={{...styles.cliffMiddleOverlay, ...middleCliffSpring}} />
-        <animated.div style={{...styles.cliffFrontOverlay, ...frontCliffSpring}} />
-        
+        <animated.div style={{ ...styles.cliffBackOverlay, ...backCliffSpring }} />
+        <animated.div style={{ ...styles.cliffMiddleOverlay, ...middleCliffSpring }} />
+        <animated.div style={{ ...styles.cliffFrontOverlay, ...frontCliffSpring }} />
+
         {/* Main content */}
         <div style={styles.contentContainer}>
           {/* Conditional 3D GLTF Viewer based on device type */}
@@ -323,9 +337,9 @@ const Cliff_Back = () => {
             {renderGLTFViewer()}
           </div>
         </div>
-        
+
         {/* Scroll hint with react-spring animation */}
-        <animated.div style={{...styles.scrollHint, ...scrollHintSpring}}>
+        <animated.div style={{ ...styles.scrollHint, ...scrollHintSpring }}>
           <div>Scroll to explore</div>
           <svg viewBox="0 0 24 24" fill="currentColor" style={styles.bounceIcon}>
             <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />

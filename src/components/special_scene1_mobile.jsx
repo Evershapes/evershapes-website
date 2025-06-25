@@ -284,7 +284,7 @@ const MobileGltfViewer1 = ({ config = {} }) => {
   };
 
   return (
-    <div className="relative" style={{ width: '100vw', height: '100vh'}}>
+    <div className="relative" style={{ width: '110vw', height: '80vh'}}>
       <div ref={containerRef} className="w-full h-full" />
       
       {isLoading && (

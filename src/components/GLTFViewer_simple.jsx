@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const DektopGLTFViewer1 = ({ config = {} }) => {
+const GLTFViewer = ({ config = {} }) => {
   // Default configuration
   const defaultConfig = {
     modelPath: '/scene/evershapes_scene1.gltf',
@@ -302,4 +302,4 @@ const DektopGLTFViewer1 = ({ config = {} }) => {
   );
 };
 
-export default DektopGLTFViewer1;
+export default GLTFViewer;

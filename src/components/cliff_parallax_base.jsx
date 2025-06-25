@@ -186,7 +186,7 @@ const Cliff_Back = () => {
 
   const styles = {
     parallaxSection: {
-      height: getResponsiveValue('133vh', '166vh', '200vh'),
+      height: getResponsiveValue('130vh', '130vh', '200vh'),
       position: 'relative',
       overflow: 'hidden',
       background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 100%)'

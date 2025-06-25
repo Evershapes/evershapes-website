@@ -60,7 +60,7 @@ const ProjectsSection = () => {
                             height: auto;
                         }
 
-                        @media (min-width: 1600px) {
+                        @media (min-width: 1782px) {
                             .cards-grid {
                                 grid-template-columns: repeat(5, minmax(320px, 360px));
                                 max-width: 1800px;
@@ -68,7 +68,7 @@ const ProjectsSection = () => {
                             }
                         }
 
-                        @media (min-width: 1200px) and (max-width: 1599px) {
+                        @media (min-width: 1431px) and (max-width: 1781px) {
                             .cards-grid {
                                 grid-template-columns: repeat(4, minmax(320px, 360px));
                                 max-width: 1500px;
@@ -76,7 +76,7 @@ const ProjectsSection = () => {
                             }
                         }
 
-                        @media (min-width: 900px) and (max-width: 1199px) {
+                        @media (min-width: 1055px) and (max-width: 1430px) {
                             .cards-grid {
                                 grid-template-columns: repeat(3, minmax(320px, 380px));
                                 max-width: 1200px;
@@ -84,7 +84,7 @@ const ProjectsSection = () => {
                             }
                         }
 
-                        @media (min-width: 600px) and (max-width: 899px) {
+                        @media (min-width: 721px) and (max-width: 1054px) {
                             .cards-grid {
                                 grid-template-columns: repeat(2, minmax(320px, 400px));
                                 max-width: 850px;
@@ -93,7 +93,7 @@ const ProjectsSection = () => {
                             }
                         }
 
-                        @media (max-width: 599px) {
+                        @media (max-width: 720px) {
                             .cards-grid {
                                 grid-template-columns: 1fr;
                                 max-width: 400px;
@@ -121,7 +121,7 @@ const ProjectsSection = () => {
 
                         @media (min-width: 1200px) and (max-width: 1599px) {
                             #projects {
-                                padding-top: ${Math.ceil(projects.length / 4) > 2 ? '3rem' : '4rem'};
+                                padding-top: ${Math.ceil(projects.length / 2) > 2 ? '3rem' : '4rem'};
                                 padding-bottom: ${Math.ceil(projects.length / 4) > 2 ? '3rem' : '4rem'};
                             }
                         }

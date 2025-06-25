@@ -66,7 +66,7 @@ const Cliff_Back = () => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [deviceType, setDeviceType] = useState('desktop'); // New state for device type
+  const [deviceType, setDeviceType] = useState('desktop');
   const sectionRef = useRef(null);
 
   // Direct paths to cliff images
@@ -95,7 +95,6 @@ const Cliff_Back = () => {
         height: newHeight
       });
 
-      // Update device type when dimensions change
       setDeviceType(detectDeviceType(newWidth));
 
       if (sectionRef.current) {
@@ -105,7 +104,7 @@ const Cliff_Back = () => {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', updateDimensions);
-    updateDimensions(); // Initial call
+    updateDimensions();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -161,7 +160,6 @@ const Cliff_Back = () => {
 
   // Function to render the appropriate GLTF viewer
   const renderGLTFViewer = () => {
-    // Use mobile viewer for both mobile and tablet, desktop viewer for desktop
     if (isMobile || isTablet) {
       return <GLTFViewer config={{
         cameraAngle: 30,
@@ -185,11 +183,13 @@ const Cliff_Back = () => {
   };
 
   const styles = {
+    // Main section with VERY HIGH z-index to appear above team section
     parallaxSection: {
       height: getResponsiveValue('130vh', '130vh', '200vh'),
       position: 'relative',
-      overflow: 'hidden',
-      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 100%)'
+      overflow: 'visible', // Changed from 'hidden' to 'visible' to allow overflow
+      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 100%)',
+      zIndex: 100, // VERY HIGH z-index to appear above team section
     },
     backgroundOverlay: {
       position: 'absolute',
@@ -198,10 +198,11 @@ const Cliff_Back = () => {
       width: '100%',
       height: '100%',
       background: '#000',
-      opacity: 0,
+      opacity: backgroundOpacity,
       transition: 'opacity 0.1s ease-out',
-      zIndex: 1
+      zIndex: 101
     },
+    // Cliff overlays with even higher z-index
     cliffBackOverlay: {
       position: 'absolute',
       top: '100px',
@@ -212,7 +213,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 2,
+      zIndex: 102, // Higher than background
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -227,7 +228,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 3,
+      zIndex: 103, // Higher than back cliff
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -242,7 +243,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 4,
+      zIndex: 104, // Highest cliff z-index
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -252,7 +253,7 @@ const Cliff_Back = () => {
       top: getResponsiveValue('50vh', '50vh', '100vh'),
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 1,
+      zIndex: 105, // Above all cliffs
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -271,7 +272,7 @@ const Cliff_Back = () => {
       bottom: '3rem',
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 6,
+      zIndex: 106, // Above everything
       color: 'white',
       textAlign: 'center',
       textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
@@ -281,7 +282,7 @@ const Cliff_Back = () => {
       width: '100%',
       height: '120%',
       background: 'transparent',
-      zIndex: 1,
+      zIndex: 101,
       transition: 'all 0.1s ease-out'
     },
     bounceIcon: {
@@ -319,9 +320,6 @@ const Cliff_Back = () => {
       `}</style>
 
       <section ref={sectionRef} style={styles.parallaxSection}>
-        {/* Background overlay that darkens on scroll */}
-        <div style={styles.backgroundOverlay} />
-
         {/* Depth layer for extra visual effect */}
         <div style={styles.depthLayer} />
 

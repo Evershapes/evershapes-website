@@ -2,7 +2,7 @@
   "name": "evershapes-website",
   "private": true,
   "version": "0.0.0",
-  "homepage":"https://evershapes.github.io/react-gh-pages",
+  "homepage": "https://evershapes.github.io/react-gh-pages",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
@@ -23,6 +23,7 @@
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-spring": "^10.0.1",
     "tailwind-merge": "^3.3.1",
     "three": "^0.177.0",
     "three-gltf-loader": "^1.111.0"

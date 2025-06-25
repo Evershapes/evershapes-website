@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import GLTFViewer from './special_scene1';
+import { useSpring, animated, config } from 'react-spring';
+import MobileGltfViewer1 from './special_scene1_mobile';
+import DesktopGltfViewer1 from './special_scene1_desktop'; // Add this import
 
 // Separate TextBox Column Component
 const TextBoxColumn = ({ scrollProgress }) => {
@@ -10,10 +12,10 @@ const TextBoxColumn = ({ scrollProgress }) => {
       borderRadius: '20px',
       padding: '2.5rem',
       margin: '1rem 0',
-      maxWidth: '500px', // Slightly narrower to fit in cliff center
+      maxWidth: '500px',
       textAlign: 'center',
       boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
-      transform: `translateY(${-scrollProgress * 15}px)`, // Less movement so text stays in center
+      transform: `translateY(${-scrollProgress * 15}px)`,
       opacity: Math.max(0.9, 1 - scrollProgress * 0.2),
       transition: 'all 0.1s ease-out',
       border: '2px solid rgba(255, 255, 255, 0.8)'
@@ -64,55 +66,115 @@ const TextBoxColumn = ({ scrollProgress }) => {
 const Cliff_Back = () => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [deviceType, setDeviceType] = useState('desktop'); // New state for device type
   const sectionRef = useRef(null);
 
   // Direct paths to cliff images
-  // Required files in public/images/ (all should fit within 1920x2160 section):
-  // - Cliff_Back_Part.png (back layer, furthest depth)
-  // - Cliff_Middle_Part_Bis.png (middle layer, medium depth) 
-  // - Cliff_Front_Part.png (front layer, closest depth)
   const cliffBackUrl = '/images/Cliff_Back_Part_Bis.png';
   const cliffMiddleUrl = '/images/Cliff_Middle_Part_Bis.png';
   const cliffFrontUrl = '/images/Cliff_Front_Part.png';
+
+  // Device detection function
+  const detectDeviceType = (width) => {
+    if (width < 768) return 'mobile';
+    if (width >= 768 && width < 1200) return 'tablet';
+    return 'desktop';
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    const updateSectionTop = () => {
+    const updateDimensions = () => {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      
+      setDimensions({
+        width: newWidth,
+        height: newHeight
+      });
+      
+      // Update device type when dimensions change
+      setDeviceType(detectDeviceType(newWidth));
+      
       if (sectionRef.current) {
         setSectionTop(sectionRef.current.offsetTop);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', updateSectionTop);
-    updateSectionTop();
+    window.addEventListener('resize', updateDimensions);
+    updateDimensions(); // Initial call
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateSectionTop);
+      window.removeEventListener('resize', updateDimensions);
     };
   }, []);
 
   // Calculate scroll progress through this section
-  const sectionHeight = window.innerHeight * 2.0; // 200vh
+  const sectionHeight = window.innerHeight * 2.0;
   const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
   
   // Calculate background darkness based on scroll progress
-  const backgroundOpacity = 0.3 + (scrollProgress * 0.7); // From 30% to 100% dark
+  const backgroundOpacity = 0.3 + (scrollProgress * 0.7);
+ 
+  // Responsive breakpoints
+  const isMobile = dimensions.width < 768;
+  const isTablet = dimensions.width >= 768 && dimensions.width < 1200;
+  const isDesktop = dimensions.width >= 1200;
   
-  // Calculate different parallax offsets for each cliff layer
-  const backParallaxOffset = scrollProgress * 3600; // Moves from 300px to 900px (600px total movement)
-  const middleParallaxOffset = scrollProgress * 2400; // Slowly lowers down
-  const frontParallaxOffset = -scrollProgress * -720; // Keep original inverse parallax
+  // Responsive helper function
+  const getResponsiveValue = (mobile, tablet, desktop) => {
+    if (isMobile) return mobile;
+    if (isTablet) return tablet;
+    return desktop;
+  };
+
+  // Your exact parallax calculations
+  const backParallaxOffset = scrollProgress * getResponsiveValue('900', '1800', '1000');
+  const middleParallaxOffset = scrollProgress * getResponsiveValue('2400', '2400', '400');
+  const frontParallaxOffset = -scrollProgress * -600;
+
+  // React-spring animations using your exact parallax values
+  const backCliffSpring = useSpring({
+    transform: `translateY(${backParallaxOffset}px)`,
+    config: config.slow,
+  });
+
+  const middleCliffSpring = useSpring({
+    transform: `translateY(${middleParallaxOffset}px)`,
+    config: config.slow,
+  });
+
+  const frontCliffSpring = useSpring({
+    transform: `translateY(${frontParallaxOffset}px)`,
+    config: config.slow,
+  });
+
+  // Scroll hint animation
+  const scrollHintSpring = useSpring({
+    opacity: Math.max(0, 1 - scrollProgress * 3),
+    config: config.gentle,
+  });
+
+  // Function to render the appropriate GLTF viewer
+  const renderGLTFViewer = () => {
+    // Use mobile viewer for both mobile and tablet, desktop viewer for desktop
+    if (isMobile || isTablet) {
+      return <MobileGltfViewer1 />;
+    } else {
+      return <DesktopGltfViewer1 />;
+    }
+  };
 
   const styles = {
     parallaxSection: {
-      height: '100vh',
+      height: getResponsiveValue('100vh', '115vh', '200vh'),
       position: 'relative',
-      overflow: 'hidden', // Ensures cliff doesn't spill outside section
+      overflow: 'hidden',
       background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 50%, #F07167 100%)'
     },
     backgroundOverlay: {
@@ -122,74 +184,71 @@ const Cliff_Back = () => {
       width: '100%',
       height: '100%',
       background: '#000',
-      opacity: 0, // Removed darkening effect
+      opacity: 0,
       transition: 'opacity 0.1s ease-out',
-      zIndex: 1 // Below cliff layers
+      zIndex: 1
     },
     cliffBackOverlay: {
       position: 'absolute',
-      top: '100 px', // 300px offset from top
-      left: 0,
-      width: '100%',
-      height: '918px', // Specific height
+      top: '100px',
+      left: getResponsiveValue('-10%', '-7%', '0%'),
+      width: getResponsiveValue('120%', '115%', '100%'),
+      height: getResponsiveValue('400px', '650px', '918px'),
       backgroundImage: `url(${cliffBackUrl})`,
-      backgroundSize: '100% 100%', // Fit full width and use exact height
+      backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      transform: `translateY(${backParallaxOffset}px)`, // Moves down to 1800px offset
-      zIndex: 2, // Back layer - lowest z-index
+      zIndex: 2,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
     },
     cliffMiddleOverlay: {
       position: 'absolute',
-      top: 0, // Stick to top
-      left: 0,
-      width: '100%',
-      height: '978px', // Specific height
+      top: 0,
+      left: getResponsiveValue('-10%', '-7%', '0%'),
+      width: getResponsiveValue('120%', '115%', '100%'),
+      height: getResponsiveValue('450px', '700px', '978px'),
       backgroundImage: `url(${cliffMiddleUrl})`,
-      backgroundSize: '100% 100%', // Fit full width and use exact height
+      backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      transform: `translateY(${middleParallaxOffset}px)`, // Slowly lowers down
-      zIndex: 3, // Middle layer
+      zIndex: 3,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
     },
     cliffFrontOverlay: {
       position: 'absolute',
-      top: '400px', 
-      left: 0,
-      width: '100%',
-      height: '100vh', // Full section height to ensure complete coverage
+      top: getResponsiveValue('200px', '300px', '400px'),
+      left: getResponsiveValue('-10%', '-7%', '0%'),
+      width: getResponsiveValue('120%', '115%', '100%'),
+      height: getResponsiveValue('100vh', '100vh', '200vh'),
       backgroundImage: `url(${cliffFrontUrl})`,
-      backgroundSize: '100% 100%', // Fit full width and use exact height
+      backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      transform: `translateY(${frontParallaxOffset}px)`, // Original inverse parallax
-      zIndex: 4, // Front layer - highest z-index
+      zIndex: 4,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
     },
     contentContainer: {
       position: 'absolute',
-      top: '50vh', // Offset by 110vh from top, sticks to bottom area
+      top: getResponsiveValue('80vh', '80vh', '100vh'),
       left: '50%',
-      transform: 'translateX(-50%)', // Center horizontally
-      zIndex: 1, // Below all cliff layers (back=2, middle=3, front=4)
+      transform: 'translateX(-50%)',
+      zIndex: 1,
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      padding: '2rem'
+      padding: getResponsiveValue('1rem', '1.5rem', '2rem')
     },
     chessboardContainer: {
-      width: '100vw',
-      height: '80vh',
+      width: getResponsiveValue('95vw', '90vw', '100vw'),
+      height: getResponsiveValue('60vh', '70vh', '100vh'),
       position: 'relative',
       overflow: 'hidden',
     },
@@ -198,24 +257,22 @@ const Cliff_Back = () => {
       bottom: '3rem',
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 6, // Above all cliff layers
+      zIndex: 6,
       color: 'white',
       textAlign: 'center',
-      opacity: Math.max(0, 1 - scrollProgress * 3),
-      transition: 'opacity 0.3s ease-out',
       textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
     },
     depthLayer: {
       position: 'absolute',
       width: '100%',
       height: '120%',
-      background: 'transparent', // Removed radial gradient shadow
-      zIndex: 1, // Below all cliff layers
+      background: 'transparent',
+      zIndex: 1,
       transition: 'all 0.1s ease-out'
     },
     bounceIcon: {
-      width: '30px',
-      height: '30px',
+      width: getResponsiveValue('24px', '28px', '30px'),
+      height: getResponsiveValue('24px', '28px', '30px'),
       animation: 'bounce 2s infinite'
     }
   };
@@ -254,29 +311,26 @@ const Cliff_Back = () => {
         {/* Depth layer for extra visual effect */}
         <div style={styles.depthLayer} />
         
-        {/* Three layered cliff overlays with parallax - all fit within 1920x2160 section */}
-        {/* Back layer (z-index: 2) - furthest back */}
-        <div style={styles.cliffBackOverlay} />
-        {/* Middle layer (z-index: 3) - middle depth */}
-        <div style={styles.cliffMiddleOverlay} />
-        {/* Front layer (z-index: 4) - closest to viewer */}
-        <div style={styles.cliffFrontOverlay} />
+        {/* Three layered cliff overlays with react-spring parallax */}
+        <animated.div style={{...styles.cliffBackOverlay, ...backCliffSpring}} />
+        <animated.div style={{...styles.cliffMiddleOverlay, ...middleCliffSpring}} />
+        <animated.div style={{...styles.cliffFrontOverlay, ...frontCliffSpring}} />
         
         {/* Main content */}
         <div style={styles.contentContainer}>
-          {/* 3D Chessboard ThreeJS Component */}
+          {/* Conditional 3D GLTF Viewer based on device type */}
           <div style={styles.chessboardContainer}>
-            <GLTFViewer/>
+            {renderGLTFViewer()}
           </div>
         </div>
         
-        {/* Scroll hint */}
-        <div style={styles.scrollHint}>
+        {/* Scroll hint with react-spring animation */}
+        <animated.div style={{...styles.scrollHint, ...scrollHintSpring}}>
           <div>Scroll to explore</div>
           <svg viewBox="0 0 24 24" fill="currentColor" style={styles.bounceIcon}>
             <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
           </svg>
-        </div>
+        </animated.div>
       </section>
     </div>
   );

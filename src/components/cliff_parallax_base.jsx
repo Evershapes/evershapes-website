@@ -1,72 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import GLTFViewer from './GLTFViewer_simple';
-
-// Separate TextBox Column Component
-const TextBoxColumn = ({ scrollProgress }) => {
-  const styles = {
-    floatingContent: {
-      background: 'rgba(255, 255, 255, 0.98)',
-      backdropFilter: 'blur(20px)',
-      borderRadius: '20px',
-      padding: '2.5rem',
-      margin: '1rem 0',
-      maxWidth: '500px',
-      textAlign: 'center',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
-      transform: `translateY(${-scrollProgress * 15}px)`,
-      opacity: Math.max(0.9, 1 - scrollProgress * 0.2),
-      transition: 'all 0.1s ease-out',
-      border: '2px solid rgba(255, 255, 255, 0.8)'
-    },
-    floatingContentH2: {
-      fontSize: '2.5rem',
-      color: '#2c3e50',
-      marginBottom: '1rem',
-      fontWeight: 'bold'
-    },
-    floatingContentP: {
-      fontSize: '1.2rem',
-      color: '#34495e',
-      lineHeight: 1.6,
-      marginBottom: '1.5rem'
-    }
-  };
-
-  return (
-    <>
-      <div style={styles.floatingContent}>
-        <h2 style={styles.floatingContentH2}>Journey Through the Canyon</h2>
-        <p style={styles.floatingContentP}>
-          As you descend deeper into this mystical canyon, the world above begins to fade away.
-          The ancient cliffs tell stories of millennia past, while shadows dance between the rocky walls.
-        </p>
-        <p style={styles.floatingContentP}>
-          Experience the depth and mystery as light gradually gives way to the depths below.
-          This is where adventure begins and ordinary ends.
-        </p>
-      </div>
-
-      <div style={styles.floatingContent}>
-        <h2 style={styles.floatingContentH2}>Discover Hidden Depths</h2>
-        <p style={styles.floatingContentP}>
-          Each step down reveals new wonders. The canyon walls stretch endlessly upward,
-          creating a natural cathedral of stone and time.
-        </p>
-        <p style={styles.floatingContentP}>
-          Let the parallax guide your journey as reality shifts with every scroll.
-          The deeper you go, the more the mystery unfolds.
-        </p>
-      </div>
-    </>
-  );
-};
+import GLTFViewer from './GLTFViewer_simple'; // Add this import
 
 const Cliff_Back = () => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [deviceType, setDeviceType] = useState('desktop');
+  const [deviceType, setDeviceType] = useState('desktop'); // New state for device type
   const sectionRef = useRef(null);
 
   // Direct paths to cliff images
@@ -79,41 +19,6 @@ const Cliff_Back = () => {
     if (width < 768) return 'mobile';
     if (width >= 768 && width < 1200) return 'tablet';
     return 'desktop';
-  };
-
-  // GLTF Viewer configurations for different devices
-  const getGLTFConfig = () => {
-    const baseConfig = {
-      cameraAngle: 30,
-      autoRotateSpeed: 0.005,
-      modelRotation: 90,
-      modelScale: 5
-    };
-
-    if (isMobile) {
-      return {
-        ...baseConfig,
-        cameraDistance: 8, // Further back for mobile
-        modelScale: 4, // Slightly smaller for mobile
-        // Mobile-specific model path if needed
-        // modelPath: '/scene/evershapes_scene1_mobile.gltf',
-      };
-    } else if (isTablet) {
-      return {
-        ...baseConfig,
-        cameraDistance: 7, // Medium distance for tablet
-        modelScale: 4.5, // Medium size for tablet
-        // Tablet-specific model path if needed
-        // modelPath: '/scene/evershapes_scene1_tablet.gltf',
-      };
-    } else {
-      return {
-        ...baseConfig,
-        modelPath: '/scene/evershapes_scene1.gltf',
-        cameraDistance: 6, // Default distance for desktop
-        modelScale: 5, // Full size for desktop
-      };
-    }
   };
 
   useEffect(() => {
@@ -167,12 +72,12 @@ const Cliff_Back = () => {
     return desktop;
   };
 
-  // Parallax calculations with device-specific optimizations
-  const backParallaxOffset = scrollProgress * getResponsiveValue(900, 1800, 1000);
-  const middleParallaxOffset = scrollProgress * getResponsiveValue(2400, 2400, 400);
+  // Your exact parallax calculations
+  const backParallaxOffset = scrollProgress * getResponsiveValue('900', '1800', '1000');
+  const middleParallaxOffset = scrollProgress * getResponsiveValue('2400', '2400', '400');
   const frontParallaxOffset = -scrollProgress * -600;
 
-  // React-spring animations
+  // React-spring animations using your exact parallax values
   const backCliffSpring = useSpring({
     transform: `translateY(${backParallaxOffset}px)`,
     config: config.slow,
@@ -194,12 +99,37 @@ const Cliff_Back = () => {
     config: config.gentle,
   });
 
+  // Function to render the appropriate GLTF viewer
+  const renderGLTFViewer = () => {
+    // Use mobile viewer for both mobile and tablet, desktop viewer for desktop
+    if (isMobile || isTablet) {
+      return <GLTFViewer config={{
+        cameraAngle: 30,
+        cameraDistance: 6,
+        autoRotateSpeed: 0.005,
+        modelRotation: 90, 
+        modelScale: 5
+      }}
+      />;
+    } else {
+      return <GLTFViewer config={{
+        modelPath: '/scene/evershapes_scene1.gltf',
+        cameraAngle: 30,
+        cameraDistance: 6,
+        autoRotateSpeed: 0.005,
+        modelRotation: 90, 
+        modelScale: 5
+      }}
+      />;
+    }
+  };
+
   const styles = {
     parallaxSection: {
       height: getResponsiveValue('130vh', '130vh', '200vh'),
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80%, #FDFCDC 100%)'
+      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80% ,#FDFCDC 100%)'
     },
     backgroundOverlay: {
       position: 'absolute',
@@ -262,7 +192,7 @@ const Cliff_Back = () => {
       top: getResponsiveValue('50vh', '50vh', '100vh'),
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 5, // Increased z-index to ensure GLTF viewer is above cliffs
+      zIndex: 1,
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -304,8 +234,8 @@ const Cliff_Back = () => {
       bottom: 0,
       left: 0,
       width: '100%',
-      height: '10vh',
-      background: 'linear-gradient(to bottom, transparent 0%,hsla(58, 89.20%, 92.70%, 0.50) 50%,#FDFCDC 80%, #FDFCDC 100%)',
+      height: '5vh',
+      background: 'linear-gradient(to top, #FDFCDC 0%, transparent 100%)',
       zIndex: 10,
       pointerEvents: 'none'
     }
@@ -352,12 +282,9 @@ const Cliff_Back = () => {
 
         {/* Main content */}
         <div style={styles.contentContainer}>
-          {/* GLTF Viewer with device-specific configuration */}
+          {/* Conditional 3D GLTF Viewer based on device type */}
           <div style={styles.chessboardContainer}>
-            <GLTFViewer 
-              config={getGLTFConfig()} 
-              key={deviceType} // Force re-render when device type changes
-            />
+            {renderGLTFViewer()}
           </div>
         </div>
 
@@ -377,4 +304,3 @@ const Cliff_Back = () => {
 };
 
 export default Cliff_Back;
-export { TextBoxColumn };

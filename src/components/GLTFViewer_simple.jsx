@@ -289,7 +289,7 @@ const GLTFViewer = ({ config = {} }) => {
       
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-white text-xxl">Loading model...</div>
+          <div className="text-white text-xl BriceSemiBoldSemiExpanded">Loading model...</div>
         </div>
       )}
       

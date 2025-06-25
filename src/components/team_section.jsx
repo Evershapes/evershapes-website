@@ -79,14 +79,14 @@ const TeamSection = () => {
         sectionWrapper: {
             position: 'relative',
             background: 'transparent',
-            zIndex: 50, // Lower z-index than cliff section
+            zIndex: 1, // Lower z-index than cliff section
         },
         teamSection: {
             height: '500vh', // Much taller section for scrolling
             position: 'relative',
             overflow: 'hidden',
             background: '#FDFCDC', // Couleur uniforme sans dégradé
-            zIndex: 50, // Lower z-index than cliff section
+            zIndex: 1, // Lower z-index than cliff section
         },
         backgroundLayer: {
             position: 'absolute',
@@ -230,52 +230,22 @@ const TeamSection = () => {
     // Team data with positioning
     const teamMembers = [
         {
-            name: "Alex Johnson",
+            name: "A",
             role: "Lead Developer",
-            description: "Passionate about creating immersive gaming experiences with cutting-edge technology.",
+            description: "",
             position: { top: '50vh', side: 'left' }
         },
         {
-            name: "Sarah Chen",
+            name: "S",
             role: "Game Designer",
-            description: "Specializes in crafting engaging gameplay mechanics and memorable player experiences.",
+            description: ".",
             position: { top: '80vh', side: 'right' }
         },
         {
-            name: "Mike Rodriguez",
+            name: "M",
             role: "3D Artist",
-            description: "Brings worlds to life through stunning visual design and detailed 3D modeling.",
+            description: ".",
             position: { top: '110vh', side: 'left' }
-        },
-        {
-            name: "Emma Wilson",
-            role: "UI/UX Designer",
-            description: "Creates intuitive and beautiful user interfaces that enhance the gaming experience.",
-            position: { top: '140vh', side: 'right' }
-        },
-        {
-            name: "David Kim",
-            role: "Sound Designer",
-            description: "Crafts immersive audio landscapes that bring our virtual worlds to life.",
-            position: { top: '170vh', side: 'left' }
-        },
-        {
-            name: "Lisa Park",
-            role: "Project Manager",
-            description: "Coordinates our talented team to deliver exceptional gaming experiences on time.",
-            position: { top: '200vh', side: 'right' }
-        },
-        {
-            name: "Tom Wilson",
-            role: "QA Engineer",
-            description: "Ensures our games are polished and bug-free for the best player experience.",
-            position: { top: '230vh', side: 'left' }
-        },
-        {
-            name: "Maya Patel",
-            role: "Marketing Lead",
-            description: "Brings our games to the world and connects with our gaming community.",
-            position: { top: '260vh', side: 'right' }
         }
     ];
 
@@ -365,7 +335,7 @@ const TeamSection = () => {
                         Our Team
                     </h1>
                     <p className="BriceRegular" style={styles.subtitle}>
-                        Meet the creative minds behind Evershapes. We design, we build, you play!
+                        Meet the creative minds behind Evershapes.
                     </p>
                 </div>
 

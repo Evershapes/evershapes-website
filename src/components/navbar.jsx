@@ -91,10 +91,10 @@ export default function Navbar() {
             const elementPosition = element.offsetTop;
             
             // For "accueil" section, scroll a bit higher to show navbar above it
-            const offsetPosition = sectionId === 'accueil' 
+            let offsetPosition = sectionId === 'accueil' 
                 ? elementPosition - navbarHeight - 10 // Extra 10px for spacing
                 : elementPosition - navbarHeight;
-            
+                
             window.scrollTo({
                 top: Math.max(0, offsetPosition), // Ensure we don't scroll above page top
                 behavior: 'smooth'
@@ -150,7 +150,7 @@ export default function Navbar() {
                     backgroundColor: '#F07167',
                     borderRadius: '0 0 20px 20px',
                     padding: '8px 16px 12px 16px',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                 }}
             >
                 <div className="flex flex-col items-center">
@@ -176,6 +176,7 @@ export default function Navbar() {
                         backgroundColor: '#FED9B7',
                         padding: '10px 0 15px 0',
                         borderRadius: '0 0 50% 50% / 0 0 30px 30px',
+                        boxShadow: '0 4px 8px rgba(192, 139, 89, 0.41)',
                     }}
                 >
                     <NavigationMenu>

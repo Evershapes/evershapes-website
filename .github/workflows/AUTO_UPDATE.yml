@@ -1,0 +1,35 @@
+name: AUTO_UPDATE
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches: ["master"]
+
+jobs:
+  update-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create SSH key
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+      
+      - name: Run a multi-line script
+        run: |
+          ssh es-bot@90.120.240.19 'bash -s' << 'EOF'
+            cd ../machine/SERVER_MANAGER/
+            docker compose down evershapes_website
+            sleep 3
+            docker rmi server_manager-evershapes_website
+            sleep 3
+            cd evershapes-website/
+            git pull
+            sleep 5
+            cd ..
+            docker compose up evershapes_website -d --force-recreate
+            sleep 3
+            exit
+          EOF

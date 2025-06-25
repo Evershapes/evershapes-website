@@ -87,7 +87,7 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
           color: #FDFCDC;
           position: relative;
           line-height: 100%;
-          font-size: 4vw;
+          font-size: 2vw;
           flex: 0 0 33%;
           padding: 58px 0;
           text-transform: uppercase;
@@ -97,7 +97,7 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
         .sliding-text-item-stroke {
           position: relative;
           line-height: 100%;
-          font-size: 4vw;
+          font-size: 2vw;
           flex: 0 0 33%;
           padding: 58px 0;
           text-transform: uppercase;
@@ -139,21 +139,6 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
                 <span className="sliding-text-span">{text}</span>
               </div>
               <div className="sliding-text-item-stroke">
-                <span className="sliding-text-span">{text}</span>
-              </div>
-              <div className="sliding-text-item">
-                <span className="sliding-text-span">{text}</span>
-              </div>
-              <div className="sliding-text-item-stroke">
-                <span className="sliding-text-span">{text}</span>
-              </div>
-              <div className="sliding-text-item">
-                <span className="sliding-text-span">{text}</span>
-              </div>
-              <div className="sliding-text-item-stroke">
-                <span className="sliding-text-span">{text}</span>
-              </div>
-              <div className="sliding-text-item">
                 <span className="sliding-text-span">{text}</span>
               </div>
             </div>

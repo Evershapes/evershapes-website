@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import GLTFViewer from './GLTFViewer_simple'; // Add this import
+import GLTFViewer from './GLTFViewer_simple';
 
 // Separate TextBox Column Component
 const TextBoxColumn = ({ scrollProgress }) => {
@@ -81,6 +81,41 @@ const Cliff_Back = () => {
     return 'desktop';
   };
 
+  // GLTF Viewer configurations for different devices
+  const getGLTFConfig = () => {
+    const baseConfig = {
+      cameraAngle: 30,
+      autoRotateSpeed: 0.005,
+      modelRotation: 90,
+      modelScale: 5
+    };
+
+    if (isMobile) {
+      return {
+        ...baseConfig,
+        cameraDistance: 8, // Further back for mobile
+        modelScale: 4, // Slightly smaller for mobile
+        // Mobile-specific model path if needed
+        // modelPath: '/scene/evershapes_scene1_mobile.gltf',
+      };
+    } else if (isTablet) {
+      return {
+        ...baseConfig,
+        cameraDistance: 7, // Medium distance for tablet
+        modelScale: 4.5, // Medium size for tablet
+        // Tablet-specific model path if needed
+        // modelPath: '/scene/evershapes_scene1_tablet.gltf',
+      };
+    } else {
+      return {
+        ...baseConfig,
+        modelPath: '/scene/evershapes_scene1.gltf',
+        cameraDistance: 6, // Default distance for desktop
+        modelScale: 5, // Full size for desktop
+      };
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -131,12 +166,12 @@ const Cliff_Back = () => {
     return desktop;
   };
 
-  // Your exact parallax calculations
-  const backParallaxOffset = scrollProgress * getResponsiveValue('900', '1800', '1000');
-  const middleParallaxOffset = scrollProgress * getResponsiveValue('2400', '2400', '400');
+  // Parallax calculations with device-specific optimizations
+  const backParallaxOffset = scrollProgress * getResponsiveValue(900, 1800, 1000);
+  const middleParallaxOffset = scrollProgress * getResponsiveValue(2400, 2400, 400);
   const frontParallaxOffset = -scrollProgress * -600;
 
-  // React-spring animations using your exact parallax values
+  // React-spring animations
   const backCliffSpring = useSpring({
     transform: `translateY(${backParallaxOffset}px)`,
     config: config.slow,
@@ -158,38 +193,14 @@ const Cliff_Back = () => {
     config: config.gentle,
   });
 
-  // Function to render the appropriate GLTF viewer
-  const renderGLTFViewer = () => {
-    if (isMobile || isTablet) {
-      return <GLTFViewer config={{
-        cameraAngle: 30,
-        cameraDistance: 6,
-        autoRotateSpeed: 0.005,
-        modelRotation: 90, 
-        modelScale: 5
-      }}
-      />;
-    } else {
-      return <GLTFViewer config={{
-        modelPath: '/scene/evershapes_scene1.gltf',
-        cameraAngle: 30,
-        cameraDistance: 6,
-        autoRotateSpeed: 0.005,
-        modelRotation: 90, 
-        modelScale: 5
-      }}
-      />;
-    }
-  };
-
   const styles = {
     // Main section with VERY HIGH z-index to appear above team section
     parallaxSection: {
       height: getResponsiveValue('130vh', '130vh', '200vh'),
       position: 'relative',
       overflow: 'visible', // Changed from 'hidden' to 'visible' to allow overflow
-      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 100%)',
       zIndex: 100, // VERY HIGH z-index to appear above team section
+      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80%, #FDFCDC 100%)'
     },
     backgroundOverlay: {
       position: 'absolute',
@@ -289,6 +300,16 @@ const Cliff_Back = () => {
       width: getResponsiveValue('24px', '28px', '30px'),
       height: getResponsiveValue('24px', '28px', '30px'),
       animation: 'bounce 2s infinite'
+    },
+    bottomGradient: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      height: '10vh',
+      background: 'linear-gradient(to bottom, transparent 0%,hsla(58, 89.20%, 92.70%, 0.50) 50%,#FDFCDC 80%, #FDFCDC 100%)',
+      zIndex: 10,
+      pointerEvents: 'none'
     }
   };
 
@@ -330,11 +351,17 @@ const Cliff_Back = () => {
 
         {/* Main content */}
         <div style={styles.contentContainer}>
-          {/* Conditional 3D GLTF Viewer based on device type */}
+          {/* GLTF Viewer with device-specific configuration */}
           <div style={styles.chessboardContainer}>
-            {renderGLTFViewer()}
+            <GLTFViewer 
+              config={getGLTFConfig()} 
+              key={deviceType} // Force re-render when device type changes
+            />
           </div>
         </div>
+
+        {/* Bottom gradient section */}
+        <div style={styles.bottomGradient} />
 
         {/* Scroll hint with react-spring animation */}
         <animated.div style={{ ...styles.scrollHint, ...scrollHintSpring }}>

@@ -261,7 +261,7 @@ const Cliff_Back = () => {
       padding: getResponsiveValue('1rem', '1.5rem', '2rem')
     },
     chessboardContainer: {
-      width: getResponsiveValue('110vw', '110vw', '100vw'),
+      width: getResponsiveValue('100vw', '100vw', '100vw'),
       height: getResponsiveValue('100vh', '80vh', '100vh'),
       position: 'relative',
       overflow: 'hidden',

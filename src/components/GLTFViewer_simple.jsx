@@ -284,7 +284,7 @@ const GLTFViewer = ({ config = {} }) => {
   };
 
   return (
-    <div className="relative" style={{ width: '110vw', height: '100vh', margin: '-5vh -5vw' }}>
+    <div className="relative" style={{ width: '100vw', height: '100vh'}}>
       <div ref={containerRef} className="w-full h-full" />
       
       {isLoading && (

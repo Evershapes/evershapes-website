@@ -15,12 +15,12 @@ const TeamSection = () => {
         const updateDimensions = () => {
             const newWidth = window.innerWidth;
             const newHeight = window.innerHeight;
-            
+
             setDimensions({
                 width: newWidth,
                 height: newHeight
             });
-            
+
             if (sectionRef.current) {
                 setSectionTop(sectionRef.current.offsetTop);
             }
@@ -39,12 +39,12 @@ const TeamSection = () => {
     // Calculate scroll progress through this section
     const sectionHeight = window.innerHeight * 5; // Adjusted for taller section
     const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
-    
+
     // Responsive breakpoints
     const isMobile = dimensions.width < 768;
     const isTablet = dimensions.width >= 768 && dimensions.width < 1200;
     const isDesktop = dimensions.width >= 1200;
-    
+
     // Responsive helper function
     const getResponsiveValue = (mobile, tablet, desktop) => {
         if (isMobile) return mobile;
@@ -79,12 +79,14 @@ const TeamSection = () => {
         sectionWrapper: {
             position: 'relative',
             background: 'transparent',
+            zIndex: 50, // Lower z-index than cliff section
         },
         teamSection: {
             height: '500vh', // Much taller section for scrolling
             position: 'relative',
             overflow: 'hidden',
             background: '#FDFCDC', // Couleur uniforme sans dégradé
+            zIndex: 50, // Lower z-index than cliff section
         },
         backgroundLayer: {
             position: 'absolute',
@@ -235,7 +237,7 @@ const TeamSection = () => {
         },
         {
             name: "Sarah Chen",
-            role: "Game Designer", 
+            role: "Game Designer",
             description: "Specializes in crafting engaging gameplay mechanics and memorable player experiences.",
             position: { top: '80vh', side: 'right' }
         },
@@ -306,22 +308,22 @@ const TeamSection = () => {
 
             <section ref={sectionRef} style={styles.teamSection}>
                 {/* Background layer with slow parallax */}
-                <animated.div style={{...styles.backgroundLayer, ...backgroundSpring}} />
-                
+                <animated.div style={{ ...styles.backgroundLayer, ...backgroundSpring }} />
+
                 {/* Road SVG - FIXED within the section, no movement */}
                 <div style={styles.roadContainer}>
                     {/* Using inline SVG - replace with your actual chemin.svg content */}
-                    <svg 
-                        style={styles.roadSvg} 
-                        viewBox="0 0 100 320" 
+                    <svg
+                        style={styles.roadSvg}
+                        viewBox="0 0 100 320"
                         preserveAspectRatio="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         {/* Replace this path with the actual path from your chemin.svg */}
-                        <path 
-                            d="M50 0 Q30 30 50 60 Q70 90 50 120 Q30 150 50 180 Q70 210 50 240 Q30 270 50 300" 
-                            stroke="#FFFFFF" 
-                            strokeWidth="20" 
+                        <path
+                            d="M50 0 Q30 30 50 60 Q70 90 50 120 Q30 150 50 180 Q70 210 50 240 Q30 270 50 300"
+                            stroke="#FFFFFF"
+                            strokeWidth="20"
                             fill="none"
                             filter="drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"
                         />
@@ -329,9 +331,9 @@ const TeamSection = () => {
                 </div>
 
                 {/* Side content with team members - medium parallax speed */}
-                <animated.div style={{...styles.sideContent, ...sideContentSpring}}>
+                <animated.div style={{ ...styles.sideContent, ...sideContentSpring }}>
                     {teamMembers.map((member, index) => (
-                        <div 
+                        <div
                             key={index}
                             style={{
                                 ...styles.teamMember,
@@ -356,7 +358,7 @@ const TeamSection = () => {
 
                 {/* Overlay de fade pour transitions extra douces */}
                 <div style={styles.fadeOverlay} />
-                
+
                 {/* Title - ABOVE the fade overlay */}
                 <div style={styles.titleContainer}>
                     <h1 className="BriceBoldSemiExpanded" style={styles.mainTitle}>
@@ -366,7 +368,7 @@ const TeamSection = () => {
                         Meet the creative minds behind Evershapes. We design, we build, you play!
                     </p>
                 </div>
-       
+
             </section>
         </div>
     );

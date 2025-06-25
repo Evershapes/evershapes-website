@@ -21,6 +21,41 @@ const Cliff_Back = () => {
     return 'desktop';
   };
 
+  // GLTF Viewer configurations for different devices
+  const getGLTFConfig = () => {
+    const baseConfig = {
+      cameraAngle: 30,
+      autoRotateSpeed: 0.005,
+      modelRotation: 90,
+      modelScale: 5
+    };
+
+    if (isMobile) {
+      return {
+        ...baseConfig,
+        cameraDistance: 8, // Further back for mobile
+        modelScale: 4, // Slightly smaller for mobile
+        // Mobile-specific model path if needed
+        // modelPath: '/scene/evershapes_scene1_mobile.gltf',
+      };
+    } else if (isTablet) {
+      return {
+        ...baseConfig,
+        cameraDistance: 7, // Medium distance for tablet
+        modelScale: 4.5, // Medium size for tablet
+        // Tablet-specific model path if needed
+        // modelPath: '/scene/evershapes_scene1_tablet.gltf',
+      };
+    } else {
+      return {
+        ...baseConfig,
+        modelPath: '/scene/evershapes_scene1.gltf',
+        cameraDistance: 6, // Default distance for desktop
+        modelScale: 5, // Full size for desktop
+      };
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -35,6 +70,7 @@ const Cliff_Back = () => {
         height: newHeight
       });
 
+      // Update device type when dimensions change
       setDeviceType(detectDeviceType(newWidth));
 
       if (sectionRef.current) {
@@ -44,7 +80,7 @@ const Cliff_Back = () => {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', updateDimensions);
-    updateDimensions();
+    updateDimensions(); // Initial call
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -71,10 +107,21 @@ const Cliff_Back = () => {
     return desktop;
   };
 
-  // Parallax calculations
-  const backParallaxOffset = scrollProgress * getResponsiveValue(900, 1800, 1000);
-  const middleParallaxOffset = scrollProgress * getResponsiveValue(2400, 2400, 400);
-  const frontParallaxOffset = -scrollProgress * -600;
+  // Hard limits that make sense for your cliff sizes
+  const backParallaxOffset = Math.min(
+    scrollProgress * getResponsiveValue(900, 2500, 2600),
+    getResponsiveValue(200, 450, 1050) // Much smaller limits
+  );
+
+  const middleParallaxOffset = Math.min(
+    scrollProgress * getResponsiveValue(4000, 5000, 3500),
+    getResponsiveValue(600, 900, 1600) // Reasonable limits
+  );
+
+  const frontParallaxOffset = Math.min(
+    scrollProgress * getResponsiveValue(800, 3000, 3200),
+    getResponsiveValue(150, 200, 100) // Conservative limits
+  );
 
   // React-spring animations
   const backCliffSpring = useSpring({
@@ -98,47 +145,12 @@ const Cliff_Back = () => {
     config: config.gentle,
   });
 
-  // Function to render the appropriate GLTF viewer
-  const renderGLTFViewer = () => {
-    if (isMobile || isTablet) {
-      return <GLTFViewer config={{
-        cameraAngle: 30,
-        cameraDistance: 6,
-        autoRotateSpeed: 0.005,
-        modelRotation: 90, 
-        modelScale: 5
-      }} />;
-    } else {
-      return <GLTFViewer config={{
-        modelPath: '/scene/evershapes_scene1.gltf',
-        cameraAngle: 30,
-        cameraDistance: 6,
-        autoRotateSpeed: 0.005,
-        modelRotation: 90, 
-        modelScale: 5
-      }} />;
-    }
-  };
-
   const styles = {
-    // Main section with proper z-index management
     parallaxSection: {
       height: getResponsiveValue('130vh', '130vh', '200vh'),
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80%, #FDFCDC 100%)',
-      zIndex: 1, // Base z-index for the section
-    },
-    // Wrapper to extend the visual effect beyond section boundaries
-    cliffExtension: {
-      position: 'absolute',
-      bottom: '-50vh', // Extend beyond the section
-      left: 0,
-      width: '100%',
-      height: '50vh',
-      zIndex: 50, // High enough to appear above team section
-      pointerEvents: 'none',
-      overflow: 'visible',
+      background: 'linear-gradient(to bottom, #FDFCDC 0%, #FED9B7 80%, #FDFCDC 100%)'
     },
     backgroundOverlay: {
       position: 'absolute',
@@ -147,11 +159,10 @@ const Cliff_Back = () => {
       width: '100%',
       height: '100%',
       background: '#000',
-      opacity: backgroundOpacity,
+      opacity: 0,
       transition: 'opacity 0.1s ease-out',
-      zIndex: 2
+      zIndex: 1
     },
-    // Cliff overlays with proper z-index hierarchy
     cliffBackOverlay: {
       position: 'absolute',
       top: '100px',
@@ -162,7 +173,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 3,
+      zIndex: 2,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -177,7 +188,7 @@ const Cliff_Back = () => {
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 4,
+      zIndex: 3,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -187,28 +198,12 @@ const Cliff_Back = () => {
       top: getResponsiveValue('200px', '300px', '400px'),
       left: getResponsiveValue('-10%', '-7%', '0%'),
       width: getResponsiveValue('120%', '115%', '100%'),
-      height: getResponsiveValue('150vh', '150vh', '250vh'), // Extended height
+      height: getResponsiveValue('100vh', '100vh', '200vh'),
       backgroundImage: `url(${cliffFrontUrl})`,
       backgroundSize: '100% 100%',
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat',
-      zIndex: 5,
-      pointerEvents: 'none',
-      opacity: 1,
-      transition: 'opacity 0.5s ease-in-out'
-    },
-    // Extended cliff that appears over team section
-    cliffFrontExtended: {
-      position: 'absolute',
-      top: getResponsiveValue('200px', '300px', '400px'),
-      left: getResponsiveValue('-10%', '-7%', '0%'),
-      width: getResponsiveValue('120%', '115%', '100%'),
-      height: getResponsiveValue('200vh', '200vh', '300vh'), // Very tall to cover team section
-      backgroundImage: `url(${cliffFrontUrl})`,
-      backgroundSize: '100% 100%',
-      backgroundPosition: 'center top',
-      backgroundRepeat: 'no-repeat',
-      zIndex: 51, // Higher than cliffExtension
+      zIndex: 4,
       pointerEvents: 'none',
       opacity: 1,
       transition: 'opacity 0.5s ease-in-out'
@@ -218,7 +213,7 @@ const Cliff_Back = () => {
       top: getResponsiveValue('50vh', '50vh', '100vh'),
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 6,
+      zIndex: 0, // Increased z-index to ensure GLTF viewer is above cliffs
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -230,6 +225,7 @@ const Cliff_Back = () => {
       width: getResponsiveValue('100vw', '100vw', '100vw'),
       height: getResponsiveValue('100vh', '80vh', '100vh'),
       position: 'relative',
+      zIndex: 0,
       overflow: 'hidden',
     },
     scrollHint: {
@@ -237,10 +233,18 @@ const Cliff_Back = () => {
       bottom: '3rem',
       left: '50%',
       transform: 'translateX(-50%)',
-      zIndex: 7,
+      zIndex: 6,
       color: 'white',
       textAlign: 'center',
       textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+    },
+    depthLayer: {
+      position: 'absolute',
+      width: '100%',
+      height: '120%',
+      background: 'transparent',
+      zIndex: 1,
+      transition: 'all 0.1s ease-out'
     },
     bounceIcon: {
       width: getResponsiveValue('24px', '28px', '30px'),
@@ -253,8 +257,8 @@ const Cliff_Back = () => {
       left: 0,
       width: '100%',
       height: '10vh',
-      background: 'linear-gradient(to bottom, transparent 0%, hsla(58, 89.20%, 92.70%, 0.50) 50%, #FDFCDC 80%, #FDFCDC 100%)',
-      zIndex: 8,
+      background: 'linear-gradient(to bottom, transparent 0%,hsla(58, 89.20%, 92.70%, 0.50) 50%,#FDFCDC 80%, #FDFCDC 100%)',
+      zIndex: 10,
       pointerEvents: 'none'
     }
   };
@@ -287,8 +291,11 @@ const Cliff_Back = () => {
       `}</style>
 
       <section ref={sectionRef} style={styles.parallaxSection}>
-        {/* Background overlay */}
-        
+        {/* Background overlay that darkens on scroll */}
+        <div style={styles.backgroundOverlay} />
+
+        {/* Depth layer for extra visual effect */}
+        <div style={styles.depthLayer} />
 
         {/* Three layered cliff overlays with react-spring parallax */}
         <animated.div style={{ ...styles.cliffBackOverlay, ...backCliffSpring }} />
@@ -297,18 +304,17 @@ const Cliff_Back = () => {
 
         {/* Main content */}
         <div style={styles.contentContainer}>
+          {/* GLTF Viewer with device-specific configuration */}
           <div style={styles.chessboardContainer}>
-            {renderGLTFViewer()}
+            <GLTFViewer
+              config={getGLTFConfig()}
+              key={deviceType} // Force re-render when device type changes
+            />
           </div>
         </div>
 
-        {/* Bottom gradient */}
+        {/* Bottom gradient section */}
         <div style={styles.bottomGradient} />
-
-        {/* Extended cliff section that appears above team section */}
-        <div style={styles.cliffExtension}>
-          <animated.div style={{ ...styles.cliffFrontExtended, ...frontCliffSpring }} />
-        </div>
       </section>
     </div>
   );

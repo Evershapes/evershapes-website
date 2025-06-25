@@ -23,7 +23,7 @@ const MainSection = () => {
     return (
         <section
             id="accueil"
-            className="relative h-[25vh] w-full flex flex-col items-center justify-center m-0"
+            className="relative h-[50vh] w-full flex flex-col items-center justify-center m-0"
             style={{
                 backgroundColor: '#FDFCDC',
                 marginTop: '-30px',

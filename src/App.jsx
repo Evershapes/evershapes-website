@@ -7,6 +7,7 @@ import TeamSection from './components/team_section.jsx';
 import ProjectsSection from './components/projects_section.jsx';
 import Cliff_Back from './components/cliff_parallax_base';
 import GLTFViewer from "./components/GLTFViewer_simple"
+import GLTFSection from './components/GLTFViewer_section';
 import Horizontal_Scroller from "./components/text_scroller"
 
 class App extends React.Component {
@@ -19,16 +20,10 @@ class App extends React.Component {
                 <Cliff_Back />
                 
                 <TeamSection />
+                
+                <GLTFSection/>
                 <ProjectsSection />
-                <GLTFViewer config={{
-                    modelPath: '/scene/evershapes_scene2.gltf',
-                    cameraAngle: 30,
-                    cameraDistance: 4,
-                    autoRotateSpeed: 0.005,
-                    modelRotation: 90,
-                    modelScale: 5
-                }}
-                />
+
                 <GLTFViewer config={{
                     modelPath: '/scene/evershapes_scene3.gltf',
                     cameraAngle: 30,

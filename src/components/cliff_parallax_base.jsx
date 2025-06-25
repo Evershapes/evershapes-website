@@ -306,7 +306,7 @@ const Cliff_Back = () => {
         <div style={styles.bottomGradient} />
 
         {/* Extended cliff section that appears above team section */}
-        <div style={styles.cliffExtension }>
+        <div style={styles.cliffExtension}>
           <animated.div style={{ ...styles.cliffFrontExtended, ...frontCliffSpring }} />
         </div>
       </section>

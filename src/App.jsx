@@ -20,11 +20,22 @@ class App extends React.Component {
                 <Cliff_Back />
                 
                 <TeamSection />
-                
-                <GLTFSection/>
+
+                <GLTFSection config={{
+                    modelPath: '/scene/evershapes_scene2.gltf',
+                    cameraAngle: 30,
+                    cameraDistance: 4,
+                    autoRotateSpeed: 0.005,
+                    modelRotation: 90,
+                    modelScale: 5
+
+                    
+                }}
+                background='radial-gradient(ellipse 80% 40% at center, #FED9B7 0%, #FED9B7 55%, #FDFCDC 60%)'
+                />
                 <ProjectsSection />
 
-                <GLTFViewer config={{
+                <GLTFSection config={{
                     modelPath: '/scene/evershapes_scene3.gltf',
                     cameraAngle: 30,
                     cameraDistance: 4,
@@ -32,7 +43,7 @@ class App extends React.Component {
                     modelRotation: 90,
                     modelScale: 5
                 }}
-                />
+                background='radial-gradient(ellipse 60% 30% at center, #00AFB9 0%, #00AFB9 55%, #FDFCDC 60%)'/>
                 <Horizontal_Scroller/>
             </div>
         )

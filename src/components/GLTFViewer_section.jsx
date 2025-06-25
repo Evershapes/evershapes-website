@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import GLTFViewer from './GLTFViewer_simple';
 
-const GLTFSection = () => {
+const GLTFSection = ({ config = {}, background = 'radial-gradient(ellipse 100% 50% at center, #00AFB9 0%, #00AFB9 55%, #FDFCDC 60%)' }) => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -65,8 +65,8 @@ const GLTFSection = () => {
 
   // Simple fade-in animation for the viewer
   const viewerSpring = useSpring({
-    opacity: scrollProgress > 0.1 ? 1 : 0,
-    transform: `translateY(${scrollProgress > 0.1 ? 0 : 20}px)`,
+    opacity: scrollProgress > 0.05 ? 1 : 0,
+    transform: `translateY(${scrollProgress > 0.05 ? 0 : 20}px)`,
     config: config.gentle,
   });
 
@@ -75,7 +75,7 @@ const GLTFSection = () => {
       height: getResponsiveValue('100vh', '100vh', '120vh'),
       position: 'relative',
       overflow: 'hidden',
-      background: 'radial-gradient(ellipse 60% 30% at center, #00AFB9 0%, #00AFB9 55%, #FDFCDC 60%)'
+      background: background
     },
     contentContainer: {
       position: 'absolute',
@@ -107,7 +107,8 @@ const GLTFSection = () => {
           cameraDistance: 4,
           autoRotateSpeed: 0.005,
           modelRotation: 90,
-          modelScale: getResponsiveValue(3, 4, 5)
+          modelScale: getResponsiveValue(3, 4, 5),
+          ...config
         }} />
       </animated.div>
     </section>

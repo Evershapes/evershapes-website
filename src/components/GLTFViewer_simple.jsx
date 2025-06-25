@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const DektopGLTFViewer1 = ({ config = {} }) => {
+const GLTFViewer = ({ config = {} }) => {
   // Default configuration
   const defaultConfig = {
     modelPath: '/scene/evershapes_scene1.gltf',
@@ -284,7 +284,7 @@ const DektopGLTFViewer1 = ({ config = {} }) => {
   };
 
   return (
-    <div className="relative" style={{ width: '110vw', height: '100vh', margin: '-5vh -5vw' }}>
+    <div className="relative" style={{ width: '100vw', height: '100vh'}}>
       <div ref={containerRef} className="w-full h-full" />
       
       {isLoading && (
@@ -302,4 +302,4 @@ const DektopGLTFViewer1 = ({ config = {} }) => {
   );
 };
 
-export default DektopGLTFViewer1;
+export default GLTFViewer;

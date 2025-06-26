@@ -141,6 +141,7 @@ const Horizontal_Scroller = ({ text = "Evershapes\u00A0" }) => {
               <div className="sliding-text-item-stroke">
                 <span className="sliding-text-span">{text}</span>
               </div>
+            </div>
           </div>
         </div>
       </section>

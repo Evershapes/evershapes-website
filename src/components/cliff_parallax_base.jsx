@@ -65,12 +65,12 @@ const Cliff_Back = () => {
     };
   }, []);
 
-  /*
+  
   // DEBUGGING: Log device type and viewport dimensions
   useEffect(() => {
     console.log(`🖥️ Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
   }, [deviceType, viewport.width, viewport.height]);
-  */
+  
 
   // Calculate scroll progress through this section
   const sectionHeight = window.innerHeight * 2.0;
@@ -220,7 +220,7 @@ const Cliff_Back = () => {
 
     middleParallax: () => {
       switch (deviceType) {
-        case 'xs': return viewport.height * 0.9;
+        case 'xs': return viewport.height * 0.65;
         case 'sm': return viewport.height * 0.5;
         case 'md': return viewport.height * 0.6;
         case 'lg': return viewport.height * 0.7;

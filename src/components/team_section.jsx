@@ -7,6 +7,29 @@ const TeamSection = () => {
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const sectionRef = useRef(null);
 
+    // Standard CSS media query breakpoints
+    const breakpoints = {
+        xs: 0,     // Extra small devices
+        sm: 576,   // Small devices (landscape phones)
+        md: 768,   // Medium devices (tablets)
+        lg: 992,   // Large devices (desktops)
+        xl: 1200,  // Extra large devices (large desktops)
+        xxl: 1400  // Extra extra large devices
+    };
+
+    // Device detection based on standard breakpoints
+    const getDeviceType = () => {
+        const width = dimensions.width;
+        if (width >= breakpoints.xxl) return 'xxl';
+        if (width >= breakpoints.xl) return 'xl';
+        if (width >= breakpoints.lg) return 'lg';
+        if (width >= breakpoints.md) return 'md';
+        if (width >= breakpoints.sm) return 'sm';
+        return 'xs';
+    };
+
+    const deviceType = getDeviceType();
+
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
@@ -40,16 +63,17 @@ const TeamSection = () => {
     const sectionHeight = window.innerHeight * 5; // Adjusted for taller section
     const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
 
-    // Responsive breakpoints
-    const isMobile = dimensions.width < 768;
-    const isTablet = dimensions.width >= 768 && dimensions.width < 1200;
-    const isDesktop = dimensions.width >= 1200;
-
-    // Responsive helper function
-    const getResponsiveValue = (mobile, tablet, desktop) => {
-        if (isMobile) return mobile;
-        if (isTablet) return tablet;
-        return desktop;
+    // Responsive helper function using standard breakpoints
+    const getResponsiveValue = (xs, sm, md, lg, xl, xxl) => {
+        switch(deviceType) {
+            case 'xs': return xs;
+            case 'sm': return sm;
+            case 'md': return md;
+            case 'lg': return lg;
+            case 'xl': return xl;
+            case 'xxl': return xxl;
+            default: return md;
+        }
     };
 
     // Parallax calculations - only background and side content move
@@ -103,7 +127,7 @@ const TeamSection = () => {
             top: '8vh', // Add some top margin to prevent clipping
             left: '50%',
             transform: 'translateX(-50%)', // Only center horizontally
-            width: getResponsiveValue('200px', '300px', '400px'), // Made wider
+            width: getResponsiveValue('150px', '180px', '200px', '300px', '350px', '400px'), // Made wider
             height: 'calc(100% - 16vh)', // Reduce height to prevent clipping (8vh top + 8vh bottom)
             zIndex: 2,
             pointerEvents: 'none', // Allow clicks to pass through
@@ -131,35 +155,35 @@ const TeamSection = () => {
             background: 'rgba(255, 255, 255, 0.95)',
             backdropFilter: 'blur(15px)',
             borderRadius: '20px',
-            padding: getResponsiveValue('1.5rem', '2rem', '2.5rem'),
+            padding: getResponsiveValue('1rem', '1.2rem', '1.5rem', '2rem', '2.2rem', '2.5rem'),
             boxShadow: '0 15px 35px rgba(0, 0, 0, 0.15)',
             border: '3px solid rgba(254, 217, 183, 0.8)',
-            maxWidth: getResponsiveValue('280px', '320px', '380px'),
+            maxWidth: getResponsiveValue('220px', '250px', '280px', '320px', '350px', '380px'),
             pointerEvents: 'auto',
             cursor: 'pointer',
             transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         },
         memberLeft: {
-            left: getResponsiveValue('5%', '8%', '10%'),
+            left: getResponsiveValue('3%', '4%', '5%', '8%', '9%', '10%'),
         },
         memberRight: {
-            right: getResponsiveValue('5%', '8%', '10%'),
+            right: getResponsiveValue('3%', '4%', '5%', '8%', '9%', '10%'),
         },
         memberName: {
-            fontSize: getResponsiveValue('1.3rem', '1.5rem', '1.8rem'),
+            fontSize: getResponsiveValue('1.1rem', '1.2rem', '1.3rem', '1.5rem', '1.6rem', '1.8rem'),
             color: '#F07167',
             marginBottom: '0.5rem',
             fontWeight: 'bold'
         },
         memberRole: {
-            fontSize: getResponsiveValue('1rem', '1.1rem', '1.2rem'),
+            fontSize: getResponsiveValue('0.9rem', '0.95rem', '1rem', '1.1rem', '1.15rem', '1.2rem'),
             color: '#F07167',
             opacity: 0.8,
             marginBottom: '1rem',
             fontStyle: 'italic'
         },
         memberDescription: {
-            fontSize: getResponsiveValue('0.9rem', '1rem', '1.1rem'),
+            fontSize: getResponsiveValue('0.8rem', '0.85rem', '0.9rem', '1rem', '1.05rem', '1.1rem'),
             color: '#555',
             lineHeight: 1.6
         },
@@ -172,19 +196,19 @@ const TeamSection = () => {
             textAlign: 'center',
             background: 'rgba(255, 255, 255, 0.9)',
             backdropFilter: 'blur(10px)',
-            padding: getResponsiveValue('2rem', '2.5rem', '3rem'),
+            padding: getResponsiveValue('1.5rem', '1.8rem', '2rem', '2.5rem', '2.8rem', '3rem'),
             borderRadius: '25px',
             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
             border: '2px solid rgba(254, 217, 183, 0.5)',
         },
         mainTitle: {
-            fontSize: getResponsiveValue('2.5rem', '3.5rem', '4.5rem'),
+            fontSize: getResponsiveValue('2rem', '2.3rem', '2.5rem', '3.5rem', '4rem', '4.5rem'),
             color: '#F07167',
             marginBottom: '1rem',
             textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
         },
         subtitle: {
-            fontSize: getResponsiveValue('1rem', '1.2rem', '1.4rem'),
+            fontSize: getResponsiveValue('0.9rem', '0.95rem', '1rem', '1.2rem', '1.3rem', '1.4rem'),
             color: '#F07167',
             opacity: 0.8,
             maxWidth: '500px',
@@ -201,8 +225,8 @@ const TeamSection = () => {
             textShadow: '2px 2px 4px rgba(255,255,255,0.8)'
         },
         bounceIcon: {
-            width: getResponsiveValue('28px', '32px', '36px'),
-            height: getResponsiveValue('28px', '32px', '36px'),
+            width: getResponsiveValue('24px', '26px', '28px', '32px', '34px', '36px'),
+            height: getResponsiveValue('24px', '26px', '28px', '32px', '34px', '36px'),
             animation: 'bounce 2s infinite'
         },
         // Overlay de fade supplémentaire pour un effet plus doux

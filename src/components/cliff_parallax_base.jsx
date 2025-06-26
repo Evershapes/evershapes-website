@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSpring, animated, config } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import GLTFViewer from './GLTFViewer_simple';
 
 const Cliff_Back = () => {
@@ -82,11 +82,11 @@ const Cliff_Back = () => {
     sectionHeight: () => {
       switch (deviceType) {
         case 'xs': return '120vh';
-        case 'sm': return '120vh';
+        case 'sm': return '145vh';
         case 'md': return '170vh';
         case 'lg': return '200vh';
         case 'xl': return '170vh';
-        case 'xxl': return '250vh';
+        case 'xxl': return '200vh';
         default: return '100vh';
       }
     },
@@ -94,12 +94,12 @@ const Cliff_Back = () => {
     // RESPONSIVE HARD STOP THRESHOLDS
     parallaxStopThreshold: () => {
       switch (deviceType) {
-        case 'xs': return 0.10;   // Stop at 50% on extra small devices
-        case 'sm': return 0.10;   // Stop at 60% on small devices
-        case 'md': return 0.11;  // Stop at 65% on medium devices
-        case 'lg': return 0.50;   // Stop at 70% on large devices
-        case 'xl': return 0.25;  // Stop at 75% on extra large devices
-        case 'xxl': return 0.4;  // Stop at 80% on extra extra large devices
+        case 'xs': return 0.10;
+        case 'sm': return 0.10;
+        case 'md': return 0.11;
+        case 'lg': return 0.50;
+        case 'xl': return 0.25;
+        case 'xxl': return 0.4;
         default: return 0.7;
       }
     },
@@ -183,24 +183,24 @@ const Cliff_Back = () => {
     // Content positioning
     contentTop: () => {
       switch (deviceType) {
-        case 'xs': return '50vh';
+        case 'xs': return '45vh';
         case 'sm': return '40vh';
         case 'md': return '55vh';
         case 'lg': return '100vh';
         case 'xl': return '65vh';
-        case 'xxl': return '130vh';
+        case 'xxl': return '100vh';
         default: return '50vh';
       }
     },
 
     contentHeight: () => {
       switch (deviceType) {
-        case 'xs': return '60vh';
-        case 'sm': return '70vh';
-        case 'md': return '75vh';
-        case 'lg': return '80vh';
-        case 'xl': return '75vh';
-        case 'xxl': return '85vh';
+        case 'xs': return '80vh';
+        case 'sm': return '100vh';
+        case 'md': return '100vh';
+        case 'lg': return '100vh';
+        case 'xl': return '100vh';
+        case 'xxl': return '100vh';
         default: return '75vh';
       }
     },
@@ -208,36 +208,36 @@ const Cliff_Back = () => {
     // Parallax multipliers - now using viewport-relative values with hard stops
     backParallax: () => {
       switch (deviceType) {
-        case 'xs': return viewport.height * 0.4;  // 90% of viewport height
-        case 'sm': return viewport.height * 0.3;  // 30% of viewport height
-        case 'md': return viewport.height * 0.4;  // 40% of viewport height
-        case 'lg': return viewport.height * 0.85;  // 50% of viewport height
-        case 'xl': return viewport.height * 0.4;  // 60% of viewport height
-        case 'xxl': return viewport.height * 1; // 70% of viewport height
+        case 'xs': return viewport.height * 0.4;
+        case 'sm': return viewport.height * 0.3;
+        case 'md': return viewport.height * 0.4;
+        case 'lg': return viewport.height * 0.85;
+        case 'xl': return viewport.height * 0.4;
+        case 'xxl': return viewport.height * 0.7;
         default: return viewport.height * 0.4;
       }
     },
 
     middleParallax: () => {
       switch (deviceType) {
-        case 'xs': return viewport.height * 0.9;  // 40% of viewport height
-        case 'sm': return viewport.height * 0.5;  // 50% of viewport height
-        case 'md': return viewport.height * 0.6;  // 60% of viewport height
-        case 'lg': return viewport.height * 0.7;  // 70% of viewport height
-        case 'xl': return viewport.height * 0.8;  // 80% of viewport height
-        case 'xxl': return viewport.height * 1.2; // 90% of viewport height
+        case 'xs': return viewport.height * 0.9;
+        case 'sm': return viewport.height * 0.5;
+        case 'md': return viewport.height * 0.6;
+        case 'lg': return viewport.height * 0.7;
+        case 'xl': return viewport.height * 0.8;
+        case 'xxl': return viewport.height * 1.2;
         default: return viewport.height * 0.6;
       }
     },
 
     frontParallax: () => {
       switch (deviceType) {
-        case 'xs': return viewport.height * 0.25; // 25% of viewport height
-        case 'sm': return viewport.height * 0.3;  // 30% of viewport height
-        case 'md': return viewport.height * 0.35; // 35% of viewport height
-        case 'lg': return viewport.height * 0.4;  // 40% of viewport height
-        case 'xl': return viewport.height * 0.45; // 45% of viewport height
-        case 'xxl': return viewport.height * 0.5; // 50% of viewport height
+        case 'xs': return viewport.height * 0.25;
+        case 'sm': return viewport.height * 0.3;
+        case 'md': return viewport.height * 0.35;
+        case 'lg': return viewport.height * 0.4;
+        case 'xl': return viewport.height * 0.45;
+        case 'xxl': return viewport.height * 0.5;
         default: return viewport.height * 0.35;
       }
     },
@@ -281,15 +281,13 @@ const Cliff_Back = () => {
           ...baseConfig,
           cameraDistance: 5,
           modelScale: 3,
-          // No modelPath for performance
         };
 
       case 'sm':
         return {
           ...baseConfig,
-          cameraDistance: 5,
+          cameraDistance: 5.8,
           modelScale: 5,
-          // No modelPath for performance
         };
 
       case 'md':
@@ -297,7 +295,6 @@ const Cliff_Back = () => {
           ...baseConfig,
           cameraDistance: 7,
           modelScale: 6,
-          // Light model for medium devices
         };
 
       case 'lg':
@@ -317,10 +314,9 @@ const Cliff_Back = () => {
       case 'xxl':
         return {
           ...baseConfig,
-          cameraDistance: 7,
-          modelScale: 5.5,
-          // Enhanced settings for very large screens
-          autoRotateSpeed: 0.003, // Slower rotation for better viewing
+          cameraDistance: 9,
+          modelScale: 8,
+          autoRotateSpeed: 0.003,
         };
 
       default:
@@ -335,34 +331,48 @@ const Cliff_Back = () => {
   // Parallax calculations with RESPONSIVE hard stops
   const backParallaxOffset = shouldMoveParallax
     ? scrollProgress * responsive.backParallax()
-    : responsive.backParallax(); // FIXED at max value after threshold
+    : responsive.backParallax();
 
   const middleParallaxOffset = shouldMoveParallax
     ? scrollProgress * responsive.middleParallax()
-    : responsive.middleParallax(); // FIXED at max value after threshold
+    : responsive.middleParallax();
 
   const frontParallaxOffset = shouldMoveParallax
     ? scrollProgress * responsive.frontParallax()
-    : responsive.frontParallax(); // FIXED at max value after threshold
+    : responsive.frontParallax();
 
-  // React-spring animations with responsive stopping
-  const springConfig = shouldMoveParallax
-    ? config.slow
-    : { tension: 300, friction: 60 }; // Stiffer when stopped
-
+  // React-spring animations with optimized config for smooth parallax
   const backCliffSpring = useSpring({
-    transform: `translateY(${backParallaxOffset}px)`,
-    config: springConfig,
+    to: { transform: `translateY(${backParallaxOffset}px)` },
+    config: {
+      tension: 280,    // Higher tension for responsiveness
+      friction: 120,   // Higher friction to reduce overshoot
+      mass: 1,         // Lower mass for lighter feel
+      clamp: true      // Prevents overshoot
+    },
+    immediate: false   // Allow smooth transitions
   });
 
   const middleCliffSpring = useSpring({
-    transform: `translateY(${middleParallaxOffset}px)`,
-    config: springConfig,
+    to: { transform: `translateY(${middleParallaxOffset}px)` },
+    config: {
+      tension: 280,
+      friction: 120,
+      mass: 1,
+      clamp: true
+    },
+    immediate: false
   });
 
   const frontCliffSpring = useSpring({
-    transform: `translateY(${frontParallaxOffset}px)`,
-    config: springConfig,
+    to: { transform: `translateY(${frontParallaxOffset}px)` },
+    config: {
+      tension: 280,
+      friction: 120,
+      mass: 1,
+      clamp: true
+    },
+    immediate: false
   });
 
   const styles = {
@@ -385,6 +395,7 @@ const Cliff_Back = () => {
       backgroundRepeat: 'no-repeat',
       zIndex: 2,
       pointerEvents: 'none',
+      willChange: 'transform', // Optimize for animations
     },
     cliffMiddleOverlay: {
       position: 'absolute',
@@ -398,6 +409,7 @@ const Cliff_Back = () => {
       backgroundRepeat: 'no-repeat',
       zIndex: 3,
       pointerEvents: 'none',
+      willChange: 'transform',
     },
     cliffFrontOverlay: {
       position: 'absolute',
@@ -411,6 +423,7 @@ const Cliff_Back = () => {
       backgroundRepeat: 'no-repeat',
       zIndex: 4,
       pointerEvents: 'none',
+      willChange: 'transform',
     },
     contentContainer: {
       position: 'absolute',
@@ -425,11 +438,9 @@ const Cliff_Back = () => {
       alignItems: 'center',
       padding: responsive.padding()
     },
-
     chessboardContainer: {
       width: '100vw',
       height: responsive.contentHeight(),
-
       position: 'relative',
       overflow: 'hidden',
     },
@@ -447,7 +458,7 @@ const Cliff_Back = () => {
 
   return (
     <section ref={sectionRef} style={styles.parallaxSection}>
-      {/* Three layered cliff overlays with react-spring parallax */}
+      {/* Three layered cliff overlays with optimized react-spring parallax */}
       <animated.div style={{ ...styles.cliffBackOverlay, ...backCliffSpring }} />
       <animated.div style={{ ...styles.cliffMiddleOverlay, ...middleCliffSpring }} />
       <animated.div style={{ ...styles.cliffFrontOverlay, ...frontCliffSpring }} />
@@ -459,13 +470,11 @@ const Cliff_Back = () => {
             config={getGLTFConfig()}
             key={`${deviceType}`}
           />
-
         </div>
       </div>
 
       {/* Bottom gradient */}
       <div style={styles.bottomGradient} />
-
     </section>
   );
 };

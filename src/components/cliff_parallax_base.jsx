@@ -65,10 +65,12 @@ const Cliff_Back = () => {
     };
   }, []);
 
-  // Console log device type changes
+  /*
+  // DEBUGGING: Log device type and viewport dimensions
   useEffect(() => {
     console.log(`🖥️ Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
   }, [deviceType, viewport.width, viewport.height]);
+  */
 
   // Calculate scroll progress through this section
   const sectionHeight = window.innerHeight * 2.0;
@@ -181,11 +183,11 @@ const Cliff_Back = () => {
     // Content positioning
     contentTop: () => {
       switch (deviceType) {
-        case 'xs':
+        case 'xs': return '50vh';
         case 'sm': return '40vh';
         case 'md': return '55vh';
         case 'lg': return '100vh';
-        case 'xl':
+        case 'xl': return '65vh';
         case 'xxl': return '130vh';
         default: return '50vh';
       }
@@ -197,7 +199,7 @@ const Cliff_Back = () => {
         case 'sm': return '70vh';
         case 'md': return '75vh';
         case 'lg': return '80vh';
-        case 'xl':
+        case 'xl': return '75vh';
         case 'xxl': return '85vh';
         default: return '75vh';
       }
@@ -455,7 +457,7 @@ const Cliff_Back = () => {
         <div style={styles.chessboardContainer}>
           <GLTFViewer
             config={getGLTFConfig()}
-            key={`${deviceType}-${viewport.width}x${viewport.height}`}
+            key={`${deviceType}`}
           />
 
         </div>

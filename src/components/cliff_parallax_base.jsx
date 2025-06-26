@@ -220,7 +220,7 @@ const Cliff_Back = () => {
 
     middleParallax: () => {
       switch (deviceType) {
-        case 'xs': return viewport.height * 0.9;
+        case 'xs': return viewport.height * 0.65;
         case 'sm': return viewport.height * 0.5;
         case 'md': return viewport.height * 0.6;
         case 'lg': return viewport.height * 0.7;

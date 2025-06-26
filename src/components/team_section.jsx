@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
+import storyBoardsData from '../content/story-boards.json';
 
 const TeamSection = () => {
     const [scrollY, setScrollY] = useState(0);
@@ -98,6 +99,39 @@ const TeamSection = () => {
         config: config.gentle,
     });
 
+    // Get aspect ratio for responsive images
+    const getImageAspectRatio = () => {
+        const width = dimensions.width;
+        const height = dimensions.height;
+        return width / height;
+    };
+
+    // Calculate responsive image dimensions
+    const getImageDimensions = () => {
+        const aspectRatio = getImageAspectRatio();
+        const baseWidth = getResponsiveValue(200, 250, 300, 350, 400, 450);
+        
+        if (aspectRatio > 1.5) {
+            // Wide screen - make images wider
+            return {
+                width: baseWidth * 1.2,
+                height: baseWidth * 0.8
+            };
+        } else if (aspectRatio < 0.8) {
+            // Tall screen - make images taller
+            return {
+                width: baseWidth * 0.8,
+                height: baseWidth * 1.2
+            };
+        } else {
+            // Standard aspect ratio
+            return {
+                width: baseWidth,
+                height: baseWidth * 0.75
+            };
+        }
+    };
+
     const styles = {
         // Wrapper pour gérer les transitions entre sections
         sectionWrapper: {
@@ -150,42 +184,42 @@ const TeamSection = () => {
             zIndex: 4,
             pointerEvents: 'none'
         },
-        teamMember: {
+        // Story board styles - completely integrated with background
+        storyBoard: {
             position: 'absolute',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(15px)',
-            borderRadius: '20px',
-            padding: getResponsiveValue('1rem', '1.2rem', '1.5rem', '2rem', '2.2rem', '2.5rem'),
-            boxShadow: '0 15px 35px rgba(0, 0, 0, 0.15)',
-            border: '3px solid rgba(254, 217, 183, 0.8)',
-            maxWidth: getResponsiveValue('220px', '250px', '280px', '320px', '350px', '380px'),
+            maxWidth: getResponsiveValue('280px', '320px', '360px', '420px', '480px', '540px'),
             pointerEvents: 'auto',
             cursor: 'pointer',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         },
-        memberLeft: {
+        storyBoardLeft: {
             left: getResponsiveValue('3%', '4%', '5%', '8%', '9%', '10%'),
         },
-        memberRight: {
+        storyBoardRight: {
             right: getResponsiveValue('3%', '4%', '5%', '8%', '9%', '10%'),
         },
-        memberName: {
-            fontSize: getResponsiveValue('1.1rem', '1.2rem', '1.3rem', '1.5rem', '1.6rem', '1.8rem'),
-            color: '#F07167',
-            marginBottom: '0.5rem',
-            fontWeight: 'bold'
+        // Story board content styles
+        storyTitle: {
+            fontSize: getResponsiveValue('1.4rem', '1.6rem', '1.8rem', '2rem', '2.2rem', '2.4rem'),
+            color: '#000000', // Black text for visibility
+            marginBottom: getResponsiveValue('0.8rem', '1rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem'),
+            fontWeight: 'bold',
+            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)', // Subtle white shadow for visibility
+            lineHeight: 1.2
         },
-        memberRole: {
-            fontSize: getResponsiveValue('0.9rem', '0.95rem', '1rem', '1.1rem', '1.15rem', '1.2rem'),
-            color: '#F07167',
-            opacity: 0.8,
-            marginBottom: '1rem',
-            fontStyle: 'italic'
+        storyDescription: {
+            fontSize: getResponsiveValue('0.9rem', '1rem', '1.1rem', '1.2rem', '1.3rem', '1.4rem'),
+            color: '#000000', // Black text for visibility
+            lineHeight: 1.6,
+            textShadow: '1px 1px 2px rgba(255, 255, 255, 0.6)', // Subtle white shadow for visibility
+            marginBottom: getResponsiveValue('1rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem')
         },
-        memberDescription: {
-            fontSize: getResponsiveValue('0.8rem', '0.85rem', '0.9rem', '1rem', '1.05rem', '1.1rem'),
-            color: '#555',
-            lineHeight: 1.6
+        storyImage: {
+            width: getImageDimensions().width + 'px',
+            height: getImageDimensions().height + 'px',
+            objectFit: 'cover',
+            borderRadius: getResponsiveValue('8px', '10px', '12px', '14px', '16px', '18px'),
+            filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))', // Subtle shadow for depth
+            marginBottom: getResponsiveValue('1rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem')
         },
         titleContainer: {
             position: 'absolute',
@@ -194,12 +228,12 @@ const TeamSection = () => {
             transform: 'translateX(-50%)',
             zIndex: 15, // Higher than fade overlay (10)
             textAlign: 'center',
-            background: 'rgba(255, 255, 255, 0.9)',
+            background: 'transparent',
             backdropFilter: 'blur(10px)',
             padding: getResponsiveValue('1.5rem', '1.8rem', '2rem', '2.5rem', '2.8rem', '3rem'),
-            borderRadius: '25px',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
-            border: '2px solid rgba(254, 217, 183, 0.5)',
+            borderRadius: '50px',
+            boxShadow: '0 20px 40px rgba(5, 5, 5, 0.1)',
+            
         },
         mainTitle: {
             fontSize: getResponsiveValue('2rem', '2.3rem', '2.5rem', '3.5rem', '4rem', '4.5rem'),
@@ -213,21 +247,6 @@ const TeamSection = () => {
             opacity: 0.8,
             maxWidth: '500px',
             lineHeight: 1.6
-        },
-        scrollHint: {
-            position: 'absolute',
-            bottom: '5vh',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 15, // Higher than fade overlay
-            color: '#F07167',
-            textAlign: 'center',
-            textShadow: '2px 2px 4px rgba(255,255,255,0.8)'
-        },
-        bounceIcon: {
-            width: getResponsiveValue('24px', '26px', '28px', '32px', '34px', '36px'),
-            height: getResponsiveValue('24px', '26px', '28px', '32px', '34px', '36px'),
-            animation: 'bounce 2s infinite'
         },
         // Overlay de fade supplémentaire pour un effet plus doux
         fadeOverlay: {
@@ -251,50 +270,73 @@ const TeamSection = () => {
         }
     };
 
-    // Team data with positioning
-    const teamMembers = [
-        {
-            name: "A",
-            role: "Lead Developer",
-            description: "",
-            position: { top: '50vh', side: 'left' }
-        },
-        {
-            name: "S",
-            role: "Game Designer",
-            description: ".",
-            position: { top: '80vh', side: 'right' }
-        },
-        {
-            name: "M",
-            role: "3D Artist",
-            description: ".",
-            position: { top: '110vh', side: 'left' }
+    // Function to render story board content based on category
+    const renderStoryBoardContent = (storyBoard) => {
+        switch (storyBoard.category) {
+            case 'title-description':
+                return (
+                    <>
+                        {storyBoard.title && (
+                            <h3 className="BriceBold" style={styles.storyTitle}>
+                                {storyBoard.title}
+                            </h3>
+                        )}
+                        {storyBoard.description && (
+                            <p className="BriceLightSemiCondensed" style={styles.storyDescription}>
+                                {storyBoard.description}
+                            </p>
+                        )}
+                    </>
+                );
+
+            case 'image-only':
+                return storyBoard.image && (
+                    <img
+                        src={storyBoard.image}
+                        alt="Story visual"
+                        style={styles.storyImage}
+                        onError={(e) => {
+                            e.target.style.display = 'none';
+                        }}
+                    />
+                );
+
+            case 'title-image-description':
+                return (
+                    <>
+                        {storyBoard.title && (
+                            <h3 className="BriceBold" style={styles.storyTitle}>
+                                {storyBoard.title}
+                            </h3>
+                        )}
+                        {storyBoard.image && (
+                            <img
+                                src={storyBoard.image}
+                                alt={storyBoard.title || "Story visual"}
+                                style={styles.storyImage}
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                }}
+                            />
+                        )}
+                        {storyBoard.description && (
+                            <p className="BriceRegular" style={styles.storyDescription}>
+                                {storyBoard.description}
+                            </p>
+                        )}
+                    </>
+                );
+
+            default:
+                return null;
         }
-    ];
+    };
 
     return (
         <div id="team" style={styles.sectionWrapper}>
             <style jsx>{`
-                @keyframes bounce {
-                    0%, 20%, 50%, 80%, 100% {
-                        transform: translateY(0);
-                    }
-                    40% {
-                        transform: translateY(-12px);
-                    }
-                    60% {
-                        transform: translateY(-6px);
-                    }
-                }
-
-                .team-member:hover {
-                    transform: translateY(-8px) scale(1.02) !important;
-                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
-                }
-
                 @media (max-width: 768px) {
-                    .team-member {
+                    .story-board {
                         margin: 0 1rem;
                     }
                 }
@@ -324,28 +366,20 @@ const TeamSection = () => {
                     </svg>
                 </div>
 
-                {/* Side content with team members - medium parallax speed */}
+                {/* Side content with story boards - medium parallax speed */}
                 <animated.div style={{ ...styles.sideContent, ...sideContentSpring }}>
-                    {teamMembers.map((member, index) => (
+                    {storyBoardsData.storyBoards.map((storyBoard, index) => (
                         <div
-                            key={index}
+                            key={storyBoard.id}
                             style={{
-                                ...styles.teamMember,
-                                ...(member.position.side === 'left' ? styles.memberLeft : styles.memberRight),
-                                top: member.position.top,
+                                ...styles.storyBoard,
+                                ...(storyBoard.position.side === 'left' ? styles.storyBoardLeft : styles.storyBoardRight),
+                                top: storyBoard.position.top,
                                 animationDelay: `${index * 0.2}s`
                             }}
-                            className="team-member"
+                            className="story-board"
                         >
-                            <h3 className="BriceBold" style={styles.memberName}>
-                                {member.name}
-                            </h3>
-                            <p className="BriceRegular" style={styles.memberRole}>
-                                {member.role}
-                            </p>
-                            <p className="BriceRegular" style={styles.memberDescription}>
-                                {member.description}
-                            </p>
+                            {renderStoryBoardContent(storyBoard)}
                         </div>
                     ))}
                 </animated.div>
@@ -356,10 +390,10 @@ const TeamSection = () => {
                 {/* Title - ABOVE the fade overlay */}
                 <div style={styles.titleContainer}>
                     <h1 className="BriceBoldSemiExpanded" style={styles.mainTitle}>
-                        Our Team
+                        Our Story
                     </h1>
                     <p className="BriceRegular" style={styles.subtitle}>
-                        Meet the creative minds behind Evershapes.
+                        Find out more about us.
                     </p>
                 </div>
 

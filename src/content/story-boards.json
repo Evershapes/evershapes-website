@@ -1,0 +1,44 @@
+{
+  "storyBoards": [
+    {
+      "id": 1,
+      "category": "title-description",
+      "position": { "top": "10vh", "side": "left" },
+      "title": "Our Beginning - 2019",
+      "description": "Starting as a very small team of 2 people, we had a vision to create something unique.",
+      "image": null
+    },
+    {
+      "id": 2,
+      "category": "title-description",
+      "position": { "top": "20vh", "side": "right" },
+      "title": "First partners - 2021",
+      "description": "Starting a studio like that is a things.",
+      "image": null
+    },
+    {
+      "id": 3,
+      "category": "title-image-description",
+      "position": { "top": "120vh", "side": "left" },
+      "title": "Our Mission",
+      "description": "Creating immersive experiences that bring imagination to life.",
+      "image": "/images/bull.png"
+    },
+    {
+      "id": 4,
+      "category": "title-description",
+      "position": { "top": "160vh", "side": "right" },
+      "title": "Innovation",
+      "description": "Pushing boundaries in interactive design and user experience.",
+      "image": null
+    },
+    {
+      "id": 5,
+      "category": "image-only",
+      "position": { "top": "200vh", "side": "left" },
+      "title": null,
+      "description": null,
+      "image": "/images/chairs_couchs.png"
+    }
+  ]
+}

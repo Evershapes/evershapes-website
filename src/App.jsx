@@ -9,6 +9,7 @@ import Cliff_Back from './components/cliff_parallax_base';
 import GLTFViewer from "./components/GLTFViewer_simple"
 import GLTFSection from './components/GLTFViewer_section';
 import Horizontal_Scroller from "./components/text_scroller"
+import Footer from "./components/footer"
 
 class App extends React.Component {
     render() {
@@ -18,7 +19,7 @@ class App extends React.Component {
                 <Navbar />
                 <MainSection />
                 <Cliff_Back />
-                
+
                 <TeamSection />
 
                 <GLTFSection config={{
@@ -29,9 +30,9 @@ class App extends React.Component {
                     modelRotation: 90,
                     modelScale: 5
 
-                    
+
                 }}
-                background='radial-gradient(ellipse 80% 40% at center, #FED9B7 0%, #FED9B7 55%, #FDFCDC 60%)'
+                background='radial-gradient(ellipse 60% 30% at center, #00AFB9 0%, #00AFB9 55%, #FDFCDC 60%)'
                 />
                 <ProjectsSection />
 
@@ -43,8 +44,10 @@ class App extends React.Component {
                     modelRotation: 90,
                     modelScale: 5
                 }}
-                background='radial-gradient(ellipse 60% 30% at center, #00AFB9 0%, #00AFB9 55%, #FDFCDC 60%)'/>
-                <Horizontal_Scroller/>
+                    background='radial-gradient(ellipse 60% 30% at center, #00AFB9 0%, #00AFB9 55%, #FDFCDC 60%)' />
+                <Footer />
+
+                <Horizontal_Scroller />
             </div>
         )
     }

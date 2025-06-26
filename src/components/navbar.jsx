@@ -230,7 +230,7 @@ export default function Navbar() {
                     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                 }}
             >
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center z-200">
                     <span className="text-white text-sm font-bold BriceBold">Menu</span>
                     <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white mt-1"></div>
                 </div>

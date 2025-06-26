@@ -201,7 +201,7 @@ const Cliff_Back = () => {
       alignItems: 'center',
       padding: getResponsiveValue('1rem', '1.5rem', '2rem')
     },
-    chessboardContainer: {
+    GLTFContainer: {
       width: getResponsiveValue('100vw', '100vw', '100vw'),
       height: getResponsiveValue('100vh', '80vh', '100vh'),
       position: 'relative',
@@ -281,7 +281,7 @@ const Cliff_Back = () => {
         {/* Main content */}
         <div style={styles.contentContainer}>
           {/* Conditional 3D GLTF Viewer based on device type */}
-          <div style={styles.chessboardContainer}>
+          <div style={styles.GLTFContainer}>
             {renderGLTFViewer()}
           </div>
         </div>

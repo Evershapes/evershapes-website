@@ -279,7 +279,7 @@ const Cliff_Back = () => {
       case 'xs':
         return {
           ...baseConfig,
-          cameraDistance: 9,
+          cameraDistance: 5,
           modelScale: 3,
           // No modelPath for performance
         };
@@ -287,7 +287,7 @@ const Cliff_Back = () => {
       case 'sm':
         return {
           ...baseConfig,
-          cameraDistance: 7,
+          cameraDistance: 5,
           modelScale: 5,
           // No modelPath for performance
         };
@@ -303,14 +303,14 @@ const Cliff_Back = () => {
       case 'lg':
         return {
           ...baseConfig,
-          cameraDistance: 6,
+          cameraDistance: 5,
           modelScale: 4.5,
         };
 
       case 'xl':
         return {
           ...baseConfig,
-          cameraDistance: 5.5,
+          cameraDistance: 5,
           modelScale: 5,
         };
 

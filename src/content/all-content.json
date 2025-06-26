@@ -44,7 +44,7 @@
             "id": "gallery_screen_6",
             "Title": "Crimson King Castle",
             "Description": "Vast dangerous lands. This biome is part of our next mashup project.",
-            "Path": "/images/gallery_screen_6.webp",
+            "Path": "/images/gallery_screen_6.jpeg",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -271,6 +271,110 @@
             "Path": "/images/render5.png",
             "featured": true,
             "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_12",
+            "Title": "Screen 12",
+            "Description": "Screen 12",
+            "Path": "/images/gallery_screen_12.jpeg",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_13",
+            "Title": "Screen 13",
+            "Description": "Screen 13",
+            "Path": "/images/gallery_screen_13.jpeg",
+            "featured": true,
+            "date": "2024-13-01"
+        },
+        {
+            "id": "gallery_screen_14",
+            "Title": "Screen 14",
+            "Description": "Screen 14",
+            "Path": "/images/gallery_screen_14.jpeg",
+            "featured": true,
+            "date": "2024-14-01"
+        },
+        {
+            "id": "gallery_screen_15",
+            "Title": "Screen 15",
+            "Description": "Screen 15",
+            "Path": "/images/gallery_screen_15.jpeg",
+            "featured": true,
+            "date": "2024-15-01"
+        },
+        {
+            "id": "gallery_screen_16",
+            "Title": "Screen 16",
+            "Description": "Screen 16",
+            "Path": "/images/gallery_screen_16.jpeg",
+            "featured": true,
+            "date": "2024-16-01"
+        },
+        {
+            "id": "gallery_screen_17",
+            "Title": "Screen 17",
+            "Description": "Screen 17",
+            "Path": "/images/gallery_screen_17.jpeg",
+            "featured": true,
+            "date": "2024-17-01"
+        },
+        {
+            "id": "gallery_screen_18",
+            "Title": "Screen 18",
+            "Description": "Screen 18",
+            "Path": "/images/gallery_screen_18.jpeg",
+            "featured": true,
+            "date": "2024-18-01"
+        },
+        {
+            "id": "gallery_screen_19",
+            "Title": "Screen 19",
+            "Description": "Screen 19",
+            "Path": "/images/gallery_screen_19.jpeg",
+            "featured": true,
+            "date": "2024-19-01"
+        },
+        {
+            "id": "gallery_screen_20",
+            "Title": "Screen 20",
+            "Description": "Screen 20",
+            "Path": "/images/gallery_screen_20.jpeg",
+            "featured": true,
+            "date": "2024-20-01"
+        },
+        {
+            "id": "gallery_screen_21",
+            "Title": "Screen 21",
+            "Description": "Screen 21",
+            "Path": "/images/gallery_screen_21.jpeg",
+            "featured": true,
+            "date": "2024-21-01"
+        },
+        {
+            "id": "gallery_screen_22",
+            "Title": "Screen 22",
+            "Description": "Screen 22",
+            "Path": "/images/gallery_screen_22.jpeg",
+            "featured": true,
+            "date": "2024-22-01"
+        },
+        {
+            "id": "gallery_screen_23",
+            "Title": "Screen 23",
+            "Description": "Screen 23",
+            "Path": "/images/gallery_screen_23.jpeg",
+            "featured": true,
+            "date": "2024-23-01"
+        },
+        {
+            "id": "gallery_screen_24",
+            "Title": "Screen 24",
+            "Description": "Screen 24",
+            "Path": "/images/gallery_screen_24.jpeg",
+            "featured": true,
+            "date": "2024-24-01"
         }
     ]
 }

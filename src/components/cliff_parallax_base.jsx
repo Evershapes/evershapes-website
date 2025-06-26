@@ -65,12 +65,12 @@ const Cliff_Back = () => {
     };
   }, []);
 
-  
+  /*
   // DEBUGGING: Log device type and viewport dimensions
   useEffect(() => {
     console.log(`🖥️ Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
   }, [deviceType, viewport.width, viewport.height]);
-  
+  */
 
   // Calculate scroll progress through this section
   const sectionHeight = window.innerHeight * 2.0;

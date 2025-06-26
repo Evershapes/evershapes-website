@@ -423,9 +423,11 @@ const Cliff_Back = () => {
       alignItems: 'center',
       padding: responsive.padding()
     },
+
     chessboardContainer: {
       width: '100vw',
       height: responsive.contentHeight(),
+
       position: 'relative',
       overflow: 'hidden',
     },
@@ -455,6 +457,7 @@ const Cliff_Back = () => {
             config={getGLTFConfig()}
             key={`${deviceType}-${viewport.width}x${viewport.height}`}
           />
+
         </div>
       </div>
 

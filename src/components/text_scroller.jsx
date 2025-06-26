@@ -41,7 +41,7 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
         // Set interval for infinite repeat
         const intervalId = setInterval(() => {
           animate();
-        }, duration * 2000);
+        }, duration * 1000);
         
         intervals.push(intervalId);
       });

@@ -156,12 +156,13 @@ const Footer = () => {
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
       color: '#F07167',
-      fontSize: '28px', // Made bigger
+      fontSize: '4vh', // Made bigger
       fontWeight: 'bold',
-      fontFamily: 'BriceSemiBoldExpanded, Arial, sans-serif',
+      fontFamily: 'BriceSemiBoldExpanded',
       margin: '0 0 6px 0', // More spacing
       lineHeight: '1.1',
       textAlign: 'center',
+      overflow:'hidden'
     },
     footerText: {
       marginBottom: '14px',

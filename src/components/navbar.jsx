@@ -219,7 +219,7 @@ export default function Navbar() {
     return (
         <>
             <div
-                className={`fixed top-2 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out cursor-pointer ${
+                className={`fixed top-2 left-1/2 z-[9999] transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out cursor-pointer ${
                     shouldShowMenuIndicator ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
                 }`}
                 onClick={handleOpenNavbar}
@@ -237,7 +237,7 @@ export default function Navbar() {
             </div>
 
             <div 
-                className="sticky top-0 z-40 transition-all duration-500 ease-in-out bg-transparent"
+                className="sticky top-0 z-[9999] z-40 transition-all duration-500 ease-in-out bg-transparent"
                 style={{
                     transform: (isHidden && !mobileMenuOpen && (!mouseAtTop || isMobile))
                         ? 'translateY(-100%)'

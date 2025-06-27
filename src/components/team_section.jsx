@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import storyBoardsData from '../content/story-boards.json';
+import storyBoardsSmallViewData from '../content/story-boards-small.json';
+import storyBoardsMediumViewData from '../content/story-boards-medium.json';
+import storyBoardsLargeViewData from '../content/story-boards-large.json';
+import RouteBackground from "../assets/routebackground.svg";
 
 const TeamSection = () => {
     const [scrollY, setScrollY] = useState(0);
@@ -109,29 +112,30 @@ const TeamSection = () => {
     // Calculate responsive image dimensions
     const getImageDimensions = () => {
         const aspectRatio = getImageAspectRatio();
-        const baseWidth = getResponsiveValue(200, 250, 300, 350, 400, 450);
+        const baseWidth = getResponsiveValue(300, 400, 300, 350, 400, 450);
+        const baseHeight = getResponsiveValue(150, 250, 300, 350, 400, 450);
         
         if (aspectRatio > 1.5) {
             // Wide screen - make images wider
             return {
                 width: baseWidth * 1.2,
-                height: baseWidth * 0.8
+                height: baseHeight * 0.8
             };
         } else if (aspectRatio < 0.8) {
             // Tall screen - make images taller
             return {
-                width: baseWidth * 0.8,
-                height: baseWidth * 1.2
+                width: baseWidth * 1,
+                height: baseHeight * 1
             };
         } else {
             // Standard aspect ratio
             return {
                 width: baseWidth,
-                height: baseWidth * 0.75
+                height: baseHeight * 0.75
             };
         }
     };
-
+    
     const styles = {
         // Wrapper pour gérer les transitions entre sections
         sectionWrapper: {
@@ -140,7 +144,7 @@ const TeamSection = () => {
             zIndex: 1, // Lower z-index than cliff section
         },
         teamSection: {
-            height: '500vh', // Much taller section for scrolling
+            height: getResponsiveValue('470vh', '470vh', '410vh', '400vh', '410vh', '410vh'), // Much taller section for scrolling
             position: 'relative',
             overflow: 'hidden',
             background: '#FDFCDC', // Couleur uniforme sans dégradé
@@ -161,8 +165,8 @@ const TeamSection = () => {
             top: '8vh', // Add some top margin to prevent clipping
             left: '50%',
             transform: 'translateX(-50%)', // Only center horizontally
-            width: getResponsiveValue('150px', '180px', '200px', '300px', '350px', '400px'), // Made wider
-            height: 'calc(100% - 16vh)', // Reduce height to prevent clipping (8vh top + 8vh bottom)
+            width: getResponsiveValue('100vw', '130vw', '100vw', '100vw', '100vw', '100vw'), // Made wider
+            height: '100%', // Reduce height to prevent clipping (8vh top + 8vh bottom)
             zIndex: 2,
             pointerEvents: 'none', // Allow clicks to pass through
             display: 'flex',
@@ -175,6 +179,7 @@ const TeamSection = () => {
             height: '100%',
             display: 'block',
             filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))',
+            objectFit:getResponsiveValue('cover', 'cover', 'cover', 'cover', 'cover', 'cover')
         },
         sideContent: {
             position: 'absolute',
@@ -190,9 +195,15 @@ const TeamSection = () => {
             maxWidth: getResponsiveValue('280px', '320px', '360px', '420px', '480px', '540px'),
             pointerEvents: 'auto',
             cursor: 'pointer',
+            padding:'1vh',
+            background:'#F07167',
+            borderRadius:'30px',
+            backdropFilter : 'blur(10px)',
+            boxShadow:'0 8px 32px rgba(0, 0, 0, 0.3)'
         },
         storyBoardLeft: {
             left: getResponsiveValue('3%', '4%', '5%', '8%', '9%', '10%'),
+            
         },
         storyBoardRight: {
             right: getResponsiveValue('3%', '4%', '5%', '8%', '9%', '10%'),
@@ -200,7 +211,7 @@ const TeamSection = () => {
         // Story board content styles
         storyTitle: {
             fontSize: getResponsiveValue('1.4rem', '1.6rem', '1.8rem', '2rem', '2.2rem', '2.4rem'),
-            color: '#000000', // Black text for visibility
+            color: '#FED9B7', // Black text for visibility
             marginBottom: getResponsiveValue('0.8rem', '1rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem'),
             fontWeight: 'bold',
             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)', // Subtle white shadow for visibility
@@ -208,7 +219,7 @@ const TeamSection = () => {
         },
         storyDescription: {
             fontSize: getResponsiveValue('0.9rem', '1rem', '1.1rem', '1.2rem', '1.3rem', '1.4rem'),
-            color: '#000000', // Black text for visibility
+            color: '#FDFCDC', // Black text for visibility
             lineHeight: 1.6,
             textShadow: '1px 1px 2px rgba(255, 255, 255, 0.6)', // Subtle white shadow for visibility
             marginBottom: getResponsiveValue('1rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem')
@@ -282,7 +293,7 @@ const TeamSection = () => {
                             </h3>
                         )}
                         {storyBoard.description && (
-                            <p className="BriceLightSemiCondensed" style={styles.storyDescription}>
+                            <p className="BriceLightSemiExpanded" style={styles.storyDescription}>
                                 {storyBoard.description}
                             </p>
                         )}
@@ -320,7 +331,7 @@ const TeamSection = () => {
                             />
                         )}
                         {storyBoard.description && (
-                            <p className="BriceRegular" style={styles.storyDescription}>
+                            <p className="BriceLightSemiExpanded" style={styles.storyDescription}>
                                 {storyBoard.description}
                             </p>
                         )}
@@ -349,26 +360,17 @@ const TeamSection = () => {
                 {/* Road SVG - FIXED within the section, no movement */}
                 <div style={styles.roadContainer}>
                     {/* Using inline SVG - replace with your actual chemin.svg content */}
-                    <svg
-                        style={styles.roadSvg}
-                        viewBox="0 0 100 320"
-                        preserveAspectRatio="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        {/* Replace this path with the actual path from your chemin.svg */}
-                        <path
-                            d="M50 0 Q30 30 50 60 Q70 90 50 120 Q30 150 50 180 Q70 210 50 240 Q30 270 50 300"
-                            stroke="#FFFFFF"
-                            strokeWidth="20"
-                            fill="none"
-                            filter="drop-shadow(2px 2px 4px rgba(0,0,0,0.2))"
-                        />
-                    </svg>
+                    <img style={styles.roadSvg} src={RouteBackground} alt="Background Overlay of the Team Section, depicting a route under the text blocks" />
                 </div>
 
                 {/* Side content with story boards - medium parallax speed */}
                 <animated.div style={{ ...styles.sideContent, ...sideContentSpring }}>
-                    {storyBoardsData.storyBoards.map((storyBoard, index) => (
+                    {getResponsiveValue(storyBoardsSmallViewData,
+                    storyBoardsSmallViewData,
+                    storyBoardsMediumViewData,
+                    storyBoardsMediumViewData,
+                    storyBoardsLargeViewData,
+                    storyBoardsLargeViewData).storyBoards.map((storyBoard, index) => (
                         <div
                             key={storyBoard.id}
                             style={{

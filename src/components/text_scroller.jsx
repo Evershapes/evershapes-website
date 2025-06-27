@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
+const Horizontal_Scroller = ({ text = "Evershapes\u00A0" }) => {
   const tagReelRef = useRef(null);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
         // Set interval for infinite repeat
         const intervalId = setInterval(() => {
           animate();
-        }, duration * 2000);
+        }, duration * 1000);
         
         intervals.push(intervalId);
       });
@@ -61,17 +61,17 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
       <style>{`
         .sliding-text-container {
           position: relative;
-          max-height: 10vh;
-          min-height: 80px;
+          max-height: 1vh;
+          min-height: 1vh;
         }
         
         .sliding-text-content {
-          padding: 50px 0;
+          padding: 15px;
+          height: 10vh;
           background: #0081A7;
         }
         
         .sliding-text-items {
-          margin: -58px 0;
           overflow: hidden;
           cursor: default;
         }
@@ -89,7 +89,7 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
           line-height: 100%;
           font-size: 2vw;
           flex: 0 0 33%;
-          padding: 58px 0;
+          padding: -10px 0;
           text-transform: uppercase;
           font-weight: 900;
         }
@@ -99,7 +99,7 @@ const Horizontal_Scroller = ({ text = "- Evershapes\u00A0" }) => {
           line-height: 100%;
           font-size: 2vw;
           flex: 0 0 33%;
-          padding: 58px 0;
+          padding: -10px 0;
           text-transform: uppercase;
           font-weight: 900;
           color: #00AFB9;

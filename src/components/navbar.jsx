@@ -26,7 +26,7 @@ export default function Navbar() {
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
         };
-        
+
         checkMobile();
         window.addEventListener('resize', checkMobile);
 
@@ -121,10 +121,10 @@ export default function Navbar() {
         if (element) {
             const navbarHeight = 60;
             const elementPosition = element.offsetTop;
-            
+
             let offsetPosition;
-            
-            switch(sectionId) {
+
+            switch (sectionId) {
                 case 'accueil':
                     offsetPosition = Math.max(0, elementPosition - navbarHeight - 10);
                     break;
@@ -137,7 +137,7 @@ export default function Navbar() {
                 default:
                     offsetPosition = elementPosition - navbarHeight;
             }
-            
+
             window.scrollTo({
                 top: Math.max(0, offsetPosition),
                 behavior: 'smooth'
@@ -146,13 +146,13 @@ export default function Navbar() {
             // Handle mobile menu closing after navigation
             if (isMobile) {
                 setMobileMenuOpen(false);
-                
+
                 // Clear the auto-hide timer
                 if (mobileMenuTimer) {
                     clearTimeout(mobileMenuTimer);
                     setMobileMenuTimer(null);
                 }
-                
+
                 // Special handling for "Accueil" - don't hide navbar since we're going to top
                 if (sectionId === 'accueil') {
                     // Keep navbar visible when going to top
@@ -190,12 +190,12 @@ export default function Navbar() {
             setMobileMenuOpen(true);
             setIsHidden(false);
             setLastScrollY(window.scrollY); // Remember current scroll position
-            
+
             // Clear any existing timer
             if (mobileMenuTimer) {
                 clearTimeout(mobileMenuTimer);
             }
-            
+
             // Auto-hide after 6 seconds
             const timer = setTimeout(() => {
                 setMobileMenuOpen(false);
@@ -204,7 +204,7 @@ export default function Navbar() {
                 }
                 setMobileMenuTimer(null);
             }, 6000);
-            
+
             setMobileMenuTimer(timer);
         } else {
             setIsHidden(false);
@@ -212,16 +212,15 @@ export default function Navbar() {
     };
 
     // Different logic for mobile vs desktop menu indicator
-    const shouldShowMenuIndicator = isMobile 
+    const shouldShowMenuIndicator = isMobile
         ? window.scrollY > 20 && isHidden && !mobileMenuOpen
         : window.scrollY > 100 && isHidden && !mouseAtTop;
 
     return (
         <>
             <div
-                className={`fixed top-2 left-1/2 z-[9999] transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out cursor-pointer ${
-                    shouldShowMenuIndicator ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-                }`}
+                className={`fixed top-2 left-1/2 z-[9999] transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out cursor-pointer ${shouldShowMenuIndicator ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+                    }`}
                 onClick={handleOpenNavbar}
                 style={{
                     backgroundColor: '#F07167',
@@ -231,12 +230,51 @@ export default function Navbar() {
                 }}
             >
                 <div className="flex flex-col items-center z-200">
-                    <span className="text-white text-sm font-bold BriceBold">Menu</span>
-                    <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white mt-1"></div>
+                    <span
+                        className="text-white BriceBold"
+                        style={{
+                            fontSize: isMobile
+                                ? '14px'  // Mobile: smaller text
+                                : window.innerWidth >= 1400
+                                    ? '18px'  // XXL screens: larger text
+                                    : window.innerWidth >= 1200
+                                        ? '16px'  // XL screens: medium-large text
+                                        : '14px'  // Default: original text
+                        }}
+                    >
+                        Menu
+                    </span>
+                    <div
+                        className="border-l-4 border-r-4 border-t-4 border-transparent border-t-white mt-1"
+                        style={{
+                            // Responsive arrow size
+                            borderLeftWidth: isMobile
+                                ? '4px'
+                                : window.innerWidth >= 1400
+                                    ? '6px'  // XXL: larger arrow
+                                    : window.innerWidth >= 1200
+                                        ? '5px'  // XL: medium arrow
+                                        : '4px', // Default
+                            borderRightWidth: isMobile
+                                ? '4px'
+                                : window.innerWidth >= 1400
+                                    ? '6px'
+                                    : window.innerWidth >= 1200
+                                        ? '5px'
+                                        : '4px',
+                            borderTopWidth: isMobile
+                                ? '4px'
+                                : window.innerWidth >= 1400
+                                    ? '6px'
+                                    : window.innerWidth >= 1200
+                                        ? '5px'
+                                        : '4px',
+                        }}
+                    ></div>
                 </div>
             </div>
 
-            <div 
+            <div
                 className="sticky top-0 z-[9999] z-40 transition-all duration-500 ease-in-out bg-transparent"
                 style={{
                     transform: (isHidden && !mobileMenuOpen && (!mouseAtTop || isMobile))

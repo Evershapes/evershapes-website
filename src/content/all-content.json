@@ -226,7 +226,7 @@
         },
         {
             "id": "render4",
-            "Title": "Planet Render",
+            "Title": "On a Mission",
             "Description": "Exploration time ! This planet render was made & rendered by our team.",
             "Path": "/images/render4.webp",
             "featured": true
@@ -247,7 +247,7 @@
         },
         {
             "id": "gallery_screen_13",
-            "Title": "Magical Swords",
+            "Title": "Magical ring",
             "Description": "What's this magical place ? This screenshot is from a future mashup project.",
             "Path": "/images/gallery_screen_13.webp",
             "featured": true

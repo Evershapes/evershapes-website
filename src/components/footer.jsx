@@ -64,7 +64,7 @@ const Footer = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
+  
   // Debug device type changes
   useEffect(() => {
     console.log(`🦶 Footer - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
@@ -406,7 +406,7 @@ const Footer = () => {
       backgroundColor: 'rgba(255,255,255,0.05)',
       borderRadius: '8px',
     },
-
+    
     ctaIcon: {
       color: '#F07167',
       flexShrink: 0,
@@ -417,7 +417,7 @@ const Footer = () => {
       height: responsive.ctaIconSize(),
       marginRight: responsive.ctaIconMargin(),
     },
-
+    
     ctaText: {
       display: 'flex',
       flexDirection: 'column',
@@ -425,7 +425,7 @@ const Footer = () => {
       flex: 1,
       minWidth: 0,
     },
-
+    
     ctaTextH4: {
       color: '#FDFCDC',
       fontSize: responsive.ctaTitleSize(),
@@ -435,7 +435,7 @@ const Footer = () => {
       fontFamily: 'BriceSemiBoldSemiExpanded, Arial, sans-serif',
       lineHeight: '1.2',
     },
-
+    
     ctaTextSpan: {
       color: '#FDFCDC',
       fontSize: responsive.ctaTextSize(),
@@ -494,7 +494,7 @@ const Footer = () => {
       width: responsive.logoIconSize(),
       height: responsive.logoIconSize()
     },
-
+      
     logoTextContainer: {
       display: 'flex',
       flexDirection: 'column',
@@ -601,7 +601,7 @@ const Footer = () => {
       color: '#FDFCDC',
       fontFamily: 'BriceRegular, Arial, sans-serif',
     },
-
+      
     copyrightLink: {
       color: '#F07167',
       textDecoration: 'none',
@@ -624,6 +624,32 @@ const Footer = () => {
       textDecoration: 'none',
       fontFamily: 'BriceRegular, Arial, sans-serif',
     },
+  };
+
+  // Placeholder logo component
+  const EvershapesLogo = () => (
+    <div style={{
+      width: '100%',
+      height: '100%',
+      background: 'linear-gradient(135deg, #F07167, #FED9B7)',
+      borderRadius: '20%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: getResponsiveValue(deviceType, 'headingSize'),
+      color: '#FDFCDC',
+      fontWeight: 'bold',
+    }}>
+      E
+    </div>
+  );
+
+  // Calculate icon sizes based on viewport height
+  const getIconSize = (type) => {
+    const vhValue = window.innerHeight / 100;
+    if (type === 'medium') return Math.round(3 * vhValue);
+    if (type === 'small') return Math.round(2.5 * vhValue);
+    return Math.round(2 * vhValue);
   };
 
   return (
@@ -712,13 +738,13 @@ const Footer = () => {
         <div style={footerStyles.container}>
           <div style={footerStyles.copyrightContainer}>
             <div>
-              <p style={footerStyles.copyrightText}>
+              <p style={styles.copyrightText}>
                 Copyright © {currentYear}, All Right Reserved{' '}
-                <a href="#" style={footerStyles.copyrightLink}>Evershapes Studio</a>
+                <a href="#" style={styles.copyrightLink}>Evershapes Studio</a>
               </p>
             </div>
             <div>
-              <ul style={footerStyles.footerMenu}>
+              <ul style={styles.footerMenu}>
                 {['Accueil', 'Team', 'Projects', 'Contact'].map((item, index) => (
                   <li key={index}>
                     <a
@@ -736,7 +762,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </animated.footer>
+    </footer>
   );
 };
 

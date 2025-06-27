@@ -140,8 +140,8 @@ const GLTFSection = ({
     overlayText: {
       fontSize: `${getFontSize()}px`,
       fontWeight: '700',
-      color: '#ffffff',
-      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      color: '#F07167',
+      fontFamily: 'BriceSemiBold',
       lineHeight: '1.1',
       letterSpacing: '-0.02em',
       margin: 0,

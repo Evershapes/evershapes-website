@@ -5,376 +5,329 @@
             "Title": "Giant's Rainforest",
             "Description": "Lush, vibrant rainforest. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_1.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_2",
             "Title": "Ancient Tree Oasis",
             "Description": "Gigantic ancient tree surrounded by an oasis. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_2.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_3",
             "Title": "Jagged Ice Lands",
             "Description": "Cold, jagged ice formations. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_3.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_4",
             "Title": "Desert Palace",
             "Description": "Majestic palace in a vast desert landscape. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_4.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_5",
             "Title": "Desert Biome",
             "Description": "Vast desert. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_5.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_6",
             "Title": "Crimson King Castle",
             "Description": "Vast dangerous lands. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_6.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_7",
-            "Title": "Casle in the night",
+            "Title": "Castle in the night",
             "Description": "Cold lands with vast exploration opportunities. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_7.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_8",
             "Title": "Coliseum in the Desert",
-            "Description": "Weathered Ancien Coliseum. This biome is part of our next mashup project.",
+            "Description": "Weathered ancient coliseum. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_8.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_9",
             "Title": "Sunset on the pagoda",
-            "Description": "Giagantic pagoda in a serene landscape. This biome is part of our next mashup project.",
+            "Description": "Gigantic pagoda in a serene landscape. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_9.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_10",
             "Title": "Forest Temple",
             "Description": "Whirling winds are surrounding the temple. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_10.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_11",
             "Title": "Forest Castle",
             "Description": "A castle in the heart of a forest. This biome is part of our next mashup project.",
             "Path": "/images/gallery_screen_11.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "chairs_couches",
             "Title": "Chairs & Couches",
             "Description": "A collection of chairs and couches for our next mashup project.",
             "Path": "/images/chairs_couchs.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "props",
             "Title": "Props Collection",
             "Description": "A collection of props made for our next mashup project.",
             "Path": "/images/props1.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "drawers",
             "Title": "Drawers & Shelves",
             "Description": "Drawers and shelves made for our next mashup project.",
             "Path": "/images/drawers_shelfs.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "dishes",
             "Title": "Dishes Collection",
             "Description": "Dishes collection made for our next mashup project.",
             "Path": "/images/dishes.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "statues",
             "Title": "Statues",
             "Description": "Statues made for our next mashup project.",
             "Path": "/images/statues.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "plants",
             "Title": "Plants Collection",
             "Description": "3D Plants made for our next mashup project.",
             "Path": "/images/plants.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "umx",
             "Title": "Umx's Bikes",
-            "Description": "Those vehicles where fully made and implemented by our team for our next mashup !",
+            "Description": "Those vehicles were fully made and implemented by our team for our next mashup !",
             "Path": "/images/umx.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "eyes",
             "Title": "Weird Eyes?",
             "Description": "uh ? What are those ? Those are for our next mashup project.",
             "Path": "/images/eyes.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "scorpion",
             "Title": "Scorpions",
             "Description": "Nasty ones but they are part of our next mashup project.",
             "Path": "/images/scorpions.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "bulls",
             "Title": "Frost Bull",
             "Description": "If not friend, why friend shaped ?",
             "Path": "/images/bull.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "chickens",
             "Title": "Cot ! Cot ! Cot !",
-            "Description": "Thoses chickens are part of our next mashup project.",
+            "Description": "Those chickens are part of our next mashup project.",
             "Path": "/images/chicken.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gorgoyles",
             "Title": "Gargoyles",
             "Description": "Be aware of those, they are part of our next mashup project.",
             "Path": "/images/gargoyle.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "desert_props",
             "Title": "Desert Kit",
             "Description": "A collection of desert props made for our next mashup project.",
             "Path": "/images/desert.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "knights",
             "Title": "Knights",
             "Description": "Okay when you encounter those, good luck !",
             "Path": "/images/knights.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "birds",
             "Title": "Small Birds",
-            "Description": "They may seem nice but dont be fooled. Made for our next mashup project.",
+            "Description": "They may seem nice but don't be fooled. Made for our next mashup project.",
             "Path": "/images/small_birds.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "war_assets",
             "Title": "Asset Collection",
             "Description": "Some assets made for our next mashup project.",
             "Path": "/images/war_assets.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "forest",
             "Title": "Forest Assets",
             "Description": "Forest assets, made for our next mashup project.",
             "Path": "/images/forest.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "render_final",
             "Title": "Server Lobby",
             "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
             "Path": "/images/renderFINAL.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "render1",
             "Title": "Chunk Forest",
             "Description": "Do you recognize this chunk forest ? Made & rendered by our team.",
             "Path": "/images/render1.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "render2",
-            "Title": "Midnight Abbay",
+            "Title": "Midnight Abbey",
             "Description": "Made & rendered by our team.",
             "Path": "/images/render2.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "render3",
             "Title": "Star Desert",
             "Description": "This star desert render was made & rendered by our team.",
             "Path": "/images/render3.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "render4",
             "Title": "Planet Render",
             "Description": "Exploration time ! This planet render was made & rendered by our team.",
             "Path": "/images/render4.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "render5",
             "Title": "Space Travel",
             "Description": "Traveling through space, this render was made & rendered by our team.",
             "Path": "/images/render5.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_12",
-            "Title": "Stange World",
+            "Title": "Strange World",
             "Description": "This screenshot from a biome of a future mashup project !",
             "Path": "/images/gallery_screen_12.webp",
-            "featured": true,
-            "date": "2024-12-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_13",
-            "Title": "Magial sword's",
+            "Title": "Magical Swords",
             "Description": "What's this magical place ? This screenshot is from a future mashup project.",
             "Path": "/images/gallery_screen_13.webp",
-            "featured": true,
-            "date": "2024-13-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_14",
             "Title": "Gigantic Desert Palace",
             "Description": "It's even bigger in person. Part of a future mashup project.",
             "Path": "/images/gallery_screen_14.webp",
-            "featured": true,
-            "date": "2024-14-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_15",
             "Title": "Gigantic Palace Night",
-            "Description": "Low lights, heigh ceiling. This screenshot is from a future mashup project.",
+            "Description": "Low lights, high ceiling. This screenshot is from a future mashup project.",
             "Path": "/images/gallery_screen_15.webp",
-            "featured": true,
-            "date": "2024-15-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_16",
-            "Title": "Lotus oasis",
+            "Title": "Lotus Oasis",
             "Description": "This lotus oasis is part of a future mashup project.",
             "Path": "/images/gallery_screen_16.webp",
-            "featured": true,
-            "date": "2024-16-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_17",
-            "Title": "Night time in the desert",
+            "Title": "Night Time in the Desert",
             "Description": "What about some night exploration ? Part of a future mashup project.",
             "Path": "/images/gallery_screen_17.webp",
-            "featured": true,
-            "date": "2024-17-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_18",
             "Title": "Caves !",
-            "Description": "Have a lot of thoses in our future mashup project.",
+            "Description": "We have a lot of those in our future mashup project.",
             "Path": "/images/gallery_screen_18.webp",
-            "featured": true,
-            "date": "2024-18-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_19",
             "Title": "Wonderlands",
             "Description": "Purple wonderlands, this biome is part of a future mashup project.",
             "Path": "/images/gallery_screen_19.webp",
-            "featured": true,
-            "date": "2024-19-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_20",
             "Title": "Castle Entrance",
-            "Description": "Big one, part of a future mashup project.",
+            "Description": "A big one, part of a future mashup project.",
             "Path": "/images/gallery_screen_20.webp",
-            "featured": true,
-            "date": "2024-20-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_21",
             "Title": "Cave Entrance",
             "Description": "Adventure awaits in the depths of our future mashup project.",
             "Path": "/images/gallery_screen_21.webp",
-            "featured": true,
-            "date": "2024-21-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_22",
             "Title": "Panoramic Castle",
-            "Description": "Thoses lands are filled with adventures. Future mashup project.",
+            "Description": "Those lands are filled with adventures. Future mashup project.",
             "Path": "/images/gallery_screen_22.webp",
-            "featured": true,
-            "date": "2024-22-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_23",
             "Title": "Tavern",
             "Description": "Want something to eat ? This tavern is part of our future mashup project.",
             "Path": "/images/gallery_screen_23.webp",
-            "featured": true,
-            "date": "2024-23-01"
+            "featured": true
         },
         {
             "id": "gallery_screen_24",
-            "Title": "Causy Corner",
+            "Title": "Cozy Corner",
             "Description": "Here, have a seat and relax. This is part of our future mashup project.",
             "Path": "/images/gallery_screen_24.webp",
-            "featured": true,
-            "date": "2024-24-01"
+            "featured": true
         }
     ]
 }

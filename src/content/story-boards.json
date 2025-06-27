@@ -11,7 +11,7 @@
     {
       "id": 2,
       "category": "title-description",
-      "position": { "top": "20vh", "side": "right" },
+      "position": { "top": "30vh", "side": "right" },
       "title": "InPixel first partners - 2021",
       "description": "Our first partners in this adventure where InPixel. We published our first content on the marketplace thanks to them.",
       "image": null
@@ -19,13 +19,54 @@
     {
       "id": 3,
       "category": "title-image-description",
+      "position": { "top": "25vh", "side": "left" },
+      "title": null,
+      "description": null,
+      "image": "/images/ESxinpixel.webp"
+    },
+    {
+      "id": 4,
+      "category": "title-description",
+      "position": { "top": "60vh", "side": "left" },
+      "title": "Rareloot  partnership - 2022",
+      "description": "Our Second Partnership after Inpixel, we publised maps like RAFT and Hard Space Survival thanks to them.",
+      "image": null
+    },
+    {
+      "id": 5,
+      "category": "title-image-description",
+      "position": { "top": "55vh", "side": "right" },
+      "title": null,
+      "description": null,
+      "image": "/images/ESXrarelootl.webp"
+    },
+    {
+      "id": 6,
+      "category": "title-description",
+      "position": { "top": "80vh", "side": "right" },
+      "title": "Project Skyraft Begin  - 2024",
+      "description": "We began the prep for a new Mashup pack project, with the wish to make a innovative adventure for the marketplace.",
+      "image": null
+    },
+
+    {
+      "id": 8,
+      "category": "title-description",
+      "position": { "top": "100vh", "side": "left" },
+      "title": "Project Skyraft  - 2025",
+      "description": "Wiht the map done we are now preparing new fun mechanics like hoverbikes and new creatures which will be integrated to the project.",
+      "image": null
+    },
+    {
+      "id": 10,
+      "category": "title-image-description",
       "position": { "top": "120vh", "side": "left" },
       "title": "Our Mission",
       "description": "Creating immersive experiences that bring imagination to life.",
       "image": "/images/bull.png"
     },
     {
-      "id": 4,
+      "id": 11,
       "category": "title-description",
       "position": { "top": "160vh", "side": "right" },
       "title": "Innovation",
@@ -33,7 +74,7 @@
       "image": null
     },
     {
-      "id": 5,
+      "id": 12,
       "category": "image-only",
       "position": { "top": "200vh", "side": "left" },
       "title": null,

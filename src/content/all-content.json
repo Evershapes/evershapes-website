@@ -92,7 +92,7 @@
             "id": "chairs_couches",
             "Title": "Chairs & Couches",
             "Description": "A collection of chairs and couches for our next mashup project.",
-            "Path": "/images/chairs_couchs.png",
+            "Path": "/images/chairs_couchs.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -100,7 +100,7 @@
             "id": "props",
             "Title": "Props Collection",
             "Description": "A collection of props made for our next mashup project.",
-            "Path": "/images/props1.png",
+            "Path": "/images/props1.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -108,7 +108,7 @@
             "id": "drawers",
             "Title": "Drawers & Shelves",
             "Description": "Drawers and shelves made for our next mashup project.",
-            "Path": "/images/drawers_shelfs.png",
+            "Path": "/images/drawers_shelfs.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -116,7 +116,7 @@
             "id": "dishes",
             "Title": "Dishes Collection",
             "Description": "Dishes collection made for our next mashup project.",
-            "Path": "/images/dishes.png",
+            "Path": "/images/dishes.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -124,7 +124,7 @@
             "id": "statues",
             "Title": "Statues",
             "Description": "Statues made for our next mashup project.",
-            "Path": "/images/statues.png",
+            "Path": "/images/statues.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -132,7 +132,7 @@
             "id": "plants",
             "Title": "Plants Collection",
             "Description": "3D Plants made for our next mashup project.",
-            "Path": "/images/plants.png",
+            "Path": "/images/plants.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -140,7 +140,7 @@
             "id": "umx",
             "Title": "Umx's Bikes",
             "Description": "Those vehicles where fully made and implemented by our team for our next mashup !",
-            "Path": "/images/umx.png",
+            "Path": "/images/umx.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -148,7 +148,7 @@
             "id": "eyes",
             "Title": "Weird Eyes?",
             "Description": "uh ? What are those ? Those are for our next mashup project.",
-            "Path": "/images/eyes.png",
+            "Path": "/images/eyes.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -156,7 +156,7 @@
             "id": "scorpion",
             "Title": "Scorpions",
             "Description": "Nasty ones but they are part of our next mashup project.",
-            "Path": "/images/scorpions.png",
+            "Path": "/images/scorpions.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -164,7 +164,7 @@
             "id": "bulls",
             "Title": "Frost Bull",
             "Description": "If not friend, why friend shaped ?",
-            "Path": "/images/bull.png",
+            "Path": "/images/bull.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -172,7 +172,7 @@
             "id": "chickens",
             "Title": "Cot ! Cot ! Cot !",
             "Description": "Thoses chickens are part of our next mashup project.",
-            "Path": "/images/chicken.png",
+            "Path": "/images/chicken.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -180,7 +180,7 @@
             "id": "gorgoyles",
             "Title": "Gargoyles",
             "Description": "Be aware of those, they are part of our next mashup project.",
-            "Path": "/images/gargoyle.png",
+            "Path": "/images/gargoyle.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -188,7 +188,7 @@
             "id": "desert_props",
             "Title": "Desert Kit",
             "Description": "A collection of desert props made for our next mashup project.",
-            "Path": "/images/desert.png",
+            "Path": "/images/desert.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -196,7 +196,7 @@
             "id": "knights",
             "Title": "Knights",
             "Description": "Okay when you encounter those, good luck !",
-            "Path": "/images/knights.png",
+            "Path": "/images/knights.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -204,7 +204,7 @@
             "id": "birds",
             "Title": "Small Birds",
             "Description": "They may seem nice but dont be fooled. Made for our next mashup project.",
-            "Path": "/images/small_birds.png",
+            "Path": "/images/small_birds.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -212,7 +212,7 @@
             "id": "war_assets",
             "Title": "Asset Collection",
             "Description": "Some assets made for our next mashup project.",
-            "Path": "/images/war_assets.png",
+            "Path": "/images/war_assets.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -220,7 +220,7 @@
             "id": "forest",
             "Title": "Forest Assets",
             "Description": "Forest assets, made for our next mashup project.",
-            "Path": "/images/forest.png",
+            "Path": "/images/forest.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -228,7 +228,7 @@
             "id": "render_final",
             "Title": "Server Lobby",
             "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
-            "Path": "/images/renderFINAL.png",
+            "Path": "/images/renderFINAL.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -236,7 +236,7 @@
             "id": "render1",
             "Title": "Chunk Forest",
             "Description": "Do you recognize this chunk forest ? Made & rendered by our team.",
-            "Path": "/images/render1.png",
+            "Path": "/images/render1.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -244,7 +244,7 @@
             "id": "render2",
             "Title": "Midnight Abbay",
             "Description": "Made & rendered by our team.",
-            "Path": "/images/render2.png",
+            "Path": "/images/render2.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -252,7 +252,7 @@
             "id": "render3",
             "Title": "Star Desert",
             "Description": "This star desert render was made & rendered by our team.",
-            "Path": "/images/render3.png",
+            "Path": "/images/render3.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -260,7 +260,7 @@
             "id": "render4",
             "Title": "Planet Render",
             "Description": "Exploration time ! This planet render was made & rendered by our team.",
-            "Path": "/images/render4.png",
+            "Path": "/images/render4.webp",
             "featured": true,
             "date": "2024-12-01"
         },
@@ -268,9 +268,113 @@
             "id": "render5",
             "Title": "Space Travel",
             "Description": "Traveling through space, this render was made & rendered by our team.",
-            "Path": "/images/render5.png",
+            "Path": "/images/render5.webp",
             "featured": true,
             "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_12",
+            "Title": "Stange World",
+            "Description": "This screenshot from a biome of a future mashup project !",
+            "Path": "/images/gallery_screen_12.webp",
+            "featured": true,
+            "date": "2024-12-01"
+        },
+        {
+            "id": "gallery_screen_13",
+            "Title": "Magial sword's",
+            "Description": "What's this magical place ? This screenshot is from a future mashup project.",
+            "Path": "/images/gallery_screen_13.webp",
+            "featured": true,
+            "date": "2024-13-01"
+        },
+        {
+            "id": "gallery_screen_14",
+            "Title": "Gigantic Desert Palace",
+            "Description": "It's even bigger in person. Part of a future mashup project.",
+            "Path": "/images/gallery_screen_14.webp",
+            "featured": true,
+            "date": "2024-14-01"
+        },
+        {
+            "id": "gallery_screen_15",
+            "Title": "Gigantic Palace Night",
+            "Description": "Low lights, heigh ceiling. This screenshot is from a future mashup project.",
+            "Path": "/images/gallery_screen_15.webp",
+            "featured": true,
+            "date": "2024-15-01"
+        },
+        {
+            "id": "gallery_screen_16",
+            "Title": "Lotus oasis",
+            "Description": "Screen 16",
+            "Path": "/images/gallery_screen_16.webp",
+            "featured": true,
+            "date": "2024-16-01"
+        },
+        {
+            "id": "gallery_screen_17",
+            "Title": "Screen 17",
+            "Description": "Screen 17",
+            "Path": "/images/gallery_screen_17.webp",
+            "featured": true,
+            "date": "2024-17-01"
+        },
+        {
+            "id": "gallery_screen_18",
+            "Title": "Screen 18",
+            "Description": "Screen 18",
+            "Path": "/images/gallery_screen_18.webp",
+            "featured": true,
+            "date": "2024-18-01"
+        },
+        {
+            "id": "gallery_screen_19",
+            "Title": "Screen 19",
+            "Description": "Screen 19",
+            "Path": "/images/gallery_screen_19.webp",
+            "featured": true,
+            "date": "2024-19-01"
+        },
+        {
+            "id": "gallery_screen_20",
+            "Title": "Screen 20",
+            "Description": "Screen 20",
+            "Path": "/images/gallery_screen_20.webp",
+            "featured": true,
+            "date": "2024-20-01"
+        },
+        {
+            "id": "gallery_screen_21",
+            "Title": "Screen 21",
+            "Description": "Screen 21",
+            "Path": "/images/gallery_screen_21.webp",
+            "featured": true,
+            "date": "2024-21-01"
+        },
+        {
+            "id": "gallery_screen_22",
+            "Title": "Screen 22",
+            "Description": "Screen 22",
+            "Path": "/images/gallery_screen_22.webp",
+            "featured": true,
+            "date": "2024-22-01"
+        },
+        {
+            "id": "gallery_screen_23",
+            "Title": "Screen 23",
+            "Description": "Screen 23",
+            "Path": "/images/gallery_screen_23.webp",
+            "featured": true,
+            "date": "2024-23-01"
+        },
+        {
+            "id": "gallery_screen_24",
+            "Title": "Screen 24",
+            "Description": "Screen 24",
+            "Path": "/images/gallery_screen_24.webp",
+            "featured": true,
+            "date": "2024-24-01"
         }
     ]
 }

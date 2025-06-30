@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSpring, animated, useTrail, config } from 'react-spring';
 import EvershapesLogo from '../assets/logotransparent.svg'
 import {
-  Twitter,
-  MessageCircle,
   Mail,
   MapPin
 } from 'lucide-react';
+
+import DiscordLogo from '/images/icons8-discorde-96.svg'
+import TwitterXLogo from '/images/icons8-twitterx.svg'
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -554,6 +555,7 @@ const Footer = () => {
       justifyContent: 'center',
       flexWrap: 'wrap',
       gap: responsive.socialGap(),
+      padding: '2vh',
       backgroundColor: 'rgba(255,255,255,0.05)',
       borderRadius: '12px',
       minHeight: '7vh'
@@ -577,6 +579,7 @@ const Footer = () => {
       alignItems: 'center',
       justifyContent: 'center',
       textDecoration: 'none',
+      padding: '0.4vh',
       transition: 'transform 0.3s ease',
     },
 
@@ -692,15 +695,15 @@ const Footer = () => {
             <span style={footerStyles.followText}>Follow us</span>
             <a href="https://x.com/EvershapesMC" style={{
               ...footerStyles.followIcon,
-              background: '#55ACEE'
+              background: '#FFFFFF',
             }}>
-              <Twitter size={16} />
+              <img src={TwitterXLogo} height="120" width="120" alt="Evershapes Logo"/>
             </a>
             <a href="https://discord.gg/tUgr9493PJ" style={{
               ...footerStyles.followIcon,
-              background: '#7289DA'
+              background: '#FFFFFF',
             }}>
-              <MessageCircle size={16} />
+              <img src={DiscordLogo} height="120" width="120" alt="Evershapes Logo"/>
             </a>
           </div>
         </div>

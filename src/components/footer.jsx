@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useSpring, animated, useTrail, config } from 'react-spring';
-import EvershapesLogo from '../assets/logotransparent.svg'
-import {
+import React, { useState, useEffect } from 'react';
+import { 
+  Twitter, 
+  MessageCircle,
   Mail,
   MapPin
 } from 'lucide-react';
-
-import DiscordLogo from '/images/icons8-discorde-96.svg'
-import TwitterXLogo from '/images/icons8-twitterx.svg'
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -60,146 +57,6 @@ const Footer = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  // Debug device type changes
-  useEffect(() => {
-    console.log(`🦶 Footer - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
-  }, [deviceType, viewport.width, viewport.height]);
-
-  // Animation for the entire footer
-  const footerAnimation = useSpring({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0px)' : 'translateY(3vh)',
-    config: config.gentle,
-  });
-
-  // Animation for CTA section
-  const ctaAnimation = useTrail(2, {
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateX(0px)' : 'translateX(-3vh)',
-    config: config.gentle,
-    delay: 200,
-  });
-
-  // Animation for footer content sections - now only one section
-  const contentAnimation = useTrail(1, {
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0px)' : 'translateY(4vh)',
-    config: config.gentle,
-    delay: 400,
-  });
-
-  // Responsive values based on device type
-  const responsive = {
-    // Container and grid
-    containerPadding: () => {
-      switch (deviceType) {
-        case 'xs': return '1rem';
-        case 'sm': return '1.5rem';
-        case 'md': return '2rem';
-        case 'lg': return '2.5rem';
-        case 'xl': return '3rem';
-        case 'xxl': return '3.5rem';
-        default: return '2rem';
-      }
-    },
-
-    gridColumns: () => {
-      switch (deviceType) {
-        case 'xs': return '1fr';
-        case 'sm': return '1fr';
-        case 'md': return '1fr'; // Changed to single column since only one section now
-        case 'lg': return '1fr';
-        case 'xl': return '1fr';
-        case 'xxl': return '1fr';
-        default: return '1fr';
-      }
-    },
-
-    // CTA Section
-    ctaPadding: () => {
-      switch (deviceType) {
-        case 'xs': return '2vh';
-        case 'sm': return '2.5vh';
-        case 'md': return '3vh';
-        case 'lg': return '3vh';
-        case 'xl': return '3vh';
-        case 'xxl': return '3vh';
-        default: return '3vh';
-      }
-    },
-
-    ctaGap: () => {
-      switch (deviceType) {
-        case 'xs': return '2vh';
-        case 'sm': return '2.5vh';
-        case 'md': return '3vh';
-        case 'lg': return '3vh';
-        case 'xl': return '3vh';
-        case 'xxl': return '3vh';
-        default: return '3vh';
-      }
-    },
-
-    ctaMinHeight: () => {
-      switch (deviceType) {
-        case 'xs': return '8vh';
-        case 'sm': return '9vh';
-        case 'md': return '10vh';
-        case 'lg': return '10vh';
-        case 'xl': return '10vh';
-        case 'xxl': return '11vh';
-        default: return '10vh';
-      }
-    },
-
-    ctaIconSize: () => {
-      switch (deviceType) {
-        case 'xs': return '3vh';
-        case 'sm': return '3.5vh';
-        case 'md': return '4vh';
-        case 'lg': return '4vh';
-        case 'xl': return '4vh';
-        case 'xxl': return '4.5vh';
-        default: return '4vh';
-      }
-    },
-
-    ctaIconMargin: () => {
-      switch (deviceType) {
-        case 'xs': return '1.5vh';
-        case 'sm': return '2vh';
-        case 'md': return '2vh';
-        case 'lg': return '2vh';
-        case 'xl': return '2vh';
-        case 'xxl': return '2.5vh';
-        default: return '2vh';
-      }
-    },
-
-    // Typography
-    ctaTitleSize: () => {
-      switch (deviceType) {
-        case 'xs': return '2vh';
-        case 'sm': return '2.2vh';
-        case 'md': return '2.5vh';
-        case 'lg': return '2.5vh';
-        case 'xl': return '2.5vh';
-        case 'xxl': return '2.8vh';
-        default: return '2.5vh';
-      }
-    },
-
-    ctaTextSize: () => {
-      switch (deviceType) {
-        case 'xs': return '1.6vh';
-        case 'sm': return '1.8vh';
-        case 'md': return '1.8vh';
-        case 'lg': return '1.8vh';
-        case 'xl': return '1.8vh';
-        case 'xxl': return '2vh';
-        default: return '1.8vh';
-      }
-    },
 
   // Responsive values using vh units
   const getResponsiveValue = (type, valueType) => {
@@ -348,7 +205,7 @@ const Footer = () => {
       transform: isVisible ? 'translateX(0)' : 'translateX(-5vh)',
       transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
     },
-
+    
     ctaIcon: {
       color: '#F07167',
       flexShrink: 0,
@@ -359,7 +216,7 @@ const Footer = () => {
       height: '6vh',
       marginRight: '2vh',
     },
-
+    
     ctaText: {
       display: 'flex',
       flexDirection: 'column',
@@ -367,7 +224,8 @@ const Footer = () => {
       flex: 1,
       minWidth: 0,
     },
-    ctaTextH4: {
+    
+    ctaHeading: {
       color: '#FDFCDC',
       fontSize: getResponsiveValue(deviceType, 'subheadingSize'),
       fontWeight: '600',
@@ -375,7 +233,8 @@ const Footer = () => {
       fontFamily: 'BriceSemiBoldSemiExpanded, Arial, sans-serif',
       lineHeight: '1.2',
     },
-    ctaTextSpan: {
+    
+    ctaSubtext: {
       color: '#FDFCDC',
       fontSize: getResponsiveValue(deviceType, 'bodySize'),
       fontFamily: 'BriceRegular, Arial, sans-serif',
@@ -425,12 +284,7 @@ const Footer = () => {
       width: getResponsiveValue(deviceType, 'logoIconSize'),
       height: getResponsiveValue(deviceType, 'logoIconSize'),
     },
-    logoIconImg: {
-      width: responsive.logoIconSize(),
-      height: responsive.logoIconSize()
-    },
-
-
+    
     logoTextContainer: {
       display: 'flex',
       flexDirection: 'column',
@@ -554,7 +408,6 @@ const Footer = () => {
       alignItems: 'center',
       justifyContent: 'center',
       textDecoration: 'none',
-      padding: '0.4vh',
       transition: 'transform 0.3s ease',
     },
     
@@ -578,6 +431,7 @@ const Footer = () => {
       color: '#FDFCDC',
       fontFamily: 'BriceRegular, Arial, sans-serif',
     },
+    
     copyrightLink: {
       color: '#F07167',
       textDecoration: 'none',
@@ -601,6 +455,32 @@ const Footer = () => {
       fontFamily: 'BriceRegular, Arial, sans-serif',
       transition: 'color 0.3s ease',
     },
+  };
+
+  // Placeholder logo component
+  const EvershapesLogo = () => (
+    <div style={{
+      width: '100%',
+      height: '100%',
+      background: 'linear-gradient(135deg, #F07167, #FED9B7)',
+      borderRadius: '20%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: getResponsiveValue(deviceType, 'headingSize'),
+      color: '#FDFCDC',
+      fontWeight: 'bold',
+    }}>
+      E
+    </div>
+  );
+
+  // Calculate icon sizes based on viewport height
+  const getIconSize = (type) => {
+    const vhValue = window.innerHeight / 100;
+    if (type === 'medium') return Math.round(3 * vhValue);
+    if (type === 'small') return Math.round(2.5 * vhValue);
+    return Math.round(2 * vhValue);
   };
 
   return (
@@ -676,20 +556,30 @@ const Footer = () => {
         </div>
 
         {/* Follow Us Section */}
-        <div style={footerStyles.followSection}>
-          <div style={footerStyles.followContainer}>
-            <span style={footerStyles.followText}>Follow us</span>
-            <a href="https://x.com/EvershapesMC" style={{
-              ...footerStyles.followIcon,
-              background: '#FFFFFF',
-            }}>
-              <img src={TwitterXLogo} height="120" width="120" alt="Evershapes Logo"/>
+        <div style={styles.followSection}>
+          <div style={styles.followContainer}>
+            <span style={styles.followText}>Follow us</span>
+            <a 
+              href="https://x.com/EvershapesMC" 
+              style={{
+                ...styles.socialIcon,
+                background: '#55ACEE'
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            >
+              <Twitter size={getIconSize('small')} />
             </a>
-            <a href="https://discord.gg/tUgr9493PJ" style={{
-              ...footerStyles.followIcon,
-              background: '#FFFFFF',
-            }}>
-              <img src={DiscordLogo} height="120" width="120" alt="Evershapes Logo"/>
+            <a 
+              href="https://discord.gg/tUgr9493PJ" 
+              style={{
+                ...styles.socialIcon,
+                background: '#7289DA'
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            >
+              <MessageCircle size={getIconSize('small')} />
             </a>
           </div>
         </div>
@@ -700,13 +590,13 @@ const Footer = () => {
         <div style={styles.container}>
           <div style={styles.copyrightContainer}>
             <div>
-              <p style={footerStyles.copyrightText}>
+              <p style={styles.copyrightText}>
                 Copyright © {currentYear}, All Right Reserved{' '}
-                <a href="#" style={footerStyles.copyrightLink}>Evershapes Studio</a>
+                <a href="#" style={styles.copyrightLink}>Evershapes Studio</a>
               </p>
             </div>
             <div>
-              <ul style={footerStyles.footerMenu}>
+              <ul style={styles.footerMenu}>
                 {['Accueil', 'Team', 'Projects', 'Contact'].map((item, index) => (
                   <li key={index}>
                     <a 
@@ -724,7 +614,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </animated.footer>
+    </footer>
   );
 };
 

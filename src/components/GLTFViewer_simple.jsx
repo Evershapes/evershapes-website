@@ -10,8 +10,7 @@ const GLTFViewer = ({ config = {} }) => {
     cameraDistance: 5,
     autoRotateSpeed: 0.005,
     modelRotation: 90, // degrees
-    modelScale: 5, // size of the bounding cube
-    enableMouseControls: true // New option to enable/disable mouse controls
+    modelScale: 5 // size of the bounding cube
   };
   
   // Merge provided config with defaults
@@ -28,60 +27,51 @@ const GLTFViewer = ({ config = {} }) => {
   const modelRef = useRef(null);
   const [modelLoaded, setModelLoaded] = useState(false);
 
-  // Mouse control state
-  const mouseState = useRef({
-    isMouseDown: false,
-    mouseX: 0,
-    mouseY: 0,
-    rotationX: settings.cameraAngle * Math.PI / 180, // Initialize with default camera angle
-    rotationY: 0,
-    targetRotationX: settings.cameraAngle * Math.PI / 180,
-    targetRotationY: 0
-  });
-
   useEffect(() => {
     if (!containerRef.current) return;
 
     // Scene setup
     const scene = new THREE.Scene();
+    // Transparent background - no scene.background set
     sceneRef.current = scene;
 
     // Camera setup with better near/far ratio to reduce z-fighting
     const camera = new THREE.PerspectiveCamera(
       60,
       containerRef.current.clientWidth / containerRef.current.clientHeight,
-      0.1,
-      100
+      0.1, // Increased from 0.01 to reduce z-fighting
+      100  // Reduced from 1000 for better depth precision
     );
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
     cameraRef.current = camera;
+    // Add camera to scene (important for camera-attached lights)
     scene.add(camera);
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
-      alpha: true,
-      logarithmicDepthBuffer: true
+      alpha: true, // Enable transparency
+      logarithmicDepthBuffer: true // Helps with z-fighting on overlapping surfaces
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.shadowMap.autoUpdate = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Softest shadows
+    renderer.shadowMap.autoUpdate = true; // Ensure shadows update with animations
     renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMapping = THREE.LinearToneMapping; // Changed to Linear from ACESFilmic
     renderer.toneMappingExposure = 1;
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x000000, 0); // Transparent clear color
     rendererRef.current = renderer;
     containerRef.current.appendChild(renderer.domElement);
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+    // Lighting - using the reference viewer's default parameters
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); // ambientIntensity: 0.3
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
-    directionalLight.position.set(0.5, 0, 0.866);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI); // directIntensity: 0.8 * Math.PI
+    directionalLight.position.set(0.5, 0, 0.866); // Default position from the reference
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
     directionalLight.shadow.mapSize.height = 2048;
@@ -91,126 +81,29 @@ const GLTFViewer = ({ config = {} }) => {
     directionalLight.shadow.camera.right = 10;
     directionalLight.shadow.camera.top = 10;
     directionalLight.shadow.camera.bottom = -10;
+    
+    // Attach the directional light to the camera for consistent lighting
     camera.add(directionalLight);
 
-    // Mouse event handlers - Direct canvas event handling
-    const handleMouseDown = (event) => {
-      if (!settings.enableMouseControls) return;
-      
-      mouseState.current.isMouseDown = true;
-      mouseState.current.mouseX = event.clientX;
-      mouseState.current.mouseY = event.clientY;
-      
-      // Prevent default behavior and stop propagation
-      event.preventDefault();
-      event.stopPropagation();
-      renderer.domElement.style.cursor = 'grabbing';
-      
-      // Capture mouse for better drag behavior
-      renderer.domElement.setPointerCapture && renderer.domElement.setPointerCapture(event.pointerId);
-    };
-
-    const handleMouseMove = (event) => {
-      if (!settings.enableMouseControls || !mouseState.current.isMouseDown) return;
-      
-      const deltaX = event.clientX - mouseState.current.mouseX;
-      const deltaY = event.clientY - mouseState.current.mouseY;
-      
-      // Update rotation based on mouse movement
-      mouseState.current.targetRotationY += deltaX * 0.01; // Horizontal rotation
-      mouseState.current.targetRotationX += deltaY * 0.01; // Vertical rotation
-      
-      // Clamp vertical rotation to prevent flipping
-      mouseState.current.targetRotationX = Math.max(
-        -Math.PI / 2 + 0.1, 
-        Math.min(Math.PI / 2 - 0.1, mouseState.current.targetRotationX)
-      );
-      
-      mouseState.current.mouseX = event.clientX;
-      mouseState.current.mouseY = event.clientY;
-      
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    const handleMouseUp = (event) => {
-      if (!settings.enableMouseControls) return;
-      
-      mouseState.current.isMouseDown = false;
-      renderer.domElement.style.cursor = 'grab';
-      
-      // Release pointer capture
-      renderer.domElement.releasePointerCapture && renderer.domElement.releasePointerCapture(event.pointerId);
-      
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    // Handle mouse leave to stop dragging if mouse exits canvas
-    const handleMouseLeave = (event) => {
-      if (!settings.enableMouseControls) return;
-      
-      mouseState.current.isMouseDown = false;
-      renderer.domElement.style.cursor = 'grab';
-    };
-
-    // Prevent context menu on right click
-    const handleContextMenu = (event) => {
-      event.preventDefault();
-      return false;
-    };
-
-    // Add event listeners directly to canvas with proper options
-    if (settings.enableMouseControls) {
-      const canvas = renderer.domElement;
-      
-      // Set up canvas for interaction
-      canvas.style.cursor = 'grab';
-      canvas.style.userSelect = 'none'; // Prevent text selection
-      canvas.style.touchAction = 'none'; // Prevent default touch behaviors
-      
-      // Add event listeners with proper options
-      canvas.addEventListener('mousedown', handleMouseDown, { passive: false, capture: true });
-      canvas.addEventListener('mousemove', handleMouseMove, { passive: false, capture: true });
-      canvas.addEventListener('mouseup', handleMouseUp, { passive: false, capture: true });
-      canvas.addEventListener('mouseleave', handleMouseLeave, { passive: true });
-      canvas.addEventListener('contextmenu', handleContextMenu, { passive: false });
-      
-      // Also handle pointer events for better compatibility
-      canvas.addEventListener('pointerdown', handleMouseDown, { passive: false, capture: true });
-      canvas.addEventListener('pointermove', handleMouseMove, { passive: false, capture: true });
-      canvas.addEventListener('pointerup', handleMouseUp, { passive: false, capture: true });
-      canvas.addEventListener('pointerleave', handleMouseLeave, { passive: true });
-    }
+    // Fixed camera settings (no mouse controls)
+    const targetRotationX = settings.cameraAngle * Math.PI / 180; // Convert degrees to radians
+    const targetRotationY = 0;
+    const distance = settings.cameraDistance;
 
     // Animation loop
     let animationId;
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       
-      // Auto-rotate the model (only if mouse controls are disabled or not actively dragging)
-      if (modelRef.current && (!settings.enableMouseControls || !mouseState.current.isMouseDown)) {
+      // Auto-rotate the model
+      if (modelRef.current) {
         modelRef.current.rotation.y += settings.autoRotateSpeed;
       }
       
-      // Smooth camera rotation interpolation
-      const lerpFactor = 0.05; // Adjust for smoother/faster camera movement
-      mouseState.current.rotationX = THREE.MathUtils.lerp(
-        mouseState.current.rotationX, 
-        mouseState.current.targetRotationX, 
-        lerpFactor
-      );
-      mouseState.current.rotationY = THREE.MathUtils.lerp(
-        mouseState.current.rotationY, 
-        mouseState.current.targetRotationY, 
-        lerpFactor
-      );
-      
-      // Update camera position based on current rotation
-      const distance = settings.cameraDistance;
-      camera.position.x = distance * Math.sin(mouseState.current.rotationY) * Math.cos(mouseState.current.rotationX);
-      camera.position.y = distance * Math.sin(mouseState.current.rotationX);
-      camera.position.z = distance * Math.cos(mouseState.current.rotationY) * Math.cos(mouseState.current.rotationX);
+      // Fixed camera position
+      camera.position.x = distance * Math.sin(targetRotationY) * Math.cos(targetRotationX);
+      camera.position.y = distance * Math.sin(targetRotationX);
+      camera.position.z = distance * Math.cos(targetRotationY) * Math.cos(targetRotationX);
       camera.lookAt(0, 0, 0);
       
       // Update animations
@@ -237,24 +130,6 @@ const GLTFViewer = ({ config = {} }) => {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
-      
-      if (settings.enableMouseControls) {
-        const canvas = renderer.domElement;
-        if (canvas) {
-          // Remove mouse event listeners
-          canvas.removeEventListener('mousedown', handleMouseDown);
-          canvas.removeEventListener('mousemove', handleMouseMove);
-          canvas.removeEventListener('mouseup', handleMouseUp);
-          canvas.removeEventListener('mouseleave', handleMouseLeave);
-          canvas.removeEventListener('contextmenu', handleContextMenu);
-          
-          // Remove pointer event listeners
-          canvas.removeEventListener('pointerdown', handleMouseDown);
-          canvas.removeEventListener('pointermove', handleMouseMove);
-          canvas.removeEventListener('pointerup', handleMouseUp);
-          canvas.removeEventListener('pointerleave', handleMouseLeave);
-        }
-      }
       
       if (renderer.domElement && renderer.domElement.parentNode) {
         renderer.domElement.parentNode.removeChild(renderer.domElement);
@@ -317,7 +192,7 @@ const GLTFViewer = ({ config = {} }) => {
         const size = box.getSize(new THREE.Vector3());
         
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = settings.modelScale / maxDim;
+        const scale = settings.modelScale / maxDim; // Scale to fit in configured cube size
         
         model.scale.setScalar(scale);
         
@@ -326,6 +201,7 @@ const GLTFViewer = ({ config = {} }) => {
         box.getCenter(center);
         model.position.x = -center.x;
         model.position.z = -center.z;
+        // Place the bottom of the model at y=0 (on the grid)
         model.position.y = -box.min.y * scale;
         
         // Rotate the model by configured degrees on Y axis
@@ -337,11 +213,16 @@ const GLTFViewer = ({ config = {} }) => {
             child.castShadow = true;
             child.receiveShadow = true;
             
+            // Ensure materials are properly set up
             if (child.material) {
               child.material.needsUpdate = true;
+              
+              // Fix z-fighting for overlapping surfaces
               child.material.polygonOffset = true;
-              child.material.polygonOffsetFactor = 1;
+              child.material.polygonOffsetFactor = 1; // Positive values push geometry away
               child.material.polygonOffsetUnits = 1;
+              
+              // Ensure proper rendering order
               child.material.depthWrite = true;
               child.material.depthTest = true;
             }
@@ -354,6 +235,7 @@ const GLTFViewer = ({ config = {} }) => {
         if (gltf.animations && gltf.animations.length > 0) {
           mixerRef.current = new THREE.AnimationMixer(model);
           
+          // Play all animations
           gltf.animations.forEach((clip) => {
             const action = mixerRef.current.clipAction(clip);
             action.play();

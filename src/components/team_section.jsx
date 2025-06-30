@@ -91,11 +91,6 @@ const TeamSection = () => {
         config: config.slow,
     });
 
-    const sideContentSpring = useSpring({
-        transform: `translateY(${sideContentOffset}px)`,
-        config: config.slow,
-    });
-
     // Scroll hint animation
     const scrollHintSpring = useSpring({
         opacity: Math.max(0, 1 - scrollProgress * 2),
@@ -364,7 +359,7 @@ const TeamSection = () => {
                 </div>
 
                 {/* Side content with story boards - medium parallax speed */}
-                <animated.div style={{ ...styles.sideContent, ...sideContentSpring }}>
+                <animated.div style={{ ...styles.sideContent }}>
                     {getResponsiveValue(storyBoardsSmallViewData,
                     storyBoardsSmallViewData,
                     storyBoardsMediumViewData,

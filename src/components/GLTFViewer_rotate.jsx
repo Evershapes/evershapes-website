@@ -11,7 +11,9 @@ const GLTFViewer = ({ config = {} }) => {
     autoRotateSpeed: 0.005,
     modelRotation: 90, // degrees
     modelScale: 5, // size of the bounding cube
-    enableMouseControls: true // New option to enable/disable mouse controls
+    enableMouseControls: true, // New option to enable/disable mouse controls
+    preloadedModel: null, // Preloaded model data from GLTFManager
+    shouldRender: true // Whether this viewer should actively render
   };
   
   // Merge provided config with defaults
@@ -27,6 +29,8 @@ const GLTFViewer = ({ config = {} }) => {
   const fileInputRef = useRef(null);
   const modelRef = useRef(null);
   const [modelLoaded, setModelLoaded] = useState(false);
+  const animationIdRef = useRef(null);
+  const [shouldPauseRendering, setShouldPauseRendering] = useState(false);
 
   // Mouse control state
   const mouseState = useRef({
@@ -183,10 +187,16 @@ const GLTFViewer = ({ config = {} }) => {
       canvas.addEventListener('pointerleave', handleMouseLeave, { passive: true });
     }
 
-    // Animation loop
+    // Animation loop with render pause capability
     let animationId;
     const animate = () => {
       animationId = requestAnimationFrame(animate);
+      animationIdRef.current = animationId;
+      
+      // Skip rendering if should pause (for performance)
+      if (shouldPauseRendering || !settings.shouldRender) {
+        return;
+      }
       
       // Auto-rotate the model (only if mouse controls are disabled or not actively dragging)
       if (modelRef.current && (!settings.enableMouseControls || !mouseState.current.isMouseDown)) {
@@ -235,7 +245,9 @@ const GLTFViewer = ({ config = {} }) => {
 
     // Cleanup
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
       window.removeEventListener('resize', handleResize);
       
       if (settings.enableMouseControls) {
@@ -264,25 +276,129 @@ const GLTFViewer = ({ config = {} }) => {
     };
   }, []);
 
-  // Load default model on mount
+  // Handle preloaded model or load from path
   useEffect(() => {
     if (sceneRef.current && !modelLoaded) {
-      loadModel(settings.modelPath);
-      setModelLoaded(true);
+      if (settings.preloadedModel) {
+        // Use preloaded model (standard approach)
+        console.log('Using preloaded model:', settings.preloadedModel);
+        setupPreloadedModel(settings.preloadedModel);
+        setModelLoaded(true);
+      } else if (settings.modelPath) {
+        // Fallback: Load model from path
+        console.log('Fallback: Loading model from path:', settings.modelPath);
+        loadModel(settings.modelPath);
+        setModelLoaded(true);
+      }
     }
-  }, [sceneRef.current, modelLoaded, settings.modelPath]);
+  }, [sceneRef.current, settings.preloadedModel, settings.modelPath]);
 
-  const loadModel = (url) => {
+  // Monitor shouldRender changes
+  useEffect(() => {
+    setShouldPauseRendering(!settings.shouldRender);
+  }, [settings.shouldRender]);
+
+  const setupPreloadedModel = (preloadedModelData) => {
     setIsLoading(true);
     setError(null);
     
-    // Clear existing model
-    const scene = sceneRef.current;
-    if (modelRef.current) {
-      scene.remove(modelRef.current);
+    try {
+      const scene = sceneRef.current;
       
-      // Dispose of geometries and materials
-      modelRef.current.traverse((child) => {
+      // Clear existing model
+      if (modelRef.current) {
+        scene.remove(modelRef.current);
+        disposeModel(modelRef.current);
+      }
+
+      // Stop existing animations
+      if (mixerRef.current) {
+        mixerRef.current.stopAllAction();
+        mixerRef.current = null;
+      }
+
+      // Clone the preloaded model to avoid conflicts
+      const model = preloadedModelData.scene.clone();
+      modelRef.current = model;
+      
+      // Setup model (same as loadModel)
+      setupModelInScene(model, preloadedModelData.animations);
+      
+      setIsLoading(false);
+      console.log('Preloaded model setup complete');
+      
+    } catch (error) {
+      console.error('Error setting up preloaded model:', error);
+      setError('Failed to setup preloaded model: ' + error.message);
+      setIsLoading(false);
+    }
+  };
+
+  const setupModelInScene = (model, animations) => {
+    const scene = sceneRef.current;
+    
+    // Center and scale the model
+    const box = new THREE.Box3().setFromObject(model);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const scale = settings.modelScale / maxDim;
+    
+    model.scale.setScalar(scale);
+    
+    // Center the model horizontally and place it on top of the grid
+    box.setFromObject(model);
+    box.getCenter(center);
+    model.position.x = -center.x;
+    model.position.z = -center.z;
+    model.position.y = -box.min.y * scale;
+    
+    // Rotate the model by configured degrees on Y axis
+    model.rotation.y = settings.modelRotation * Math.PI / 180;
+    
+    // Enable shadows and fix z-fighting
+    model.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        
+        if (child.material) {
+          child.material.needsUpdate = true;
+          child.material.polygonOffset = true;
+          child.material.polygonOffsetFactor = 1;
+          child.material.polygonOffsetUnits = 1;
+          child.material.depthWrite = true;
+          child.material.depthTest = true;
+        }
+      }
+    });
+    
+    scene.add(model);
+    
+    // Set up animations if any
+    if (animations && animations.length > 0) {
+      mixerRef.current = new THREE.AnimationMixer(model);
+      
+      animations.forEach((clip) => {
+        const action = mixerRef.current.clipAction(clip);
+        action.play();
+      });
+      
+      console.log(`Playing ${animations.length} animations`);
+    }
+    
+    // Adjust camera distance based on model size or use configured distance
+    const calculatedDistance = maxDim * 2.5;
+    const finalDistance = settings.cameraDistance === 10 ? calculatedDistance : settings.cameraDistance;
+    const camera = cameraRef.current;
+    camera.position.set(finalDistance, finalDistance * 0.5, finalDistance);
+    camera.lookAt(0, 0, 0);
+  };
+
+  const disposeModel = (model) => {
+    if (model) {
+      model.traverse((child) => {
         if (child.geometry) child.geometry.dispose();
         if (child.material) {
           if (Array.isArray(child.material)) {
@@ -292,6 +408,17 @@ const GLTFViewer = ({ config = {} }) => {
           }
         }
       });
+    }
+  };
+  const loadModel = (url) => {
+    setIsLoading(true);
+    setError(null);
+    
+    // Clear existing model
+    const scene = sceneRef.current;
+    if (modelRef.current) {
+      scene.remove(modelRef.current);
+      disposeModel(modelRef.current);
     }
 
     // Stop existing animations
@@ -311,63 +438,8 @@ const GLTFViewer = ({ config = {} }) => {
         const model = gltf.scene;
         modelRef.current = model;
         
-        // Center and scale the model
-        const box = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = settings.modelScale / maxDim;
-        
-        model.scale.setScalar(scale);
-        
-        // Center the model horizontally and place it on top of the grid
-        box.setFromObject(model);
-        box.getCenter(center);
-        model.position.x = -center.x;
-        model.position.z = -center.z;
-        model.position.y = -box.min.y * scale;
-        
-        // Rotate the model by configured degrees on Y axis
-        model.rotation.y = settings.modelRotation * Math.PI / 180;
-        
-        // Enable shadows and fix z-fighting
-        model.traverse((child) => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-            
-            if (child.material) {
-              child.material.needsUpdate = true;
-              child.material.polygonOffset = true;
-              child.material.polygonOffsetFactor = 1;
-              child.material.polygonOffsetUnits = 1;
-              child.material.depthWrite = true;
-              child.material.depthTest = true;
-            }
-          }
-        });
-        
-        scene.add(model);
-        
-        // Set up animations if any
-        if (gltf.animations && gltf.animations.length > 0) {
-          mixerRef.current = new THREE.AnimationMixer(model);
-          
-          gltf.animations.forEach((clip) => {
-            const action = mixerRef.current.clipAction(clip);
-            action.play();
-          });
-          
-          console.log(`Playing ${gltf.animations.length} animations`);
-        }
-        
-        // Adjust camera distance based on model size or use configured distance
-        const calculatedDistance = maxDim * 2.5;
-        const finalDistance = settings.cameraDistance === 10 ? calculatedDistance : settings.cameraDistance;
-        const camera = cameraRef.current;
-        camera.position.set(finalDistance, finalDistance * 0.5, finalDistance);
-        camera.lookAt(0, 0, 0);
+        // Setup model in scene
+        setupModelInScene(model, gltf.animations);
         
         setIsLoading(false);
         if (url.startsWith('blob:')) {

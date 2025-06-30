@@ -6,9 +6,11 @@ import useModelLoader from './useModelLoader';
 
 const GLTFSection = ({ 
   config = {}, 
+  under_backgroundColor ='transparent',
   backgroundColor = 'transparent',
   ellipseGradient = 'transparent',
-  overlayText = ""
+  overlayText = "",
+  textOffsetMultiplier = 0, // New parameter: -10 to 10, each unit = 5vh
 }) => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
@@ -121,7 +123,7 @@ const GLTFSection = ({
             ellipseWidth = '130vw';
             ellipseHeight = '70vh';
           } else {
-            ellipseWidth = '130vw';
+            ellipseWidth = '150vw';
             ellipseHeight = '60vh';
           }
           break;
@@ -130,25 +132,25 @@ const GLTFSection = ({
             ellipseWidth = '100vw';
             ellipseHeight = '60vh';
           } else {
-            ellipseWidth = '100vw';
+            ellipseWidth = '150vw';
             ellipseHeight = '55vh';
           }
           break;
         case 'xl':
           if (isLandscape) {
-            ellipseWidth = '90vw';
+            ellipseWidth = '100vw';
             ellipseHeight = '50vh';
           } else {
-            ellipseWidth = '90vw';
+            ellipseWidth = '150vw';
             ellipseHeight = '45vh';
           }
           break;
         case 'xxl':
           if (isLandscape) {
-            ellipseWidth = '90vw';
+            ellipseWidth = '100vw';
             ellipseHeight = '45vh';
           } else {
-            ellipseWidth = '90vw';
+            ellipseWidth = '150vw';
             ellipseHeight = '40vh';
           }
           break;
@@ -157,7 +159,7 @@ const GLTFSection = ({
             ellipseWidth = '100vw';
             ellipseHeight = '60vh';
           } else {
-            ellipseWidth = '100vw';
+            ellipseWidth = '150vw';
             ellipseHeight = '55vh';
           }
       }
@@ -229,7 +231,7 @@ const GLTFSection = ({
   });
 
   const ellipseSpring = useSpring({
-    transform: `translate(-50%, -50%) scale(${scrollProgress > 0.01 ? 1 : 0.8})`,
+    transform: `translate(-50%, -50%) scale(${scrollProgress > 0.001 ? 1 : 0.8})`,
     config: {
       tension: 280,
       friction: 120,
@@ -272,6 +274,7 @@ const GLTFSection = ({
       willChange: 'transform, opacity',
       WebkitBorderRadius: '50%',
       MozBorderRadius: '50%',
+      boxShadow: `0vh 2vh ${under_backgroundColor}`
     },
     viewerContainer: {
       // Full size 3D viewer (reverted from margins)
@@ -332,14 +335,14 @@ const GLTFSection = ({
       zIndex: 10,
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center', // Back to center for proper baseline
       pointerEvents: 'none',
       padding: responsive.padding(),
     },
     overlayText: {
       fontSize: `${fontSize}px`,
       fontWeight: '700',
-      color: '#F07167',
+      color: '#00AFB9',
       fontFamily: 'BriceSemiBold',
       lineHeight: '1.1',
       letterSpacing: '-0.02em',
@@ -348,6 +351,8 @@ const GLTFSection = ({
       maxWidth: '90%',
       textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       willChange: 'transform, opacity',
+      // Apply offset directly to the text element (safer approach)
+      transform: `translateY(${textOffsetMultiplier * 5}vh)`,
     },
     loadingOverlay: {
       position: 'absolute',

@@ -468,6 +468,7 @@ const Cliff_Back = () => {
       <div style={styles.contentContainer}>
         <div style={styles.chessboardContainer}>
           <GLTFSection
+          textOffsetMultiplier={3}
             sectionId="parallax-section"
             config={getGLTFConfig()}
             key={`${deviceType}`}

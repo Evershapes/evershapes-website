@@ -14,7 +14,7 @@ const Footer = () => {
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
 
   const currentYear = new Date().getFullYear();
-
+  
   // Standard CSS media query breakpoints
   const breakpoints = {
     xs: 0,     // Extra small devices
@@ -66,6 +66,53 @@ const Footer = () => {
     };
   }, []);
 
+  // FIXED: Proper scrollToSection function with better section mapping
+  const scrollToSection = useCallback((sectionId) => {
+    // Map menu items to actual section IDs
+    const sectionMap = {
+      'accueil': 'accueil',
+      'team': 'team', 
+      'projects': 'projects',
+      'contact': 'footer' // Since there's no contact section, scroll to footer
+    };
+
+    const targetSectionId = sectionMap[sectionId] || sectionId;
+    const element = document.getElementById(targetSectionId);
+    
+    if (element) {
+      const navbarHeight = 60;
+      const elementPosition = element.offsetTop;
+      let offsetPosition;
+
+      switch (targetSectionId) {
+        case 'accueil':
+          offsetPosition = Math.max(0, elementPosition - navbarHeight - 10);
+          break;
+        case 'team':
+          offsetPosition = elementPosition + 50 - navbarHeight;
+          break;
+        case 'projects':
+          offsetPosition = elementPosition - navbarHeight;
+          break;
+        case 'footer':
+          // Scroll to footer smoothly
+          offsetPosition = element.offsetTop - navbarHeight;
+          break;
+        default:
+          offsetPosition = elementPosition - navbarHeight;
+      }
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+
+      console.log(`🦶 Footer: Scrolling to ${targetSectionId} (${sectionId})`);
+    } else {
+      console.warn(`🦶 Footer: Section "${targetSectionId}" not found`);
+    }
+  }, []);
+
   // Debug device type changes
   useEffect(() => {
     console.log(`🦶 Footer - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
@@ -113,7 +160,7 @@ const Footer = () => {
       switch (deviceType) {
         case 'xs': return '1fr';
         case 'sm': return '1fr';
-        case 'md': return '1fr'; // Changed to single column since only one section now
+        case 'md': return '1fr';
         case 'lg': return '1fr';
         case 'xl': return '1fr';
         case 'xxl': return '1fr';
@@ -393,7 +440,7 @@ const Footer = () => {
 
     ctaGrid: {
       display: 'grid',
-      gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', // Keep CTA as 2 columns
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
       gap: responsive.ctaGap(),
     },
 
@@ -608,6 +655,7 @@ const Footer = () => {
       color: '#F07167',
       textDecoration: 'none',
       fontFamily: 'BriceRegular, Arial, sans-serif',
+      cursor: 'pointer', // ADDED: Make it clear it's clickable
     },
 
     footerMenu: {
@@ -625,11 +673,13 @@ const Footer = () => {
       color: '#FDFCDC',
       textDecoration: 'none',
       fontFamily: 'BriceRegular, Arial, sans-serif',
+      cursor: 'pointer', // ADDED: Make it clear it's clickable
+      transition: 'color 0.3s ease', // ADDED: Smooth color transition
     },
   };
 
   return (
-    <animated.footer style={{ ...footerStyles.footerSection, ...footerAnimation }}>
+    <animated.footer id="footer" style={{ ...footerStyles.footerSection, ...footerAnimation }}>
       <div style={footerStyles.container}>
         {/* CTA Section */}
         <div style={footerStyles.footerCta}>
@@ -697,13 +747,13 @@ const Footer = () => {
               ...footerStyles.followIcon,
               background: '#FFFFFF',
             }}>
-              <img src={TwitterXLogo} height="120" width="120" alt="Evershapes Logo"/>
+              <img src={TwitterXLogo} height="120" width="120" alt="Twitter/X Logo" />
             </a>
             <a href="https://discord.gg/tUgr9493PJ" style={{
               ...footerStyles.followIcon,
               background: '#FFFFFF',
             }}>
-              <img src={DiscordLogo} height="120" width="120" alt="Evershapes Logo"/>
+              <img src={DiscordLogo} height="120" width="120" alt="Discord Logo" />
             </a>
           </div>
         </div>
@@ -716,15 +766,26 @@ const Footer = () => {
             <div>
               <p style={footerStyles.copyrightText}>
                 Copyright © {currentYear}, All Right Reserved{' '}
-                <a href="#" style={footerStyles.copyrightLink}>Evershapes Studio</a>
+                <a 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('accueil');
+                  }}
+                  style={footerStyles.copyrightLink}
+                >
+                  Evershapes Studio
+                </a>
               </p>
             </div>
             <div>
               <ul style={footerStyles.footerMenu}>
-                {['Accueil', 'Team', 'Projects', 'Contact'].map((item, index) => (
+                {['Home', 'Team', 'Gallery', 'Contact'].map((item, index) => (
                   <li key={index}>
                     <a
-                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(item.toLowerCase());
+                      }}
                       style={footerStyles.footerMenuLink}
                       onMouseEnter={(e) => e.target.style.color = '#F07167'}
                       onMouseLeave={(e) => e.target.style.color = '#FDFCDC'}

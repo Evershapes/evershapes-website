@@ -22,7 +22,7 @@ const MainSection = () => {
 
     return (
         <section
-            id="accueil"
+            id="home"
             className="relative h-[50vh] w-full flex flex-col items-center justify-center m-0"
             style={{
                 backgroundColor: '#FDFCDC',

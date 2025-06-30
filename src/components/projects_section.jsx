@@ -26,7 +26,7 @@ const ProjectsSection = () => {
 
     return (
         <section 
-            id="projects" 
+            id="gallery" 
             className="w-full flex flex-col items-center justify-center m-0 p-8" 
             style={{ 
                 backgroundColor: '#FDFCDC',
@@ -36,8 +36,8 @@ const ProjectsSection = () => {
             }}
         >
             <div className="projects-content text-center w-full">
-                <h1 className="text-5xl BriceBoldSemiExpanded mb-12" style={{ color: '#F07167' }}>
-                    Our Projects
+                <h1 className="text-5xl BriceBoldSemiExpanded mb-12" style={{ color: '#F07167', marginBottom: '12vh' }}>
+                    Gallery
                 </h1>
 
                 {/* Cards container */}

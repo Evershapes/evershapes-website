@@ -299,12 +299,12 @@ export default function Navbar() {
                             <NavigationMenuItem style={{ margin: '5px' }}>
                                 <NavigationMenuLink
                                     className='BriceBold text-2xl ease-in-out transform hover:scale-105 hover:bg-transparent transition duration-300 px-4 py-2 rounded-lg cursor-pointer'
-                                    onClick={() => scrollToSection('accueil')}
+                                    onClick={() => scrollToSection('home')}
                                     style={{
                                         color: '#F07167',
                                     }}
                                 >
-                                    Accueil
+                                    Home
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem style={{ margin: '5px' }}>
@@ -321,12 +321,12 @@ export default function Navbar() {
                             <NavigationMenuItem style={{ margin: '5px' }}>
                                 <NavigationMenuLink
                                     className='BriceBold text-2xl ease-in-out transform hover:scale-105 hover:bg-transparent transition duration-300 px-4 py-2 rounded-lg cursor-pointer'
-                                    onClick={() => scrollToSection('projects')}
+                                    onClick={() => scrollToSection('gallery')}
                                     style={{
                                         color: '#F07167',
                                     }}
                                 >
-                                    Projects
+                                    Gallery
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                         </NavigationMenuList>

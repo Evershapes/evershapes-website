@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
-import GLTFViewer from './GLTFViewer_rotate';
-import GLTFSection from './GLTFViewer_section';
+import GLTFViewer from './GLTFViewer_simple';
 
 const Cliff_Back = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -467,11 +466,9 @@ const Cliff_Back = () => {
       {/* Main content */}
       <div style={styles.contentContainer}>
         <div style={styles.chessboardContainer}>
-          <GLTFSection
-            sectionId="parallax-section"
+          <GLTFViewer
             config={getGLTFConfig()}
             key={`${deviceType}`}
-            overlayText="Begin your Adventure"
           />
         </div>
       </div>

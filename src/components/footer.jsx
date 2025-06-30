@@ -11,10 +11,10 @@ import TwitterXLogo from '/images/icons8-twitterx.svg'
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [deviceType, setDeviceType] = useState('lg');
-  
-  const currentYear = new Date().getFullYear();
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
 
+  const currentYear = new Date().getFullYear();
+  
   // Standard CSS media query breakpoints
   const breakpoints = {
     xs: 0,     // Extra small devices
@@ -26,19 +26,24 @@ const Footer = () => {
   };
 
   // Device detection based on standard breakpoints
-  const getDeviceType = () => {
-    const width = window.innerWidth;
+  const getDeviceType = useCallback(() => {
+    const width = viewport.width;
     if (width >= breakpoints.xxl) return 'xxl';
     if (width >= breakpoints.xl) return 'xl';
     if (width >= breakpoints.lg) return 'lg';
     if (width >= breakpoints.md) return 'md';
     if (width >= breakpoints.sm) return 'sm';
     return 'xs';
-  };
+  }, [viewport.width]);
+
+  const deviceType = getDeviceType();
 
   useEffect(() => {
-    const updateDeviceType = () => {
-      setDeviceType(getDeviceType());
+    const updateViewport = () => {
+      setViewport({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     };
 
     const handleScroll = () => {
@@ -49,17 +54,65 @@ const Footer = () => {
       }
     };
 
-    updateDeviceType();
+    updateViewport();
     handleScroll();
-    
-    window.addEventListener('resize', updateDeviceType);
+
+    window.addEventListener('resize', updateViewport);
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
-      window.removeEventListener('resize', updateDeviceType);
+      window.removeEventListener('resize', updateViewport);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // FIXED: Proper scrollToSection function with better section mapping
+  const scrollToSection = useCallback((sectionId) => {
+    // Map menu items to actual section IDs
+    const sectionMap = {
+      'accueil': 'accueil',
+      'team': 'team', 
+      'projects': 'projects',
+      'contact': 'footer' // Since there's no contact section, scroll to footer
+    };
+
+    const targetSectionId = sectionMap[sectionId] || sectionId;
+    const element = document.getElementById(targetSectionId);
+    
+    if (element) {
+      const navbarHeight = 60;
+      const elementPosition = element.offsetTop;
+      let offsetPosition;
+
+      switch (targetSectionId) {
+        case 'accueil':
+          offsetPosition = Math.max(0, elementPosition - navbarHeight - 10);
+          break;
+        case 'team':
+          offsetPosition = elementPosition + 50 - navbarHeight;
+          break;
+        case 'projects':
+          offsetPosition = elementPosition - navbarHeight;
+          break;
+        case 'footer':
+          // Scroll to footer smoothly
+          offsetPosition = element.offsetTop - navbarHeight;
+          break;
+        default:
+          offsetPosition = elementPosition - navbarHeight;
+      }
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+
+      console.log(`🦶 Footer: Scrolling to ${targetSectionId} (${sectionId})`);
+    } else {
+      console.warn(`🦶 Footer: Section "${targetSectionId}" not found`);
+    }
+  }, []);
+
   // Debug device type changes
   useEffect(() => {
     console.log(`🦶 Footer - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
@@ -107,7 +160,7 @@ const Footer = () => {
       switch (deviceType) {
         case 'xs': return '1fr';
         case 'sm': return '1fr';
-        case 'md': return '1fr'; // Changed to single column since only one section now
+        case 'md': return '1fr';
         case 'lg': return '1fr';
         case 'xl': return '1fr';
         case 'xxl': return '1fr';
@@ -201,152 +254,205 @@ const Footer = () => {
       }
     },
 
-  // Responsive values using vh units
-  const getResponsiveValue = (type, valueType) => {
-    const values = {
-      containerPadding: {
-        xs: '0 2vh',
-        sm: '0 2.5vh',
-        md: '0 3vh',
-        lg: '0 3.5vh',
-        xl: '0 4vh',
-        xxl: '0 4.5vh'
-      },
-      sectionPadding: {
-        xs: '3vh 0',
-        sm: '4vh 0',
-        md: '5vh 0',
-        lg: '6vh 0',
-        xl: '6.5vh 0',
-        xxl: '7vh 0'
-      },
-      gridGap: {
-        xs: '3vh',
-        sm: '4vh',
-        md: '5vh',
-        lg: '6vh',
-        xl: '6.5vh',
-        xxl: '7vh'
-      },
-      headingSize: {
-        xs: '2.5vh',
-        sm: '3vh',
-        md: '3.5vh',
-        lg: '4vh',
-        xl: '4.2vh',
-        xxl: '4.5vh'
-      },
-      subheadingSize: {
-        xs: '2vh',
-        sm: '2.2vh',
-        md: '2.5vh',
-        lg: '2.8vh',
-        xl: '3vh',
-        xxl: '3.2vh'
-      },
-      bodySize: {
-        xs: '1.6vh',
-        sm: '1.8vh',
-        md: '2vh',
-        lg: '2.2vh',
-        xl: '2.4vh',
-        xxl: '2.6vh'
-      },
-      smallSize: {
-        xs: '1.4vh',
-        sm: '1.5vh',
-        md: '1.7vh',
-        lg: '1.9vh',
-        xl: '2vh',
-        xxl: '2.2vh'
-      },
-      ctaHeight: {
-        xs: '8vh',
-        sm: '9vh',
-        md: '10vh',
-        lg: '11vh',
-        xl: '12vh',
-        xxl: '13vh'
-      },
-      logoHeight: {
-        xs: '10vh',
-        sm: '12vh',
-        md: '14vh',
-        lg: '16vh',
-        xl: '17vh',
-        xxl: '18vh'
-      },
-      borderRadius: {
-        xs: '1vh',
-        sm: '1.2vh',
-        md: '1.4vh',
-        lg: '1.6vh',
-        xl: '1.8vh',
-        xxl: '2vh'
-      },
-      logoIconSize: {
-        xs: '8vh',
-        sm: '9vh',
-        md: '10vh',
-        lg: '11vh',
-        xl: '12vh',
-        xxl: '13vh'
-      },
-      descriptionMaxWidth: {
-        xs: '90vw',
-        sm: '80vw',
-        md: '60vw',
-        lg: '50vh',
-        xl: '55vh',
-        xxl: '60vh'
+    // Logo and branding
+    logoHeight: () => {
+      switch (deviceType) {
+        case 'xs': return '10vh';
+        case 'sm': return '11vh';
+        case 'md': return '12vh';
+        case 'lg': return '12vh';
+        case 'xl': return '12vh';
+        case 'xxl': return '14vh';
+        default: return '12vh';
       }
-    };
+    },
 
-    return values[valueType]?.[type] || values[valueType]?.['lg'] || '1vh';
+    logoIconSize: () => {
+      switch (deviceType) {
+        case 'xs': return '6vh';
+        case 'sm': return '7vh';
+        case 'md': return '8vh';
+        case 'lg': return '8vh';
+        case 'xl': return '8vh';
+        case 'xxl': return '9vh';
+        default: return '8vh';
+      }
+    },
+
+    logoTextSize: () => {
+      switch (deviceType) {
+        case 'xs': return '3vh';
+        case 'sm': return '3.5vh';
+        case 'md': return '4vh';
+        case 'lg': return '4vh';
+        case 'xl': return '4vh';
+        case 'xxl': return '4.5vh';
+        default: return '4vh';
+      }
+    },
+
+    logoSubtextSize: () => {
+      switch (deviceType) {
+        case 'xs': return '1.4vh';
+        case 'sm': return '1.6vh';
+        case 'md': return '1.8vh';
+        case 'lg': return '1.8vh';
+        case 'xl': return '1.8vh';
+        case 'xxl': return '2vh';
+        default: return '1.8vh';
+      }
+    },
+
+    // Content spacing
+    contentPadding: () => {
+      switch (deviceType) {
+        case 'xs': return '4vh 0';
+        case 'sm': return '5vh 0';
+        case 'md': return '6vh 0';
+        case 'lg': return '6vh 0';
+        case 'xl': return '6vh 0';
+        case 'xxl': return '7vh 0';
+        default: return '6vh 0';
+      }
+    },
+
+    contentGap: () => {
+      switch (deviceType) {
+        case 'xs': return '4vh';
+        case 'sm': return '5vh';
+        case 'md': return '6vh';
+        case 'lg': return '6vh';
+        case 'xl': return '6vh';
+        case 'xxl': return '7vh';
+        default: return '6vh';
+      }
+    },
+
+    // Widget spacing
+    widgetMargin: () => {
+      switch (deviceType) {
+        case 'xs': return '4vh';
+        case 'sm': return '5vh';
+        case 'md': return '0';
+        case 'lg': return '0';
+        case 'xl': return '0';
+        case 'xxl': return '0';
+        default: return '0';
+      }
+    },
+
+    // Social section
+    socialPadding: () => {
+      switch (deviceType) {
+        case 'xs': return '3vh 0';
+        case 'sm': return '3.5vh 0';
+        case 'md': return '4vh 0';
+        case 'lg': return '4vh 0';
+        case 'xl': return '4vh 0';
+        case 'xxl': return '4.5vh 0';
+        default: return '4vh 0';
+      }
+    },
+
+    socialGap: () => {
+      switch (deviceType) {
+        case 'xs': return '2vh';
+        case 'sm': return '2.2vh';
+        case 'md': return '2.5vh';
+        case 'lg': return '2.5vh';
+        case 'xl': return '2.5vh';
+        case 'xxl': return '2.8vh';
+        default: return '2.5vh';
+      }
+    },
+
+    socialIconSize: () => {
+      switch (deviceType) {
+        case 'xs': return '4.5vh';
+        case 'sm': return '4.8vh';
+        case 'md': return '5vh';
+        case 'lg': return '5vh';
+        case 'xl': return '5vh';
+        case 'xxl': return '5.5vh';
+        default: return '5vh';
+      }
+    },
+
+    socialTextSize: () => {
+      switch (deviceType) {
+        case 'xs': return '2.2vh';
+        case 'sm': return '2.4vh';
+        case 'md': return '2.5vh';
+        case 'lg': return '2.5vh';
+        case 'xl': return '2.5vh';
+        case 'xxl': return '2.8vh';
+        default: return '2.5vh';
+      }
+    },
+
+    // Copyright
+    copyrightPadding: () => {
+      switch (deviceType) {
+        case 'xs': return '2.5vh 0';
+        case 'sm': return '2.8vh 0';
+        case 'md': return '3vh 0';
+        case 'lg': return '3vh 0';
+        case 'xl': return '3vh 0';
+        case 'xxl': return '3.5vh 0';
+        default: return '3vh 0';
+      }
+    },
+
+    copyrightGap: () => {
+      switch (deviceType) {
+        case 'xs': return '2vh';
+        case 'sm': return '2vh';
+        case 'md': return '2vh';
+        case 'lg': return '2vh';
+        case 'xl': return '2vh';
+        case 'xxl': return '2vh';
+        default: return '2vh';
+      }
+    }
   };
 
-  const isMobile = deviceType === 'xs' || deviceType === 'sm';
-  const isTablet = deviceType === 'md';
+  // Check if mobile layout should be used
+  const isMobile = deviceType === 'xs' || deviceType === 'sm' || deviceType === 'md';
 
-  // Unified styles object with viewport-responsive values
-  const styles = {
-    footer: {
+  const footerStyles = {
+    footerSection: {
       background: '#00AFB9',
       position: 'relative',
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? 'translateY(0)' : 'translateY(5vh)',
-      transition: 'opacity 0.6s ease, transform 0.6s ease',
+      overflow: 'hidden',
     },
-    
+
     container: {
-      maxWidth: '150vw',
+      maxWidth: '120vh',
       margin: '0 auto',
-      padding: getResponsiveValue(deviceType, 'containerPadding'),
+      padding: `0 ${responsive.containerPadding()}`
     },
-    
-    ctaSection: {
-      borderBottom: '0.2vh solid #F07167',
-      padding: getResponsiveValue(deviceType, 'sectionPadding'),
+
+    footerCta: {
+      borderBottom: '1px solid #F07167',
+      paddingTop: responsive.ctaPadding(),
+      paddingBottom: responsive.ctaPadding(),
     },
-    
+
     ctaGrid: {
       display: 'grid',
       gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-      gap: getResponsiveValue(deviceType, 'gridGap'),
+      gap: responsive.ctaGap(),
     },
-    
-    ctaItem: {
+
+    singleCta: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      marginBottom: isMobile ? getResponsiveValue(deviceType, 'gridGap') : '0',
-      padding: '2vh',
-      minHeight: getResponsiveValue(deviceType, 'ctaHeight'),
+      marginBottom: isMobile ? responsive.ctaGap() : '0',
+      padding: responsive.ctaPadding(),
+      minHeight: responsive.ctaMinHeight(),
       backgroundColor: 'rgba(255,255,255,0.05)',
-      borderRadius: getResponsiveValue(deviceType, 'borderRadius'),
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? 'translateX(0)' : 'translateX(-5vh)',
-      transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
+      borderRadius: '8px',
     },
 
     ctaIcon: {
@@ -355,9 +461,9 @@ const Footer = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '6vh',
-      height: '6vh',
-      marginRight: '2vh',
+      width: responsive.ctaIconSize(),
+      height: responsive.ctaIconSize(),
+      marginRight: responsive.ctaIconMargin(),
     },
 
     ctaText: {
@@ -367,69 +473,75 @@ const Footer = () => {
       flex: 1,
       minWidth: 0,
     },
+
     ctaTextH4: {
       color: '#FDFCDC',
-      fontSize: getResponsiveValue(deviceType, 'subheadingSize'),
+      fontSize: responsive.ctaTitleSize(),
       fontWeight: '600',
+      marginBottom: '0.5vh',
       margin: '0 0 0.5vh 0',
       fontFamily: 'BriceSemiBoldSemiExpanded, Arial, sans-serif',
       lineHeight: '1.2',
     },
+
     ctaTextSpan: {
       color: '#FDFCDC',
-      fontSize: getResponsiveValue(deviceType, 'bodySize'),
+      fontSize: responsive.ctaTextSize(),
       fontFamily: 'BriceRegular, Arial, sans-serif',
       lineHeight: '1.3',
       margin: 0,
     },
-    
-    mainContent: {
+
+    footerContent: {
       position: 'relative',
       zIndex: 2,
-      padding: getResponsiveValue(deviceType, 'sectionPadding'),
+      padding: responsive.contentPadding(),
     },
-    
+
     contentGrid: {
       display: 'grid',
-      gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-      gap: getResponsiveValue(deviceType, 'gridGap'),
+      gridTemplateColumns: responsive.gridColumns(),
+      gap: responsive.contentGap(),
     },
-    
+
+    footerWidget: {
+      marginBottom: responsive.widgetMargin(),
+    },
+
     companySection: {
       textAlign: 'center',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? 'translateY(0)' : 'translateY(6vh)',
-      transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
+      alignItems: 'center'
     },
-    
-    logo: {
+
+    footerLogo: {
       marginBottom: '4vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      minHeight: getResponsiveValue(deviceType, 'logoHeight'),
+      minHeight: responsive.logoHeight(),
       padding: '2vh',
       width: '100%',
     },
-    
+
     logoIcon: {
-      marginRight: '2vh',
-      borderRadius: '2vh',
+      marginRight: responsive.ctaIconMargin(),
+      padding: '1vh',
+      borderRadius: '12px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      width: getResponsiveValue(deviceType, 'logoIconSize'),
-      height: getResponsiveValue(deviceType, 'logoIconSize'),
+      width: responsive.ctaIconSize(),
+      height: responsive.ctaIconSize(),
+      transform: 'translateY(-1.5vh)',
     },
+
     logoIconImg: {
       width: responsive.logoIconSize(),
       height: responsive.logoIconSize()
     },
-
 
     logoTextContainer: {
       display: 'flex',
@@ -437,117 +549,77 @@ const Footer = () => {
       justifyContent: 'center',
       alignItems: 'center',
       minWidth: 0,
-      marginLeft: '1.5vh',
+      marginLeft: isMobile ? '0' : '1.5vh',
     },
-    
+
     logoText: {
       background: 'linear-gradient(45deg, #F07167, #FED9B7)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
       color: '#F07167',
-      fontSize: getResponsiveValue(deviceType, 'headingSize'),
+      fontSize: responsive.logoTextSize(),
       fontWeight: 'bold',
-      fontFamily: 'BriceSemiBoldExpanded, Arial, sans-serif',
-      margin: '0 0 1vh 0',
+      fontFamily: 'BriceSemiBoldExpanded',
+      margin: '0 0 0.8vh 0',
       lineHeight: '1.1',
       textAlign: 'center',
+      overflow: 'hidden'
     },
-    
+
     logoSubtext: {
       color: '#FDFCDC',
-      fontSize: getResponsiveValue(deviceType, 'smallSize'),
+      fontSize: responsive.logoSubtextSize(),
       margin: 0,
       fontFamily: 'BriceRegular, Arial, sans-serif',
       lineHeight: '1.2',
       textAlign: 'center',
-      letterSpacing: '0.1vh',
+      letterSpacing: '0.5px'
     },
-    
-    description: {
-      fontSize: getResponsiveValue(deviceType, 'bodySize'),
+
+    footerText: {
+      marginBottom: '2vh',
+      fontSize: responsive.ctaTextSize(),
       color: '#FDFCDC',
-      lineHeight: '1.6',
+      lineHeight: '3.5vh',
       fontFamily: 'BriceRegular, Arial, sans-serif',
       textAlign: 'center',
-      maxWidth: getResponsiveValue(deviceType, 'descriptionMaxWidth'),
-      marginBottom: '2vh',
     },
-    
-    linksSection: {
-      marginBottom: isMobile ? '5vh' : '0',
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? 'translateY(0)' : 'translateY(6vh)',
-      transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
-    },
-    
-    sectionHeading: {
-      color: '#FDFCDC',
-      fontSize: getResponsiveValue(deviceType, 'subheadingSize'),
-      fontWeight: '600',
-      marginBottom: '5vh',
-      position: 'relative',
-      paddingBottom: '2vh',
-      borderBottom: '0.3vh solid #F07167',
-      display: 'inline-block',
-      fontFamily: 'BriceSemiBoldSemiExpanded, Arial, sans-serif',
-    },
-    
-    linksList: {
-      listStyle: 'none',
-      padding: 0,
-      margin: 0,
-      display: 'grid',
-      gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-      gap: '2vh',
-    },
-    
-    linkItem: {
-      marginBottom: '2vh',
-    },
-    
-    link: {
-      color: '#FDFCDC',
-      textTransform: 'capitalize',
-      textDecoration: 'none',
-      fontFamily: 'BriceRegular, Arial, sans-serif',
-      fontSize: getResponsiveValue(deviceType, 'bodySize'),
-      transition: 'color 0.3s ease',
-    },
-    
+
     followSection: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: '3vh 0',
-      borderTop: '0.1vh solid rgba(255,255,255,0.1)',
-      borderBottom: '0.1vh solid rgba(255,255,255,0.1)',
-      margin: '3vh 0',
+      padding: responsive.socialPadding(),
+      borderTop: '1px solid rgba(255,255,255,0.1)',
+      borderBottom: '1px solid rgba(255,255,255,0.1)',
+      margin: `${responsive.ctaPadding()} 0`
     },
-    
+
     followContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       flexWrap: 'wrap',
-      gap: '3vh',
+      gap: responsive.socialGap(),
       padding: '2vh',
       backgroundColor: 'rgba(255,255,255,0.05)',
-      borderRadius: '2vh',
-      minHeight: '8vh',
+      borderRadius: '12px',
+      minHeight: '7vh'
     },
-    
+
     followText: {
       color: '#FDFCDC',
-      fontSize: getResponsiveValue(deviceType, 'subheadingSize'),
+      fontSize: responsive.socialTextSize(),
       fontWeight: '700',
       fontFamily: 'BriceSemiBoldSemiExpanded, Arial, sans-serif',
-      marginRight: '1.5vh',
+      marginRight: '1.5vh'
     },
-    
-    socialIcon: {
-      height: '6vh',
-      width: '6vh',
+
+    followIcon: {
+      height: responsive.socialIconSize(),
+      width: responsive.socialIconSize(),
+      textAlign: 'center',
       borderRadius: '50%',
       color: '#FDFCDC',
       display: 'flex',
@@ -557,33 +629,35 @@ const Footer = () => {
       padding: '0.4vh',
       transition: 'transform 0.3s ease',
     },
-    
+
     copyrightArea: {
       background: '#0081A7',
-      padding: '4vh 0',
+      padding: responsive.copyrightPadding(),
     },
-    
+
     copyrightContainer: {
       display: 'flex',
       flexDirection: isMobile ? 'column' : 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      gap: '2vh',
+      gap: responsive.copyrightGap(),
       textAlign: isMobile ? 'center' : 'left',
     },
-    
+
     copyrightText: {
       margin: 0,
-      fontSize: getResponsiveValue(deviceType, 'smallSize'),
+      fontSize: responsive.ctaTextSize(),
       color: '#FDFCDC',
       fontFamily: 'BriceRegular, Arial, sans-serif',
     },
+
     copyrightLink: {
       color: '#F07167',
       textDecoration: 'none',
       fontFamily: 'BriceRegular, Arial, sans-serif',
+      cursor: 'pointer', // ADDED: Make it clear it's clickable
     },
-    
+
     footerMenu: {
       listStyle: 'none',
       padding: 0,
@@ -591,87 +665,77 @@ const Footer = () => {
       display: 'flex',
       justifyContent: isMobile ? 'center' : 'flex-end',
       flexWrap: 'wrap',
-      gap: '3vh',
+      gap: '2.5vh',
     },
-    
-    menuLink: {
-      fontSize: getResponsiveValue(deviceType, 'smallSize'),
+
+    footerMenuLink: {
+      fontSize: responsive.ctaTextSize(),
       color: '#FDFCDC',
       textDecoration: 'none',
       fontFamily: 'BriceRegular, Arial, sans-serif',
-      transition: 'color 0.3s ease',
+      cursor: 'pointer', // ADDED: Make it clear it's clickable
+      transition: 'color 0.3s ease', // ADDED: Smooth color transition
     },
   };
 
   return (
-    <footer style={styles.footer}>
-      <div style={styles.container}>
+    <animated.footer id="footer" style={{ ...footerStyles.footerSection, ...footerAnimation }}>
+      <div style={footerStyles.container}>
         {/* CTA Section */}
-        <div style={styles.ctaSection}>
-          <div style={styles.ctaGrid}>
-            <div style={styles.ctaItem}>
-              <div style={styles.ctaIcon}>
-                <MapPin size={getIconSize('medium')} />
-              </div>
-              <div style={styles.ctaText}>
-                <h4 style={styles.ctaHeading}>Find us</h4>
-                <span style={styles.ctaSubtext}>Bordeaux, France 🍷</span>
-              </div>
-            </div>
-            <div style={styles.ctaItem}>
-              <div style={styles.ctaIcon}>
-                <Mail size={getIconSize('medium')} />
-              </div>
-              <div style={styles.ctaText}>
-                <h4 style={styles.ctaHeading}>Mail us</h4>
-                <span style={styles.ctaSubtext}>evershapes@protonmail.com</span>
-              </div>
-            </div>
+        <div style={footerStyles.footerCta}>
+          <div style={footerStyles.ctaGrid}>
+            {ctaAnimation.map((style, index) => (
+              <animated.div key={index} style={{ ...style, ...footerStyles.singleCta }}>
+                {index === 0 ? (
+                  <>
+                    <div style={footerStyles.ctaIcon}>
+                      <MapPin size={24} />
+                    </div>
+                    <div style={footerStyles.ctaText}>
+                      <h4 style={footerStyles.ctaTextH4}>Find us</h4>
+                      <span style={footerStyles.ctaTextSpan}>Bordeaux, France 🍷</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div style={footerStyles.ctaIcon}>
+                      <Mail size={24} />
+                    </div>
+                    <div style={footerStyles.ctaText}>
+                      <h4 style={footerStyles.ctaTextH4}>Mail us</h4>
+                      <span style={footerStyles.ctaTextSpan}>evershapes@protonmail.com</span>
+                    </div>
+                  </>
+                )}
+              </animated.div>
+            ))}
           </div>
         </div>
 
-        {/* Main Content */}
-        <div style={styles.mainContent}>
-          <div style={styles.contentGrid}>
-            <div style={styles.companySection}>
-              {/* Company Info */}
-              <div style={styles.logo}>
-                <div style={styles.logoIcon}>
-                  <EvershapesLogo />
+        {/* Footer Content - Now only company info */}
+        <div style={footerStyles.footerContent}>
+          <div style={footerStyles.contentGrid}>
+            {contentAnimation.map((style, index) => (
+              <animated.div key={index} style={{ ...style, ...footerStyles.footerWidget }}>
+                <div style={footerStyles.companySection}>
+                  {/* Company Info */}
+                  <img
+                    src={EvershapesLogo}
+                    alt="Evershapes Logo"
+                    style={footerStyles.logoIconImg}
+                  />
+                  <div style={footerStyles.footerLogo}>
+                    <div style={footerStyles.logoTextContainer}>
+                      <h3 style={footerStyles.logoText}>Evershapes</h3>
+                      <p style={footerStyles.logoSubtext}>Studio</p>
+                    </div>
+                  </div>
+                  <div style={footerStyles.footerText}>
+                    <p>Three friends who've been building in Minecraft for years, now creating adventures we actually want to play. We take time with the details because we care about making something that feels right - where everything just fits together naturally.</p>
+                  </div>
                 </div>
-                <div style={styles.logoTextContainer}>
-                  <h3 style={styles.logoText}>Evershapes</h3>
-                  <p style={styles.logoSubtext}>Studio</p>
-                </div>
-              </div>
-              <div style={styles.description}>
-                <p>Three friends who've been building in Minecraft for years, now creating adventures we actually want to play. We take time with the details because we care about making something that feels right - where everything just fits together naturally.</p>
-              </div>
-            </div>
-            
-            <div style={styles.linksSection}>
-              {/* Useful Links */}
-              <div>
-                <h3 style={styles.sectionHeading}>Useful Links</h3>
-                <ul style={styles.linksList}>
-                  {['Accueil', 'Team', 'Projects', 'Our Twitter', 'Our Discord'].map((link, linkIndex) => (
-                    <li key={linkIndex} style={styles.linkItem}>
-                      <a 
-                        href={
-                          link === 'Our Twitter' ? 'https://x.com/EvershapesMC' :
-                          link === 'Our Discord' ? 'https://discord.gg/tUgr9493PJ' : '#'
-                        }
-                        style={styles.link}
-                        onMouseEnter={(e) => e.target.style.color = '#F07167'}
-                        onMouseLeave={(e) => e.target.style.color = '#FDFCDC'}
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              </animated.div>
+            ))}
           </div>
         </div>
 
@@ -683,35 +747,46 @@ const Footer = () => {
               ...footerStyles.followIcon,
               background: '#FFFFFF',
             }}>
-              <img src={TwitterXLogo} height="120" width="120" alt="Evershapes Logo"/>
+              <img src={TwitterXLogo} height="120" width="120" alt="Twitter/X Logo" />
             </a>
             <a href="https://discord.gg/tUgr9493PJ" style={{
               ...footerStyles.followIcon,
               background: '#FFFFFF',
             }}>
-              <img src={DiscordLogo} height="120" width="120" alt="Evershapes Logo"/>
+              <img src={DiscordLogo} height="120" width="120" alt="Discord Logo" />
             </a>
           </div>
         </div>
       </div>
 
       {/* Copyright Area */}
-      <div style={styles.copyrightArea}>
-        <div style={styles.container}>
-          <div style={styles.copyrightContainer}>
+      <div style={footerStyles.copyrightArea}>
+        <div style={footerStyles.container}>
+          <div style={footerStyles.copyrightContainer}>
             <div>
               <p style={footerStyles.copyrightText}>
                 Copyright © {currentYear}, All Right Reserved{' '}
-                <a href="#" style={footerStyles.copyrightLink}>Evershapes Studio</a>
+                <a 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('accueil');
+                  }}
+                  style={footerStyles.copyrightLink}
+                >
+                  Evershapes Studio
+                </a>
               </p>
             </div>
             <div>
               <ul style={footerStyles.footerMenu}>
-                {['Accueil', 'Team', 'Projects', 'Contact'].map((item, index) => (
+                {['Home', 'Team', 'Gallery', 'Contact'].map((item, index) => (
                   <li key={index}>
-                    <a 
-                      href="#" 
-                      style={styles.menuLink}
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(item.toLowerCase());
+                      }}
+                      style={footerStyles.footerMenuLink}
                       onMouseEnter={(e) => e.target.style.color = '#F07167'}
                       onMouseLeave={(e) => e.target.style.color = '#FDFCDC'}
                     >

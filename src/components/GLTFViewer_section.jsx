@@ -277,8 +277,10 @@ const GLTFSection = ({
       MozBorderRadius: '50%',
     },
     viewerContainer: {
-      width: '100vw',
-      height: '100vh',
+      // SAFE SCROLL ZONES: 10vh top/bottom, 10vw left/right margins
+      margin: '10vh 10vw',
+      width: 'calc(100vw - 20vw)',
+      height: 'calc(100vh - 20vh)',
       position: 'relative',
       overflow: 'hidden',
       zIndex: 2,

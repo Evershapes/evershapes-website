@@ -34,6 +34,7 @@ class App extends React.Component {
 
 
                 }}
+                backgroundColor='#FDFCDC'
                 ellipseGradient='repeating-linear-gradient(174deg, #0322F912 92%, #073AFF00 100%),
                 repeating-linear-gradient(49deg, #F9E50373 99%, #073AFF00 100%),
                 repeating-radial-gradient(75% 75% at 238% 218%, #F6222212 37%, #073AFF14 39%),
@@ -54,6 +55,7 @@ class App extends React.Component {
                     modelRotation: 90,
                     modelScale: 5
                 }}
+                backgroundColor='#FDFCDC'
                 ellipseGradient='repeating-radial-gradient(75% 75% at 238% 218%, #00FFFF12 30%, #073AFF14 39%),
                 radial-gradient(99% 99% at 109% 2%, #0F00A9FF 0%, #073AFF00 100%),
                 radial-gradient(99% 99% at 21% 78%, #7D00FFFF 0%, #073AFF00 100%),

@@ -1,0 +1,139 @@
+{
+  "storyBoards": [
+    {
+      "id": 1,
+      "category": "title-description",
+      "position": {
+        "xs": { "top": "40vh", "side": "left" },
+        "sm": { "top": "35vh", "side": "left" },
+        "md": { "top": "32vh", "side": "left" },
+        "lg": { "top": "30vh", "side": "left" },
+        "xl": { "top": "28vh", "side": "left" },
+        "xxl": { "top": "26vh", "side": "left" }
+      },
+      "title": "Our Beginning - 2019",
+      "description": "Starting as a very small team of 2 people, we had a vision to create something unique.",
+      "image": null
+    },
+    {
+      "id": 3,
+      "category": "title-image-description",
+      "position": {
+        "xs": { "top": "70vh", "side": "right" },
+        "sm": { "top": "62vh", "side": "right" },
+        "md": { "top": "58vh", "side": "right" },
+        "lg": { "top": "55vh", "side": "right" },
+        "xl": { "top": "52vh", "side": "right" },
+        "xxl": { "top": "49vh", "side": "right" }
+      },
+      "title": null,
+      "description": null,
+      "image": "/images/ESxinpixel.png"
+    },
+    {
+      "id": 2,
+      "category": "title-description",
+      "position": {
+        "xs": { "top": "100vh", "side": "left" },
+        "sm": { "top": "89vh", "side": "left" },
+        "md": { "top": "84vh", "side": "left" },
+        "lg": { "top": "80vh", "side": "left" },
+        "xl": { "top": "76vh", "side": "left" },
+        "xxl": { "top": "72vh", "side": "left" }
+      },
+      "title": "InPixel first partners - 2021",
+      "description": "Our first partners in this adventure where InPixel. We published our first content on the marketplace thanks to them.",
+      "image": null
+    },
+    {
+      "id": 5,
+      "category": "title-image-description",
+      "position": {
+        "xs": { "top": "145vh", "side": "right" },
+        "sm": { "top": "130vh", "side": "right" },
+        "md": { "top": "122vh", "side": "right" },
+        "lg": { "top": "116vh", "side": "right" },
+        "xl": { "top": "110vh", "side": "right" },
+        "xxl": { "top": "105vh", "side": "right" }
+      },
+      "title": null,
+      "description": null,
+      "image": "/images/ESXrarelootl.png"
+    },
+    {
+      "id": 4,
+      "category": "title-description",
+      "position": {
+        "xs": { "top": "175vh", "side": "left" },
+        "sm": { "top": "157vh", "side": "left" },
+        "md": { "top": "148vh", "side": "left" },
+        "lg": { "top": "140vh", "side": "left" },
+        "xl": { "top": "133vh", "side": "left" },
+        "xxl": { "top": "127vh", "side": "left" }
+      },
+      "title": "Rareloot partnership - 2022",
+      "description": "Our Second Partnership after Inpixel, we publised maps like RAFT and Hard Space Survival thanks to them.",
+      "image": null
+    },
+    {
+      "id": 6,
+      "category": "title-description",
+      "position": {
+        "xs": { "top": "210vh", "side": "right" },
+        "sm": { "top": "189vh", "side": "right" },
+        "md": { "top": "178vh", "side": "right" },
+        "lg": { "top": "168vh", "side": "right" },
+        "xl": { "top": "160vh", "side": "right" },
+        "xxl": { "top": "152vh", "side": "right" }
+      },
+      "title": "Project Skyraft Begin - 2024",
+      "description": "We began the prep for a new Mashup pack project, with the wish to make a innovative adventure for the marketplace.",
+      "image": null
+    },
+    {
+      "id": 7,
+      "category": "title-image-description",
+      "position": {
+        "xs": { "top": "245vh", "side": "left" },
+        "sm": { "top": "220vh", "side": "left" },
+        "md": { "top": "207vh", "side": "left" },
+        "lg": { "top": "196vh", "side": "left" },
+        "xl": { "top": "186vh", "side": "left" },
+        "xxl": { "top": "177vh", "side": "left" }
+      },
+      "title": null,
+      "description": "First Step the map",
+      "image": "/images/gallery_screen_10.webp"
+    },
+    {
+      "id": 8,
+      "category": "title-description",
+      "position": {
+        "xs": { "top": "280vh", "side": "right" },
+        "sm": { "top": "252vh", "side": "right" },
+        "md": { "top": "237vh", "side": "right" },
+        "lg": { "top": "224vh", "side": "right" },
+        "xl": { "top": "213vh", "side": "right" },
+        "xxl": { "top": "203vh", "side": "right" }
+      },
+      "title": "Project Skyraft - 2025",
+      "description": "Wiht the map done we are now preparing new fun mechanics like hoverbikes and new creatures which will be integrated to the project.",
+      "image": null
+    },
+    {
+      "id": 9,
+      "category": "title-image-description",
+      "position": {
+        "xs": { "top": "320vh", "side": "left" },
+        "sm": { "top": "288vh", "side": "left" },
+        "md": { "top": "271vh", "side": "left" },
+        "lg": { "top": "256vh", "side": "left" },
+        "xl": { "top": "243vh", "side": "left" },
+        "xxl": { "top": "232vh", "side": "left" }
+      },
+      "title": null,
+      "description": null,
+      "image": "/images/gallery_screen_4.webp"
+    }
+  ]
+}

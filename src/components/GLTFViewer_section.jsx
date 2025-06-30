@@ -217,9 +217,8 @@ const GLTFSection = ({
   const fontSize = responsive.fontSize();
   const textThreshold = responsive.textAnimationThreshold();
 
-  // Standard spring animations
+  // Standard spring animations (opacity removed)
   const viewerSpring = useSpring({
-    opacity: scrollProgress > 0.001 ? 1 : 0,
     transform: `translateY(${scrollProgress > 0.01 ? 0 : 20}px)`,
     config: {
       tension: 280,
@@ -230,7 +229,6 @@ const GLTFSection = ({
   });
 
   const ellipseSpring = useSpring({
-    opacity: scrollProgress > 0.001 ? 1 : 0,
     transform: `translate(-50%, -50%) scale(${scrollProgress > 0.01 ? 1 : 0.8})`,
     config: {
       tension: 280,
@@ -241,7 +239,6 @@ const GLTFSection = ({
   });
 
   const textSpring = useSpring({
-    opacity: scrollProgress > 0.001 ? 1 : 0,
     transform: `translateY(${scrollProgress > textThreshold ? 0 : 10}px)`,
     config: {
       tension: 200,
@@ -277,14 +274,54 @@ const GLTFSection = ({
       MozBorderRadius: '50%',
     },
     viewerContainer: {
-      // SAFE SCROLL ZONES: 10vh top/bottom, 10vw left/right margins
-      margin: '10vh 10vw',
-      width: 'calc(100vw - 20vw)',
-      height: 'calc(100vh - 20vh)',
+      // Full size 3D viewer (reverted from margins)
+      width: '100vw',
+      height: '100vh',
       position: 'relative',
       overflow: 'hidden',
       zIndex: 2,
       willChange: 'transform, opacity',
+    },
+    // CSS Pointer Events - Safe Scroll Zones (invisible overlays)
+    scrollZoneTop: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '10vh',
+      zIndex: 15, // Above 3D viewer
+      pointerEvents: 'auto', // Allow scroll touches
+      // backgroundColor: 'rgba(255,0,0,0.1)', // Uncomment to visualize zone
+    },
+    scrollZoneBottom: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      height: '10vh',
+      zIndex: 15,
+      pointerEvents: 'auto',
+      // backgroundColor: 'rgba(255,0,0,0.1)', // Uncomment to visualize zone
+    },
+    scrollZoneLeft: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '10vw',
+      height: '100%',
+      zIndex: 15,
+      pointerEvents: 'auto',
+      // backgroundColor: 'rgba(0,255,0,0.1)', // Uncomment to visualize zone
+    },
+    scrollZoneRight: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      width: '10vw',
+      height: '100%',
+      zIndex: 15,
+      pointerEvents: 'auto',
+      // backgroundColor: 'rgba(0,255,0,0.1)', // Uncomment to visualize zone
     },
     textOverlay: {
       position: 'absolute',
@@ -371,6 +408,12 @@ const GLTFSection = ({
           />
         </animated.div>
       )}
+
+      {/* CSS Pointer Events - Invisible Safe Scroll Zones */}
+      <div style={styles.scrollZoneTop} />
+      <div style={styles.scrollZoneBottom} />
+      <div style={styles.scrollZoneLeft} />
+      <div style={styles.scrollZoneRight} />
       
       {/* Loading overlay - show when loading */}
       {loading && (

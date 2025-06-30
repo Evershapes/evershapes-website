@@ -343,7 +343,7 @@ const TeamSection = () => {
         transform: `translateY(${backgroundOffset}px)`,
         config: config.slow,
     });
-
+  
     const styles = {
         // Wrapper pour gérer les transitions entre sections
         sectionWrapper: {
@@ -553,6 +553,7 @@ const TeamSection = () => {
                     <img style={styles.roadSvg} src={RouteBackground} alt="Background Overlay of the Team Section, depicting a route under the text blocks" />
                 </div>
 
+
                 {/* Side content with story boards - UPDATED to use JSON positioning */}
                 <animated.div style={{ ...styles.sideContent }}>
                     {storyBoardsViewData.storyBoards.map((storyBoard, index) => {
@@ -578,6 +579,7 @@ const TeamSection = () => {
                             </div>
                         );
                     })}
+
                 </animated.div>
 
                 {/* Overlay de fade pour transitions extra douces */}

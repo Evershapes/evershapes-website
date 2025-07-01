@@ -31,7 +31,6 @@ class App extends React.Component {
                         autoRotateSpeed: 0.005,
                         modelRotation: 90,
                         modelScale: 5,
-                        yOffset: -0.5
 
 
                     }}
@@ -58,7 +57,6 @@ class App extends React.Component {
                         autoRotateSpeed: 0.005,
                         modelRotation: 90,
                         modelScale: 5,
-                        yOffset: 0
                     }}
                     backgroundColor='#FDFCDC'
                     ellipseGradient='repeating-radial-gradient(75% 75% at 238% 218%, #00FFFF12 30%, #073AFF14 39%),

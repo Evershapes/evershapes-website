@@ -14,7 +14,6 @@ const GLTFViewer = ({ config = {} }) => {
     enableMouseControls: true, // New option to enable/disable mouse controls
     preloadedModel: null, // Preloaded model data from GLTFManager
     shouldRender: true, // Whether this viewer should actively render
-    yOffset: 0 // Offset of the model on the viewer in y
   };
   
   // Merge provided config with defaults

@@ -26,11 +26,12 @@ class App extends React.Component {
                     sectionId="middle-section"
                     config={{
                         modelPath: '/scene/evershapes_scene2.gltf',
-                        cameraAngle: 30,
+                        cameraAngle: 10,
                         cameraDistance: 4.5,
                         autoRotateSpeed: 0.005,
                         modelRotation: 90,
-                        modelScale: 5
+                        modelScale: 5,
+                        yOffset: -0.5
 
 
                     }}
@@ -52,11 +53,12 @@ class App extends React.Component {
                     sectionId="bottom-section"
                     config={{
                         modelPath: '/scene/evershapes_scene3.gltf',
-                        cameraAngle: 20,
+                        cameraAngle: 15,
                         cameraDistance: 4,
                         autoRotateSpeed: 0.005,
                         modelRotation: 90,
-                        modelScale: 5
+                        modelScale: 5,
+                        yOffset: 0
                     }}
                     backgroundColor='#FDFCDC'
                     ellipseGradient='repeating-radial-gradient(75% 75% at 238% 218%, #00FFFF12 30%, #073AFF14 39%),

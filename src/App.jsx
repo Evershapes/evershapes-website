@@ -11,6 +11,8 @@ import GLTFSection from './components/GLTFViewer_section';
 import Horizontal_Scroller from "./components/text_scroller"
 import Footer from "./components/footer"
 
+// EvershapesPortfolioV2
+
 class App extends React.Component {
     render() {
         return (
@@ -71,7 +73,7 @@ class App extends React.Component {
                 />
                 
                 <Footer />
-
+                        
                 <Horizontal_Scroller />
             </div>
         )

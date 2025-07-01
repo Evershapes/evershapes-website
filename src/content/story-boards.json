@@ -4,9 +4,9 @@
       "id": 1,
       "category": "title-description",
       "position": {
-        "xs": { "top": "35vh", "side": "left" },
-        "sm": { "top": "35vh", "side": "left" },
-        "md": { "top": "32vh", "side": "left" },
+        "xs": { "top": "40vh", "side": "left" },
+        "sm": { "top": "55vh", "side": "left" },
+        "md": { "top": "55vh", "side": "left" },
         "lg": { "top": "32vh", "side": "left" },
         "xl": { "top": "40vh", "side": "left" },
         "xxl": { "top": "40vh", "side": "left" }
@@ -19,24 +19,24 @@
       "id": 3,
       "category": "image-only",
       "position": {
-        "xs": { "top": "70vh", "side": "right" },
-        "sm": { "top": "75vh", "side": "right" },
-        "md": { "top": "65vh", "side": "right" },
+        "xs": { "top": "85vh", "side": "right" },
+        "sm": { "top": "135vh", "side": "right" },
+        "md": { "top": "135vh", "side": "right" },
         "lg": { "top": "65vh", "side": "right" },
         "xl": { "top": "65vh", "side": "right" },
         "xxl": { "top": "65vh", "side": "right" }
       },
       "title": "Evershapes Inpixel Collaboration",
       "description": null,
-      "image": "/images/BOATS_BIOMES.webp"
+      "image": "/images/PLANETS.webp"
     },
     {
       "id": 2,
       "category": "title-description",
       "position": {
-        "xs": { "top": "95vh", "side": "left" },
-        "sm": { "top": "100vh", "side": "left" },
-        "md": { "top": "85vh", "side": "left" },
+        "xs": { "top": "115vh", "side": "left" },
+        "sm": { "top": "185vh", "side": "left" },
+        "md": { "top": "180vh", "side": "left" },
         "lg": { "top": "85vh", "side": "left" },
         "xl": { "top": "85vh", "side": "left" },
         "xxl": { "top": "90vh", "side": "left" }
@@ -49,9 +49,9 @@
       "id": 5,
       "category": "image-only",
       "position": {
-        "xs": { "top": "135vh", "side": "right" },
-        "sm": { "top": "145vh", "side": "right" },
-        "md": { "top": "125vh", "side": "right" },
+        "xs": { "top": "165vh", "side": "right" },
+        "sm": { "top": "265vh", "side": "right" },
+        "md": { "top": "260vh", "side": "right" },
         "lg": { "top": "125vh", "side": "right" },
         "xl": { "top": "125vh", "side": "right" },
         "xxl": { "top": "125vh", "side": "right" }
@@ -64,9 +64,9 @@
       "id": 4,
       "category": "title-description",
       "position": {
-        "xs": { "top": "160vh", "side": "left" },
-        "sm": { "top": "175vh", "side": "left" },
-        "md": { "top": "150vh", "side": "left" },
+        "xs": { "top": "200vh", "side": "left" },
+        "sm": { "top": "320vh", "side": "left" },
+        "md": { "top": "315vh", "side": "left" },
         "lg": { "top": "150vh", "side": "left" },
         "xl": { "top": "150vh", "side": "left" },
         "xxl": { "top": "150vh", "side": "left" }
@@ -79,9 +79,9 @@
       "id": 6,
       "category": "title-description",
       "position": {
-        "xs": { "top": "190vh", "side": "right" },
-        "sm": { "top": "205vh", "side": "right" },
-        "md": { "top": "180vh", "side": "right" },
+        "xs": { "top": "235vh", "side": "right" },
+        "sm": { "top": "380vh", "side": "right" },
+        "md": { "top": "380vh", "side": "right" },
         "lg": { "top": "180vh", "side": "right" },
         "xl": { "top": "180vh", "side": "right" },
         "xxl": { "top": "180vh", "side": "right" }
@@ -94,9 +94,9 @@
       "id": 7,
       "category": "title-image-description",
       "position": {
-        "xs": { "top": "230vh", "side": "left" },
-        "sm": { "top": "250vh", "side": "left" },
-        "md": { "top": "220vh", "side": "left" },
+        "xs": { "top": "290vh", "side": "left" },
+        "sm": { "top": "465vh", "side": "left" },
+        "md": { "top": "470vh", "side": "left" },
         "lg": { "top": "220vh", "side": "left" },
         "xl": { "top": "220vh", "side": "left" },
         "xxl": { "top": "220vh", "side": "left" }
@@ -109,9 +109,9 @@
       "id": 8,
       "category": "title-description",
       "position": {
-        "xs": { "top": "280vh", "side": "right" },
-        "sm": { "top": "310vh", "side": "right" },
-        "md": { "top": "270vh", "side": "right" },
+        "xs": { "top": "350vh", "side": "right" },
+        "sm": { "top": "575vh", "side": "right" },
+        "md": { "top": "590vh", "side": "right" },
         "lg": { "top": "270vh", "side": "right" },
         "xl": { "top": "270vh", "side": "right" },
         "xxl": { "top": "270vh", "side": "right" }
@@ -124,9 +124,9 @@
       "id": 9,
       "category": "title-image-description",
       "position": {
-        "xs": { "top": "320vh", "side": "left" },
-        "sm": { "top": "355vh", "side": "left" },
-        "md": { "top": "310vh", "side": "left" },
+        "xs": { "top": "405vh", "side": "left" },
+        "sm": { "top": "665vh", "side": "left" },
+        "md": { "top": "675vh", "side": "left" },
         "lg": { "top": "310vh", "side": "left" },
         "xl": { "top": "310vh", "side": "left" },
         "xxl": { "top": "310vh", "side": "left" }
@@ -139,9 +139,9 @@
       "id": 10,
       "category": "title-description",
       "position": {
-        "xs": { "top": "355vh", "side": "right" },
-        "sm": { "top": "400vh", "side": "right" },
-        "md": { "top": "345vh", "side": "right" },
+        "xs": { "top": "450vh", "side": "right" },
+        "sm": { "top": "745vh", "side": "right" },
+        "md": { "top": "770vh", "side": "right" },
         "lg": { "top": "345vh", "side": "right" },
         "xl": { "top": "345vh", "side": "right" },
         "xxl": { "top": "345vh", "side": "right" }

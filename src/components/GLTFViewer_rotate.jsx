@@ -13,7 +13,8 @@ const GLTFViewer = ({ config = {} }) => {
     modelScale: 5, // size of the bounding cube
     enableMouseControls: true, // New option to enable/disable mouse controls
     preloadedModel: null, // Preloaded model data from GLTFManager
-    shouldRender: true // Whether this viewer should actively render
+    shouldRender: true, // Whether this viewer should actively render
+    yOffset: 0 // Offset of the model on the viewer in y
   };
   
   // Merge provided config with defaults
@@ -352,7 +353,7 @@ const GLTFViewer = ({ config = {} }) => {
     box.getCenter(center);
     model.position.x = -center.x;
     model.position.z = -center.z;
-    model.position.y = -box.min.y * scale -1;
+    model.position.y = -box.min.y * scale + config.yOffset;
     
     // Rotate the model by configured degrees on Y axis
     model.rotation.y = settings.modelRotation * Math.PI / 180;

@@ -105,8 +105,8 @@ const GLTFSection = ({
             ellipseWidth = '140vw';
             ellipseHeight = '40vh';
           } else {
-            ellipseWidth = '200vw';
-            ellipseHeight = '60vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
           break;
         case 'sm':
@@ -114,8 +114,8 @@ const GLTFSection = ({
             ellipseWidth = '130vw';
             ellipseHeight = '50vh';
           } else {
-            ellipseWidth = '200vw';
-            ellipseHeight = '60vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
           break;
         case 'md':
@@ -123,8 +123,8 @@ const GLTFSection = ({
             ellipseWidth = '130vw';
             ellipseHeight = '70vh';
           } else {
-            ellipseWidth = '150vw';
-            ellipseHeight = '60vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
           break;
         case 'lg':
@@ -132,8 +132,8 @@ const GLTFSection = ({
             ellipseWidth = '100vw';
             ellipseHeight = '60vh';
           } else {
-            ellipseWidth = '150vw';
-            ellipseHeight = '55vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
           break;
         case 'xl':
@@ -141,8 +141,8 @@ const GLTFSection = ({
             ellipseWidth = '100vw';
             ellipseHeight = '50vh';
           } else {
-            ellipseWidth = '150vw';
-            ellipseHeight = '45vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
           break;
         case 'xxl':
@@ -150,8 +150,8 @@ const GLTFSection = ({
             ellipseWidth = '100vw';
             ellipseHeight = '45vh';
           } else {
-            ellipseWidth = '150vw';
-            ellipseHeight = '40vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
           break;
         default:
@@ -159,8 +159,8 @@ const GLTFSection = ({
             ellipseWidth = '100vw';
             ellipseHeight = '60vh';
           } else {
-            ellipseWidth = '150vw';
-            ellipseHeight = '55vh';
+            ellipseWidth = '0vw';
+            ellipseHeight = '0vh';
           }
       }
       

@@ -111,8 +111,8 @@ const GLTFSection = ({
           break;
         case 'sm':
           if (isLandscape) {
-            ellipseWidth = '130vw';
-            ellipseHeight = '50vh';
+            ellipseWidth = '100vw';
+            ellipseHeight = '40vh';
           } else {
             ellipseWidth = '0vw';
             ellipseHeight = '0vh';
@@ -120,8 +120,8 @@ const GLTFSection = ({
           break;
         case 'md':
           if (isLandscape) {
-            ellipseWidth = '130vw';
-            ellipseHeight = '70vh';
+            ellipseWidth = '10vw';
+            ellipseHeight = '40vh';
           } else {
             ellipseWidth = '0vw';
             ellipseHeight = '0vh';
@@ -130,7 +130,7 @@ const GLTFSection = ({
         case 'lg':
           if (isLandscape) {
             ellipseWidth = '100vw';
-            ellipseHeight = '60vh';
+            ellipseHeight = '50vh';
           } else {
             ellipseWidth = '0vw';
             ellipseHeight = '0vh';
@@ -212,6 +212,17 @@ const GLTFSection = ({
         case 'xxl': return 0.4;
         default: return 0.33;
       }
+    },
+    ellipseTopMargin: () => {
+      switch (deviceType) {
+        case 'xs': return '20vh';
+        case 'sm': return '20vh';
+        case 'md': return '0vh';
+        case 'lg': return '0vh';
+        case 'xl': return '0vh';
+        case 'xxl': return '0vh';
+        default: return '0vh';
+      }
     }
   };
 
@@ -263,6 +274,7 @@ const GLTFSection = ({
       backgroundColor: backgroundColor
     },
     ellipseBackground: {
+      marginTop: responsive.ellipseTopMargin(),
       position: 'absolute',
       top: '50%',
       left: '50%',

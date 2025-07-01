@@ -10,9 +10,9 @@ const Cliff_Back = () => {
   const sectionRef = useRef(null);
 
   // Direct paths to cliff images
-  const cliffBackUrl = '/images/Cliff_Back_Part_Bis.png';
-  const cliffMiddleUrl = '/images/Cliff_Middle_Part_Bis.png';
-  const cliffFrontUrl = '/images/Cliff_Front_Part.png';
+  const cliffBackUrl = '/images/Cliff_Back_Part.webp';
+  const cliffMiddleUrl = '/images/Cliff_Middle_Part.webp';
+  const cliffFrontUrl = '/images/Cliff_Front_Part.webp';
 
   // Standard CSS media query breakpoints
   const breakpoints = {

@@ -219,7 +219,7 @@ const GLTFSection = ({
         case 'sm': return '20vh';
         case 'md': return '10vh';
         case 'lg': return '10vh';
-        case 'xl': return '0vh';
+        case 'xl': return '10vh';
         case 'xxl': return '0vh';
         default: return '0vh';
       }

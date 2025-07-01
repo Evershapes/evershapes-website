@@ -217,8 +217,8 @@ const GLTFSection = ({
       switch (deviceType) {
         case 'xs': return '20vh';
         case 'sm': return '20vh';
-        case 'md': return '0vh';
-        case 'lg': return '0vh';
+        case 'md': return '10vh';
+        case 'lg': return '10vh';
         case 'xl': return '0vh';
         case 'xxl': return '0vh';
         default: return '0vh';

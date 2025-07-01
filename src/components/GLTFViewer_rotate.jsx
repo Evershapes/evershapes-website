@@ -353,7 +353,7 @@ const GLTFViewer = ({ config = {} }) => {
     box.getCenter(center);
     model.position.x = -center.x;
     model.position.z = -center.z;
-    model.position.y = -box.min.y * scale + config.yOffset;
+    model.position.y = -box.min.y * scale-1;
     
     // Rotate the model by configured degrees on Y axis
     model.rotation.y = settings.modelRotation * Math.PI / 180;

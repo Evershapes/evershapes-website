@@ -4,120 +4,120 @@
       "id": 1,
       "category": "title-description",
       "position": {
-        "xs": { "top": "40vh", "side": "left" },
+        "xs": { "top": "35vh", "side": "left" },
         "sm": { "top": "35vh", "side": "left" },
         "md": { "top": "32vh", "side": "left" },
-        "lg": { "top": "30vh", "side": "left" },
-        "xl": { "top": "28vh", "side": "left" },
-        "xxl": { "top": "26vh", "side": "left" }
+        "lg": { "top": "32vh", "side": "left" },
+        "xl": { "top": "40vh", "side": "left" },
+        "xxl": { "top": "40vh", "side": "left" }
       },
       "title": "Our Beginning - 2019",
-      "description": "Starting as a very small team of 2 people, we had a vision to create something unique.",
+      "description": "Our adventure began with an idea, after many years of working on the marketplace separately. We decided to combine our visions to create something unique.",
       "image": null
     },
     {
       "id": 3,
-      "category": "title-image-description",
+      "category": "image-only",
       "position": {
         "xs": { "top": "70vh", "side": "right" },
-        "sm": { "top": "62vh", "side": "right" },
-        "md": { "top": "58vh", "side": "right" },
-        "lg": { "top": "55vh", "side": "right" },
-        "xl": { "top": "52vh", "side": "right" },
-        "xxl": { "top": "49vh", "side": "right" }
+        "sm": { "top": "75vh", "side": "right" },
+        "md": { "top": "65vh", "side": "right" },
+        "lg": { "top": "65vh", "side": "right" },
+        "xl": { "top": "65vh", "side": "right" },
+        "xxl": { "top": "65vh", "side": "right" }
       },
-      "title": null,
+      "title": "Evershapes Inpixel Collaboration",
       "description": null,
-      "image": "/images/ESxinpixel.png"
+      "image": "/images/BOATS_BIOMES.webp"
     },
     {
       "id": 2,
       "category": "title-description",
       "position": {
-        "xs": { "top": "100vh", "side": "left" },
-        "sm": { "top": "89vh", "side": "left" },
-        "md": { "top": "84vh", "side": "left" },
-        "lg": { "top": "80vh", "side": "left" },
-        "xl": { "top": "76vh", "side": "left" },
-        "xxl": { "top": "72vh", "side": "left" }
+        "xs": { "top": "95vh", "side": "left" },
+        "sm": { "top": "100vh", "side": "left" },
+        "md": { "top": "85vh", "side": "left" },
+        "lg": { "top": "85vh", "side": "left" },
+        "xl": { "top": "85vh", "side": "left" },
+        "xxl": { "top": "90vh", "side": "left" }
       },
       "title": "InPixel first partners - 2021",
-      "description": "Our first partners in this adventure where InPixel. We published our first content on the marketplace thanks to them.",
+      "description": "The first partnership with inPixel enabled us to understand the marketplace environment and develop our skills, resulting in a more complete vision. Bringing us closer to what we initially wanted.",
       "image": null
     },
     {
       "id": 5,
-      "category": "title-image-description",
+      "category": "image-only",
       "position": {
-        "xs": { "top": "145vh", "side": "right" },
-        "sm": { "top": "130vh", "side": "right" },
-        "md": { "top": "122vh", "side": "right" },
-        "lg": { "top": "116vh", "side": "right" },
-        "xl": { "top": "110vh", "side": "right" },
-        "xxl": { "top": "105vh", "side": "right" }
+        "xs": { "top": "135vh", "side": "right" },
+        "sm": { "top": "145vh", "side": "right" },
+        "md": { "top": "125vh", "side": "right" },
+        "lg": { "top": "125vh", "side": "right" },
+        "xl": { "top": "125vh", "side": "right" },
+        "xxl": { "top": "125vh", "side": "right" }
       },
-      "title": null,
+      "title": "Evershapes Rareloot Collaboration",
       "description": null,
-      "image": "/images/ESXrarelootl.png"
+      "image": "/images/space1.webp"
     },
     {
       "id": 4,
       "category": "title-description",
       "position": {
-        "xs": { "top": "175vh", "side": "left" },
-        "sm": { "top": "157vh", "side": "left" },
-        "md": { "top": "148vh", "side": "left" },
-        "lg": { "top": "140vh", "side": "left" },
-        "xl": { "top": "133vh", "side": "left" },
-        "xxl": { "top": "127vh", "side": "left" }
+        "xs": { "top": "160vh", "side": "left" },
+        "sm": { "top": "175vh", "side": "left" },
+        "md": { "top": "150vh", "side": "left" },
+        "lg": { "top": "150vh", "side": "left" },
+        "xl": { "top": "150vh", "side": "left" },
+        "xxl": { "top": "150vh", "side": "left" }
       },
       "title": "Rareloot partnership - 2022",
-      "description": "Our Second Partnership after Inpixel, we publised maps like RAFT and Hard Space Survival thanks to them.",
+      "description": "Our Second Partnership after Inpixel. Rareloot gave us continuity in our approach to improving our content.",
       "image": null
     },
     {
       "id": 6,
       "category": "title-description",
       "position": {
-        "xs": { "top": "210vh", "side": "right" },
-        "sm": { "top": "189vh", "side": "right" },
-        "md": { "top": "178vh", "side": "right" },
-        "lg": { "top": "168vh", "side": "right" },
-        "xl": { "top": "160vh", "side": "right" },
-        "xxl": { "top": "152vh", "side": "right" }
+        "xs": { "top": "190vh", "side": "right" },
+        "sm": { "top": "205vh", "side": "right" },
+        "md": { "top": "180vh", "side": "right" },
+        "lg": { "top": "180vh", "side": "right" },
+        "xl": { "top": "180vh", "side": "right" },
+        "xxl": { "top": "180vh", "side": "right" }
       },
-      "title": "Project Skyraft Begin - 2024",
-      "description": "We began the prep for a new Mashup pack project, with the wish to make a innovative adventure for the marketplace.",
+      "title": "Project Raft Begins - 2024",
+      "description": "The codename 'Raft' project begins in 2024 with a clear objective: to create a mash-up of outstanding quality. Our preparation begins with the conception of a high-level game environment with advanced notions of game design.",
       "image": null
     },
     {
       "id": 7,
       "category": "title-image-description",
       "position": {
-        "xs": { "top": "245vh", "side": "left" },
-        "sm": { "top": "220vh", "side": "left" },
-        "md": { "top": "207vh", "side": "left" },
-        "lg": { "top": "196vh", "side": "left" },
-        "xl": { "top": "186vh", "side": "left" },
-        "xxl": { "top": "177vh", "side": "left" }
+        "xs": { "top": "230vh", "side": "left" },
+        "sm": { "top": "250vh", "side": "left" },
+        "md": { "top": "220vh", "side": "left" },
+        "lg": { "top": "220vh", "side": "left" },
+        "xl": { "top": "220vh", "side": "left" },
+        "xxl": { "top": "220vh", "side": "left" }
       },
-      "title": null,
-      "description": "First Step the map",
-      "image": "/images/gallery_screen_10.webp"
+      "title": "Raft screenshot",
+      "description": "Particular attention is paid to the details of the build in order to create an experience rarely seen on the marketplace.",
+      "image": "/images/team_screen_1.webp"
     },
     {
       "id": 8,
       "category": "title-description",
       "position": {
         "xs": { "top": "280vh", "side": "right" },
-        "sm": { "top": "252vh", "side": "right" },
-        "md": { "top": "237vh", "side": "right" },
-        "lg": { "top": "224vh", "side": "right" },
-        "xl": { "top": "213vh", "side": "right" },
-        "xxl": { "top": "203vh", "side": "right" }
+        "sm": { "top": "310vh", "side": "right" },
+        "md": { "top": "270vh", "side": "right" },
+        "lg": { "top": "270vh", "side": "right" },
+        "xl": { "top": "270vh", "side": "right" },
+        "xxl": { "top": "270vh", "side": "right" }
       },
       "title": "Project Skyraft - 2025",
-      "description": "Wiht the map done we are now preparing new fun mechanics like hoverbikes and new creatures which will be integrated to the project.",
+      "description": "With the map build completed, we start adding new creatures and mechanics to bring the project to life. With 300+ 3D models, a resource pack and a 3x3K map. We intend to make this project a headliner for our team.",
       "image": null
     },
     {
@@ -125,15 +125,30 @@
       "category": "title-image-description",
       "position": {
         "xs": { "top": "320vh", "side": "left" },
-        "sm": { "top": "288vh", "side": "left" },
-        "md": { "top": "271vh", "side": "left" },
-        "lg": { "top": "256vh", "side": "left" },
-        "xl": { "top": "243vh", "side": "left" },
-        "xxl": { "top": "232vh", "side": "left" }
+        "sm": { "top": "355vh", "side": "left" },
+        "md": { "top": "310vh", "side": "left" },
+        "lg": { "top": "310vh", "side": "left" },
+        "xl": { "top": "310vh", "side": "left" },
+        "xxl": { "top": "310vh", "side": "left" }
       },
-      "title": null,
+      "title": "Raft Map Extract",
       "description": null,
-      "image": "/images/gallery_screen_4.webp"
+      "image": "/images/raft_map_extract.webp"
+    },
+    {
+      "id": 10,
+      "category": "title-description",
+      "position": {
+        "xs": { "top": "355vh", "side": "right" },
+        "sm": { "top": "400vh", "side": "right" },
+        "md": { "top": "345vh", "side": "right" },
+        "lg": { "top": "345vh", "side": "right" },
+        "xl": { "top": "345vh", "side": "right" },
+        "xxl": { "top": "345vh", "side": "right" }
+      },
+      "title": "Next ?",
+      "description": "We have lots of ideas for future projects, but we want to concentrate on the quality of our projects. The work has already begun, and we hope to be able to share it with you soon.",
+      "image": null
     }
   ]
 }

@@ -2,12 +2,29 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import storyBoardsViewData from '../content/story-boards.json';
 import RouteBackground from "../assets/routebackground.svg";
+import Modal from '../utils/modal.jsx';
 
 const TeamSection = () => {
     const [scrollY, setScrollY] = useState(0);
     const [sectionTop, setSectionTop] = useState(0);
     const [viewport, setViewport] = useState({ width: 0, height: 0 });
     const sectionRef = useRef(null);
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalImage, setModalImage] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
+
+    const handleImageClick = (imagePath, title) => {
+        setModalImage(imagePath);
+        setModalTitle(title);
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setModalImage('');
+        setModalTitle('');
+    };
 
     // Standard CSS media query breakpoints
     const breakpoints = {
@@ -74,12 +91,12 @@ const TeamSection = () => {
     const getResponsivePosition = useCallback((storyBoard) => {
         // Get position for current device type, fallback to 'md' if not found
         const positionData = storyBoard.position[deviceType] || storyBoard.position['md'] || storyBoard.position;
-        
+
         // Handle legacy format (single position object)
         if (positionData.top && positionData.side) {
             return positionData;
         }
-        
+
         // Fallback to first available position
         const firstKey = Object.keys(storyBoard.position)[0];
         return storyBoard.position[firstKey] || { top: '50vh', side: 'left' };
@@ -244,8 +261,8 @@ const TeamSection = () => {
                     case 'xs': return 300;
                     case 'sm': return 400;
                     case 'md': return 300;
-                    case 'lg': return 350;
-                    case 'xl': return 400;
+                    case 'lg': return 500;
+                    case 'xl': return 500;
                     case 'xxl': return 450;
                     default: return 300;
                 }
@@ -409,6 +426,23 @@ const TeamSection = () => {
             backdropFilter: 'blur(10px)',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
         },
+        standaloneImage: {
+            maxWidth: responsive.storyBoardMaxWidth(),
+            pointerEvents: 'auto',
+            cursor: 'pointer',
+            padding: responsive.storyBoardPadding(),
+            background: 'transparent',
+            borderRadius: responsive.storyBoardBorderRadius(),
+        },
+        imageOnlyBoard: {
+            position: 'absolute',
+            maxWidth: responsive.storyBoardMaxWidth(),
+            pointerEvents: 'auto',
+            cursor: 'pointer',
+            background: '#F07167',
+            borderRadius: responsive.storyBoardBorderRadius(),
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+        },
         // Story board content styles
         storyTitle: {
             fontSize: responsive.storyTitleSize(),
@@ -504,7 +538,11 @@ const TeamSection = () => {
                     <img
                         src={storyBoard.image}
                         alt="Story visual"
-                        style={styles.storyImage}
+                        style={{
+                            ...styles.standaloneImage,
+                            cursor: 'pointer' // Add cursor pointer
+                        }}
+                        onClick={() => handleImageClick(storyBoard.image, storyBoard.title || 'Story Image')} // Add click handler
                         onError={(e) => {
                             e.target.style.display = 'none';
                         }}
@@ -523,7 +561,11 @@ const TeamSection = () => {
                             <img
                                 src={storyBoard.image}
                                 alt={storyBoard.title || "Story visual"}
-                                style={styles.storyImage}
+                                style={{
+                                    ...styles.storyImage,
+                                    cursor: 'pointer' // Add cursor pointer
+                                }}
+                                onClick={() => handleImageClick(storyBoard.image, storyBoard.title || 'Story Image')} // Add click handler
                                 onError={(e) => {
                                     e.target.style.display = 'none';
                                 }}
@@ -545,6 +587,8 @@ const TeamSection = () => {
     return (
         <div id="team" style={styles.sectionWrapper}>
             <section ref={sectionRef} style={styles.teamSection}>
+                {/* ... existing JSX ... (keep all existing JSX unchanged) */}
+
                 {/* Background layer with slow parallax */}
                 <animated.div style={{ ...styles.backgroundLayer, ...backgroundSpring }} />
 
@@ -559,15 +603,19 @@ const TeamSection = () => {
                     {storyBoardsViewData.storyBoards.map((storyBoard, index) => {
                         // Get responsive position from JSON
                         const position = getResponsivePosition(storyBoard);
-                        
+
+                        const boardStyle = storyBoard.category === 'image-only'
+                            ? styles.imageOnlyBoard
+                            : styles.storyBoard;
+
                         return (
                             <div
                                 key={storyBoard.id}
                                 style={{
-                                    ...styles.storyBoard,
+                                    ...boardStyle,
                                     // Use JSON positioning with responsive margins
                                     top: position.top,
-                                    ...(position.side === 'left' 
+                                    ...(position.side === 'left'
                                         ? { left: responsive.storyBoardLeftMargin() }
                                         : { right: responsive.storyBoardRightMargin() }
                                     ),
@@ -596,6 +644,14 @@ const TeamSection = () => {
                 </div>
 
             </section>
+
+            {/* Add Modal - same as projects section */}
+            <Modal
+                isOpen={modalOpen}
+                onClose={closeModal}
+                imageSrc={modalImage}
+                title={modalTitle}
+            />
         </div>
     );
 };

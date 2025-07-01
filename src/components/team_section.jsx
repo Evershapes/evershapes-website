@@ -107,9 +107,9 @@ const TeamSection = () => {
         // Section dimensions
         sectionHeight: () => {
             switch (deviceType) {
-                case 'xs': return '470vh';
-                case 'sm': return '470vh';
-                case 'md': return '410vh';
+                case 'xs': return '530vh';
+                case 'sm': return '850vh';
+                case 'md': return '880vh';
                 case 'lg': return '400vh';
                 case 'xl': return '410vh';
                 case 'xxl': return '410vh';
@@ -121,7 +121,7 @@ const TeamSection = () => {
         roadWidth: () => {
             switch (deviceType) {
                 case 'xs': return '100vw';
-                case 'sm': return '130vw';
+                case 'sm': return '100vw';
                 case 'md': return '100vw';
                 case 'lg': return '100vw';
                 case 'xl': return '100vw';
@@ -146,8 +146,8 @@ const TeamSection = () => {
         storyBoardMaxWidth: () => {
             switch (deviceType) {
                 case 'xs': return '280px';
-                case 'sm': return '320px';
-                case 'md': return '360px';
+                case 'sm': return '290px';
+                case 'md': return '320px';
                 case 'lg': return '420px';
                 case 'xl': return '480px';
                 case 'xxl': return '540px';
@@ -208,8 +208,8 @@ const TeamSection = () => {
         storyTitleSize: () => {
             switch (deviceType) {
                 case 'xs': return '1.4rem';
-                case 'sm': return '1.6rem';
-                case 'md': return '1.8rem';
+                case 'sm': return '1.4rem';
+                case 'md': return '1.6rem';
                 case 'lg': return '2rem';
                 case 'xl': return '2.2rem';
                 case 'xxl': return '2.4rem';
@@ -220,8 +220,8 @@ const TeamSection = () => {
         storyDescriptionSize: () => {
             switch (deviceType) {
                 case 'xs': return '0.9rem';
-                case 'sm': return '1rem';
-                case 'md': return '1.1rem';
+                case 'sm': return '0.9rem';
+                case 'md': return '1rem';
                 case 'lg': return '1.2rem';
                 case 'xl': return '1.3rem';
                 case 'xxl': return '1.4rem';

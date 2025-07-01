@@ -197,48 +197,6 @@
             "featured": true
         },
         {
-            "id": "render_final",
-            "Title": "Server Lobby",
-            "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
-            "Path": "/images/renderFINAL.webp",
-            "featured": true
-        },
-        {
-            "id": "render1",
-            "Title": "Chunk Forest",
-            "Description": "Do you recognize this chunk forest ? Made & rendered by our team.",
-            "Path": "/images/render1.webp",
-            "featured": true
-        },
-        {
-            "id": "render2",
-            "Title": "Midnight Abbey",
-            "Description": "Made & rendered by our team.",
-            "Path": "/images/render2.webp",
-            "featured": true
-        },
-        {
-            "id": "render3",
-            "Title": "Star Desert",
-            "Description": "This star desert render was made & rendered by our team.",
-            "Path": "/images/render3.webp",
-            "featured": true
-        },
-        {
-            "id": "render4",
-            "Title": "Planet Render",
-            "Description": "Exploration time ! This planet render was made & rendered by our team.",
-            "Path": "/images/render4.webp",
-            "featured": true
-        },
-        {
-            "id": "render5",
-            "Title": "Space Travel",
-            "Description": "Traveling through space, this render was made & rendered by our team.",
-            "Path": "/images/render5.webp",
-            "featured": true
-        },
-        {
             "id": "gallery_screen_12",
             "Title": "Strange World",
             "Description": "This screenshot from a biome of a future mashup project !",
@@ -327,6 +285,111 @@
             "Title": "Cozy Corner",
             "Description": "Here, have a seat and relax. This is part of our future mashup project.",
             "Path": "/images/gallery_screen_24.webp",
+            "featured": true
+        },
+        {
+            "id": "render_final",
+            "Title": "Server Lobby",
+            "Description": "Old lobby of SkyGames server. Made & rendered by our team.",
+            "Path": "/images/renderFINAL.webp",
+            "featured": true
+        },
+        {
+            "id": "render1",
+            "Title": "Chunk Forest",
+            "Description": "This chunk forest was made & rendered by our team.",
+            "Path": "/images/render1.webp",
+            "featured": true
+        },
+        {
+            "id": "render2",
+            "Title": "Midnight Abbey",
+            "Description": "Made & rendered by our team.",
+            "Path": "/images/render2.webp",
+            "featured": true
+        },
+        {
+            "id": "render3",
+            "Title": "Star Desert",
+            "Description": "This star desert render was made & rendered by our team.",
+            "Path": "/images/render3.webp",
+            "featured": true
+        },
+        {
+            "id": "render4",
+            "Title": "Planet Exploration",
+            "Description": "This planet render was made & rendered by our team.",
+            "Path": "/images/render4.webp",
+            "featured": true
+        },
+        {
+            "id": "render5",
+            "Title": "Space Travel",
+            "Description": "Traveling through space, this render was made & rendered by our team.",
+            "Path": "/images/render5.webp",
+            "featured": true
+        },
+        {
+            "id": "render6",
+            "Title": "Submarine Adventure",
+            "Description": "Marketplace project. Exploring the depths of the ocean. Made & rendered by our team.",
+            "Path": "/images/submarine_adventure_final.webp",
+            "featured": true
+        },
+        {
+            "id": "render7",
+            "Title": "Stranded Ship",
+            "Description": "Render by Paul Sireau, build by Oulapo.",
+            "Path": "/images/render_paul.webp",
+            "featured": true
+        },
+        {
+            "id": "render8",
+            "Title": "Modern Invasion",
+            "Description": "Render by Paul Sireau, build by Oulapo & Arch.",
+            "Path": "/images/render_paul_2.webp",
+            "featured": true
+        },
+        {
+            "id": "render9",
+            "Title": "Planets",
+            "Description": "Marketplace project, build by Oulapo & rendered by our team.",
+            "Path": "/images/PLANETS.webp",
+            "featured": true
+        },
+        {
+            "id": "render10",
+            "Title": "Nether Skyblock",
+            "Description": "Marketplace project, made & rendered by our team.",
+            "Path": "/images/nether_skyblock.webp",
+            "featured": true
+        },
+        {
+            "id": "render11",
+            "Title": "Spaceships !",
+            "Description": "Traveling through space has never been easier, this render was made & rendered by our team.",
+            "Path": "/images/lelrendertest.webp",
+            "featured": true
+        },
+        {
+            "id": "render12",
+            "Title": "Hardcore Space Survival",
+            "Description": "Marketplace project, made & rendered by our team.",
+            "Path": "/images/hardcore_space_survival.webp",
+            "featured": true
+        },
+        {
+            "id": "render13",
+            "Title": "Boat Biomes",
+            "Description": "Marketplace project, made by Oulapo & rendered by our team.",
+            "Path": "/images/BOATS_BIOMES.webp",
+            "featured": true
+        },
+        {
+            "id": "render14",
+            "Title": "Rockets",
+            "Description": "Made by Oulapo & rendered by our team.",
+            "Path": "/images/space1.webp",
             "featured": true
         }
     ]

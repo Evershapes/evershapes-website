@@ -66,7 +66,8 @@ class App extends React.Component {
                 radial-gradient(99% 99% at 21% 78%, #7D00FFFF 0%, #073AFF00 100%),
                 radial-gradient(160% 154% at 711px -303px, #2000FFFF 0%, #000000FF 100%)'
                     overlayText="Fights Epic Battles"
-                    textOffsetMultiplier={6}
+                    textOffsetMultiplier={8}
+                    color='#0081A7'
                     under_backgroundColor='#0081A7'
                 />
                 

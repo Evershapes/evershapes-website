@@ -10,7 +10,8 @@ const GLTFSection = ({
   backgroundColor = 'transparent',
   ellipseGradient = 'transparent',
   overlayText = "",
-  textOffsetMultiplier = 0, // New parameter: -10 to 10, each unit = 5vh
+  textOffsetMultiplier = 0, // New parameter: -10 to 10, each unit = 5vh,
+  color = '#F07167' // Default color for text
 }) => {
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
@@ -120,7 +121,7 @@ const GLTFSection = ({
           break;
         case 'md':
           if (isLandscape) {
-            ellipseWidth = '10vw';
+            ellipseWidth = '100vw';
             ellipseHeight = '40vh';
           } else {
             ellipseWidth = '0vw';
@@ -354,7 +355,7 @@ const GLTFSection = ({
     overlayText: {
       fontSize: `${fontSize}px`,
       fontWeight: '700',
-      color: '#00AFB9',
+      color: `${color}`,
       fontFamily: 'BriceSemiBold',
       lineHeight: '1.1',
       letterSpacing: '-0.02em',

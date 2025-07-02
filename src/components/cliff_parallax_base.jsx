@@ -184,7 +184,7 @@ const Cliff_Back = () => {
     // Content positioning
     contentTop: () => {
       switch (deviceType) {
-        case 'xs': return '45vh';
+        case 'xs': return '35vh';
         case 'sm': return '40vh';
         case 'md': return '55vh';
         case 'lg': return '100vh';
@@ -252,6 +252,18 @@ const Cliff_Back = () => {
         case 'xl':
         case 'xxl': return '2.5rem';
         default: return '1rem';
+      }
+    },
+
+    textOffsetMultiplier: () => {
+      switch (deviceType) {
+        case 'xs': return 5;
+        case 'sm': return 8;
+        case 'md': return 8;
+        case 'lg': return 4;
+        case 'xl': return 4;
+        case 'xxl': return 2;
+        default: return 3;
       }
     }
   };
@@ -468,7 +480,7 @@ const Cliff_Back = () => {
       <div style={styles.contentContainer}>
         <div style={styles.chessboardContainer}>
           <GLTFSection
-          textOffsetMultiplier={3}
+          textOffsetMultiplier={responsive.textOffsetMultiplier()}
             sectionId="parallax-section"
             config={getGLTFConfig()}
             key={`${deviceType}`}

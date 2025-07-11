@@ -43,10 +43,12 @@ const Horizontal_Scroller = ({ text = "Evershapes\u00A0" }) => {
     };
   }, []);
 
+  /*
   // Debug device type changes
   useEffect(() => {
     console.log(`📜 Text Scroller - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
   }, [deviceType, viewport.width, viewport.height]);
+  */
 
   // Responsive values based on device type
   const responsive = {
@@ -153,8 +155,6 @@ const Horizontal_Scroller = ({ text = "Evershapes\u00A0" }) => {
         let row_item_width = e.children[0].getBoundingClientRect().width;
         let initial_offset = ((2 * row_item_width) / row_width) * 100 * -1;
         let x_translation = initial_offset * -1;
-        
-        console.log(`Row ${i}: Translation ${x_translation}% (${deviceType})`);
         
         let duration = responsive.animationDuration() * (i + 1);
         

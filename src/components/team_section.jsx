@@ -78,11 +78,13 @@ const TeamSection = () => {
         };
     }, []);
 
+    /*
     // Debug device type changes
     useEffect(() => {
         console.log(`👥 Team Section - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
     }, [deviceType, viewport.width, viewport.height]);
-
+    */
+   
     // Calculate scroll progress through this section
     const sectionHeight = window.innerHeight * 5; // Adjusted for taller section
     const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
@@ -263,7 +265,7 @@ const TeamSection = () => {
                     case 'md': return 300;
                     case 'lg': return 500;
                     case 'xl': return 500;
-                    case 'xxl': return 450;
+                    case 'xxl': return 500;
                     default: return 300;
                 }
             })();
@@ -459,7 +461,6 @@ const TeamSection = () => {
             marginBottom: responsive.storyDescriptionMargin()
         },
         storyImage: {
-            width: responsive.imageWidth() + 'px',
             height: responsive.imageHeight() + 'px',
             objectFit: 'cover',
             borderRadius: responsive.imageBorderRadius(),

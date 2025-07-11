@@ -113,10 +113,12 @@ const Footer = () => {
     }
   }, []);
 
+  /*
   // Debug device type changes
   useEffect(() => {
     console.log(`🦶 Footer - Device Type: ${deviceType.toUpperCase()} (${viewport.width}x${viewport.height})`);
   }, [deviceType, viewport.width, viewport.height]);
+  */
 
   // Animation for the entire footer
   const footerAnimation = useSpring({

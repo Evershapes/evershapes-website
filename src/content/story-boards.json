@@ -131,7 +131,7 @@
         "xl": { "top": "310vh", "side": "left" },
         "xxl": { "top": "310vh", "side": "left" }
       },
-      "title": "Raft Map Extract",
+      "title": "Skyraft Map Extract",
       "description": null,
       "image": "/images/raft_map_extract.webp"
     },

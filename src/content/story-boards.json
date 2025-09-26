@@ -86,8 +86,8 @@
         "xl": { "top": "180vh", "side": "right" },
         "xxl": { "top": "180vh", "side": "right" }
       },
-      "title": "Project Raft Begins - 2024",
-      "description": "The codename 'Raft' project begins in 2024 with a clear objective: to create a mash-up of outstanding quality. Our preparation begins with the conception of a high-level game environment with advanced notions of game design.",
+      "title": "Project SkyRaft Begins - 2024",
+      "description": "The codename 'SkyRaft' project begins in 2024 with a clear objective: to create a mash-up of outstanding quality. Our preparation begins with the conception of a high-level game environment with advanced notions of game design.",
       "image": null
     },
     {
@@ -101,7 +101,7 @@
         "xl": { "top": "220vh", "side": "left" },
         "xxl": { "top": "220vh", "side": "left" }
       },
-      "title": "Raft screenshot",
+      "title": "SkyRaft screenshot",
       "description": "Particular attention is paid to the details of the build in order to create an experience rarely seen on the marketplace.",
       "image": "/images/team_screen_1.webp"
     },
